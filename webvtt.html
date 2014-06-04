@@ -3,11 +3,12 @@
   <head>
     <title>WebVTT: The Web Video Text Tracks Format</title>
     <meta charset='utf-8'>
+    <meta name='robots' content='noindex'>
     <script src='respec/builds/respec-w3c-common.js' async class='remove'></script>
     <script class='remove'>
       var respecConfig = {
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
-          specStatus:           "CG-DRAFT",
+          specStatus:           "unofficial",
 
           // the specification's short name, as in http://www.w3.org/TR/short-name/
           shortName:            "webvtt",
@@ -39,7 +40,7 @@
           // only "name" is required
           editors:  [
               { name: "Silvia Pfeiffer", url: "mailto:silviapfeiffer1@gmail.com",
-                company: "NICTA", companyURL: "http://nicta.com.au/" },
+                company: "NICTA", companyURL: "http://nicta.com.au/", note: "W3C editor" },
               { name: "Philip J&auml;genstedt", url: "mailto:philipj@opera.com",
                 company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
               { name: "Ian Hickson", url: "mailto:ian@hixie.ch",
@@ -78,11 +79,6 @@
           doRDFa: false,
       };
     </script>
-    <!-- script to register bugs -->
-    <script src="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/assets/scripts/bug-assist.js"></script>
-    <meta name="bug.short_desc" content="[WebVTT] ">
-    <meta name="bug.product" content="TextTracks CG">
-    <meta name="bug.component" content="WebVTT">
     <style>
     body {
       line-height: 1.35;
@@ -186,17 +182,16 @@
   </head>
   <body>
   <section id='abstract'>
-    <p>This is the specification of WebVTT, the Web Video Text Tracks format.</p>
-
-    <p>If you wish to make comments or file bugs regarding this document in a manner
-      that is tracked by the W3C, please submit them via <a
-      href="http://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&amp;component=WebVTT&amp;short_desc=%5BWebVTT%5D%20">our
-      public bug database</a>.</p>
-
+   <p>This is Philip J&auml;genstedt's unofficial draft of
+   <a href="http://dev.w3.org/html5/webvtt/">WebVTT</a>, with these changes applied:</p>
+   <ul>
+    <li>Revert the redesigned positioning mechanism <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=20037">[bug]</a></li>
+    <li>Let position have the same interpretation for LTR and RTL text</li>
+    <li>Let position have a default "auto" value, which depends on align <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=25632">[bug]</a></li>
+   </ul>
   </section>
 
   <section id='sotd'>
-    <p>This specification is being developed as a Living Specification. There is a plan to take a snapshot and publish it as a W3C Recommendation through the <a href="http://www.w3.org/AudioVideo/TT/">W3C Timed Text Working Group</a>.</p>
   </section>
 
   <section>
