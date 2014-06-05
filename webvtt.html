@@ -1248,25 +1248,12 @@ What are you waiting for?</pre>
    </li>
 
    <li>
-<!--
-    <dl class="switch">
-
-     <dt>If the start tag allows an annotation:</dt>
-
-     <dd>Optionally, a <a>WebVTT cue span start tag annotation</a>.</dd>
-
-     <dt>-->If the start tag requires an annotation:<!--</dt>
-
-     <dd>A <a>WebVTT cue span start tag annotation</a>.</dd>
-
-    </dl>
-
-    <p>A <dfn>WebVTT cue span start tag annotation</dfn> consists of-->
+    <p>If the start tag requires an annotation:
     a U+0020 SPACE character or a U+0009 CHARACTER TABULATION (tab)
     character, followed by one or more of the following components,
     the concatenation of their representations having a value that
     contains at least one character other than U+0020 SPACE and U+0009
-    CHARACTER TABULATION (tab) characters:<!--</p>-->
+    CHARACTER TABULATION (tab) characters:</p>
 
     <ul>
      <li><a>WebVTT cue span start tag annotation text</a>, representing the text of the annotation.</li>
@@ -2592,12 +2579,7 @@ The Final Minute</pre>
       processed depends on its tag name, as follows:</p>
 
       <dl>
-<!--
-       <dt>If the tag name is the empty string</dt>
-       <dd>
-        <p>Ignore the token.</p>
-       </dd>
--->
+
        <dt>If the tag name is "<code title="">c</code>"</dt>
        <dd>
         <p><a title="attach a WebVTT Internal Node
@@ -4862,7 +4844,6 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
    <dd>No parameters</dd>
    <dt>Encoding considerations:</dt>
    <dd>8bit (always UTF-8)</dd>
-<!--ADD-TOPIC:Security-->
    <dt>Security considerations:</dt>
    <dd>
     <p>Text track files themselves pose no immediate risk unless
@@ -4873,7 +4854,6 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
     implement these rules can result in information leakage,
     cross-site scripting attacks, and the like.</p>
    </dd>
-<!--REMOVE-TOPIC:Security-->
    <dt>Interoperability considerations:</dt>
    <dd>
     <p>Rules for processing both conforming and non-conforming content
@@ -4935,12 +4915,11 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
   </section>
 
   <section>
-  <h2 class="no-num" id="references">References</h2><!--REFS-->
+  <h2 class="no-num" id="references">References</h2>
 
   <p>All references are normative unless marked "Non-normative".</p>
 
   <dl>
-<!--REFERENCES ON-->
 
   <dt id="refsBCP47">[BCP47]</dt>
   <dd><cite><a href="http://www.ietf.org/rfc/bcp/bcp47.txt">Tags for Identifying Languages; Matching of Language Tags</a></cite>, A. Phillips, M. Davis. IETF.</dd>
@@ -4975,14 +4954,13 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
   <dt id="refsSELECTORS">[SELECTORS]</dt>
   <dd><cite><a href="http://www.w3.org/TR/selectors4/">Selectors</a></cite>, E. Etemad, T. Atkins Jr. W3C.</dd>
 
-<!--REFERENCES OFF-->
   </dl>
 
   </section>
 
 
   <section>
-  <h2 class="no-num">Acknowledgements</h2> <!-- ACKS -->
+  <h2 class="no-num">Acknowledgements</h2>
 
   <p>Thanks to the SubRip community, including in particular Zuggy and ai4spam, for their work on the SubRip software program whose SRT file format was used as the basis for the WebVTT text track file format.</p>
 
