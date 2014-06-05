@@ -972,7 +972,8 @@ What are you waiting for?</pre>
 
   <ol>
 
-   <li>Optionally (required if <var title="">hour</var> is non-zero):
+   <li>
+    Optionally (required if <var title="">hour</var> is non-zero):
 
     <ol>
 
@@ -1053,7 +1054,8 @@ What are you waiting for?</pre>
 
   <ol>
    <li>One or more <a>ASCII digits</a>.</li>
-   <li>Optionally:
+   <li>
+     Optionally:
      <ol>
        <li>A U+002E DOT character (.).</li>
        <li>One or more <a>ASCII digits</a>.</li>
@@ -1072,9 +1074,11 @@ What are you waiting for?</pre>
 
   <ol>
    <li>The <a>case-sensitive</a> string "<code title="">NOTE</code>".</li>
-   <li>Optionally, the following components, in the given order:
+   <li>
+    Optionally, the following components, in the given order:
     <ol>
-     <li>Either:
+     <li>
+      Either:
       <ul>
        <li>A U+0020 SPACE character or U+0009 CHARACTER TABULATION (tab) character.</li>
        <li>A <a>WebVTT line terminator</a>.</li>
@@ -1181,7 +1185,8 @@ What are you waiting for?</pre>
 
   <ol>
    <li>A <a>WebVTT cue span start tag</a> "<code title="">ruby</code>" that disallows an annotation.</li>
-   <li>One or more occurrences of the following group of components, in the order given:
+   <li>
+    One or more occurrences of the following group of components, in the order given:
     <ol>
      <li><a>WebVTT cue internal text</a>, representing the ruby base.</li>
      <li>A <a>WebVTT cue span start tag</a> "<code title="">rt</code>" that disallows an annotation.</li>
@@ -1226,7 +1231,8 @@ What are you waiting for?</pre>
 
    <li>The <var title="">tag name</var>.</li>
 
-   <li>Zero or more occurrences of the following sequence:
+   <li>
+    Zero or more occurrences of the following sequence:
 
     <ol>
 
@@ -1366,9 +1372,11 @@ What are you waiting for?</pre>
   <ol>
    <li><p>The string "<code title="">line</code>" as the <a>WebVTT cue setting name</a>.</p></li>
    <li><p>A U+003A COLON character (:).</p></li>
-   <li>As the <a>WebVTT cue setting value</a>:
+   <li>
+     As the <a>WebVTT cue setting value</a>:
      <ol>
-     <li>a position value, either:
+     <li>
+      a position value, either:
       <dl>
        <dt>To represent a specific position relative to the video frame</dt>
        <dd>
@@ -1383,7 +1391,8 @@ What are you waiting for?</pre>
        </dd>
       </dl>
     </li>
-    <li>An optional alignment value consisting of the following components:
+    <li>
+      An optional alignment value consisting of the following components:
       <ol>
       <li>A U+002C COMMA character (,).</li>
       <li>One of the following strings: <code title="">start</code>, <code title="">middle</code>,
@@ -1429,10 +1438,12 @@ What are you waiting for?</pre>
   <ol>
    <li><p>The string "<code title="">position</code>" as the <a>WebVTT cue setting name</a>.</p></li>
    <li><p>A U+003A COLON character (:).</p></li>
-   <li>As the <a>WebVTT cue setting value</a>:
+   <li>
+   As the <a>WebVTT cue setting value</a>:
    <ol>
     <li>a position value consisting of: a <a>WebVTT percentage</a>.</li>
-    <li>an optional alignment value consisting of:
+    <li>
+    an optional alignment value consisting of:
     <ol>
      <li>A U+002C COMMA character (,).</li>
      <li>One of the following strings: <code title="">start</code>, <code title="">middle</code>,
@@ -1519,15 +1530,18 @@ Timeline Panel</pre>
    tree structure:</p>
 
    <ul>
-    <li>WebVTT file
+    <li>
+     WebVTT file
      <ul>
-      <li>Introduction
+      <li>
+       Introduction
        <ul>
         <li>Topics</li>
         <li>Presenters</li>
        </ul>
       </li>
-      <li>Scrolling Effects
+      <li>
+       Scrolling Effects
        <ul>
         <li>Achim's Demo</li>
         <li>Timeline Panel</li>
@@ -1756,9 +1770,10 @@ The Final Minute</pre>
    a newline, so we have none of that either, meaning we have nothing.
    -->.)</p></li>
 
-   <li><p><i>Cue creation</i>: Let <var title="">cue</var> be a new
-   <a>text track cue</a> and initialize it with the following
-   attribute values:</p>
+   <li>
+    <p><i>Cue creation</i>: Let <var title="">cue</var> be a new
+    <a>text track cue</a> and initialize it with the following
+    attribute values:</p>
 
     <ol>
      <li><p>Let <var title="">cue</var>'s <a>text track cue identifier</a> be the empty string.</p></li>
@@ -2222,7 +2237,8 @@ The Final Minute</pre>
 
    </li>
 
-   <li><p>If <var title="">positionSet</var> is false (i.e. the cue box has not been explicitly
+   <li>
+   <p>If <var title="">positionSet</var> is false (i.e. the cue box has not been explicitly
    positioned with a position setting), and <a>text track cue text alignment</a>
    is not <a title="text track cue middle alignment">middle alignment</a>, then adjust the
    <a>text track cue text position</a> as follows:</p>
@@ -2238,7 +2254,8 @@ The Final Minute</pre>
    </dl>
    </li>
 
-   <li><p>If <var title="">positionAlignSet</var> is false (i.e. the cue box has not been explicitly
+   <li>
+   <p>If <var title="">positionAlignSet</var> is false (i.e. the cue box has not been explicitly
    position aligned with a position alignment setting), and <a>text track cue text alignment</a>
    is not <a title="text track cue middle alignment">middle alignment</a>, then adjust the
    <a>text track cue text position alignment</a> as follows:</p>
@@ -3674,8 +3691,9 @@ The Final Minute</pre>
       section. (That section uses some of the variables whose values
       were calculated earlier in this algorithm.)</li>
 
-      <li>Text runs must be wrapped according to the CSS
-      line-wrapping rules, with the following additional constraints:
+      <li>
+       Text runs must be wrapped according to the CSS
+       line-wrapping rules, with the following additional constraints:
 
        <ul>
 
