@@ -87,7 +87,11 @@
     <script src="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/assets/scripts/bug-assist.js"></script>
     <meta name="bug.short_desc" content="[WebVTT] ">
     <meta name="bug.product" content="TextTracks CG">
-    <meta name="bug.component" content="WebVTT">    <style>
+    <meta name="bug.component" content="WebVTT">
+    <style>
+    body {
+      line-height: 1.35;
+    }
     pre {
       white-space: pre-wrap;
     }
@@ -340,8 +344,9 @@ The Organisation for Sample Public Service Announcements accepts no liability fo
 
   <p>Comments can be included in WebVTT files.</p>
 
-  <p>Comments are just blocks that start with the word "<code title="">NOTE</code>" (followed by a
-  space or newline). A comment ends at the first blank line.</p>
+  <p>Comments are just blocks that are preceded by a blank line,
+  start with the word "<code title="">NOTE</code>" (followed by a
+  space or newline), and end at the first blank line.</p>
 
   <div class="example">
 
@@ -463,44 +468,44 @@ Transcribed by Celestials&trade;</pre>
   HTML standard. <a href="#refsHTML5">[HTML5]</a></p>
 
   <ul class="brief">
-   <li><dfn>HTML elements</dfn>
-   <li><dfn>Script's document</dfn>
-   <li><dfn>Entry script</dfn>
-   <li><dfn>MIME type</dfn>
-   <li><dfn>UTF-8 decode</dfn>
-   <li><dfn>Case-sensitive</dfn>
-   <li><dfn>Collect a sequence of characters</dfn>
-   <li><dfn>ASCII digits</dfn>
-   <li><dfn>Alphanumeric ASCII characters</dfn>
-   <li><dfn>Space character</dfn>
-   <li><dfn>Skip whitespace</dfn>
-   <li><dfn>Supported property indices</dfn>
-   <li><dfn>Determine the value of an indexed property</dfn>
-   <li><dfn>Split a string on spaces</dfn>
-   <li><dfn>HTML namespace</dfn>
-   <li><dfn>Media element</dfn>
-   <li><dfn>Current playback position</dfn>
-   <li><dfn>Expose a user interface to the user</dfn>
-   <li><dfn>List of text tracks</dfn>
-   <li><dfn>Text track</dfn>
-   <li><dfn>Text track kind</dfn>
-   <li><dfn>Text track mode</dfn>
-   <li><dfn>Text track disabled</dfn>
-   <li><dfn>Text track showing</dfn>
-   <li><dfn>Text track cue</dfn>
-   <li><dfn>Text track list of cues</dfn>
-   <li><dfn>Text track cue order</dfn>
-   <li><dfn>Text track cue identifier</dfn>
-   <li><dfn>Text track cue start time</dfn>
-   <li><dfn>Text track cue end time</dfn>
-   <li><dfn>Text track cue pause-on-exit flag</dfn>
-   <li><dfn>Text track cue text</dfn>
-   <li><dfn>Text track cue active flag</dfn>
-   <li><dfn>Text track cue display state</dfn>
-   <li><dfn>Rules for updating the text track rendering</dfn>
-   <li><dfn>Rules for rendering the cue in isolation</dfn>
-   <li><dfn><code>TextTrackCue</code></dfn> interface
-   <li><dfn><code>TextTrack</code></dfn> interface
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#html-elements"><dfn>HTML elements</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#script's-document"><dfn>Script's document</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#entry-script"><dfn>Entry script</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#mime-type"><dfn>MIME type</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#utf-8-decode"><dfn>UTF-8 decode</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#case-sensitive"><dfn>Case-sensitive</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#collect-a-sequence-of-characters"><dfn>Collect a sequence of characters</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#ascii-digits"><dfn>ASCII digits</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#alphanumeric-ascii-characters"><dfn>Alphanumeric ASCII characters</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#space-character"><dfn>Space character</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#skip-whitespace"><dfn>Skip whitespace</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#supported-property-indices"><dfn>Supported property indices</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#determine-the-value-of-an-indexed-property"><dfn>Determine the value of an indexed property</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#split-a-string-on-spaces"><dfn>Split a string on spaces</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#html-namespace"><dfn>HTML namespace</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#media-element"><dfn>Media element</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#current-playback-position"><dfn>Current playback position</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#expose-a-user-interface-to-the-user"><dfn>Expose a user interface to the user</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#list-of-text-tracks"><dfn>List of text tracks</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track"><dfn>Text track</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-kind"><dfn>Text track kind</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-mode"><dfn>Text track mode</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-disabled"><dfn>Text track disabled</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-showing"><dfn>Text track showing</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-cue"><dfn>Text track cue</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-list-of-cues"><dfn>Text track list of cues</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-cue-order"><dfn>Text track cue order</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-cue-identifier"><dfn>Text track cue identifier</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-cue-start-time"><dfn>Text track cue start time</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-cue-end-time"><dfn>Text track cue end time</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-cue-pause-on-exit-flag"><dfn>Text track cue pause-on-exit flag</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-cue-text"><dfn>Text track cue text</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-cue-active-flag"><dfn>Text track cue active flag</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#text-track-cue-display-state"><dfn>Text track cue display state</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#rules-for-updating-the-text-track-rendering"><dfn>Rules for updating the text track rendering</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#rules-for-rendering-the-cue-in-isolation"><dfn>Rules for rendering the cue in isolation</dfn></a>
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#texttrackcue"><dfn><code>TextTrackCue</code></dfn></a> interface
+   <li><a href="http://www.w3.org/TR/html51/single-page.html#texttrack"><dfn><code>TextTrack</code></dfn></a> interface
   </ul>
   </section>
   </section>
@@ -890,7 +895,7 @@ Transcribed by Celestials&trade;</pre>
   the given order:</p>
 
   <ol>
-   <li>The string "<code title="">NOTE</code>".</li>
+   <li>The <a>case-sensitive</a> string "<code title="">NOTE</code>".</li>
    <li>Optionally, the following components, in the given order:
     <ol>
      <li>Either:
@@ -1292,11 +1297,18 @@ Transcribed by Celestials&trade;</pre>
   <section>
   <h4>WebVTT file using only nested cues</h4>
 
-  <p>A <a>WebVTT file</a> whose cues all have an end time offset
-  <var title="">x</var> greater than or equal to the end time offsets
-  of all the cues whose start time offsets are less than <var
-  title="">x</var> is said to be a <dfn>WebVTT file using only nested
-  cues</dfn>.</p>
+  <p>A <a>WebVTT file</a> whose cues all follow the following rules
+  is said to be a <dfn>WebVTT file using only nested cues</dfn>:</p>
+
+  <p>given any two cues <var title="">cue1</var> and <var title="">cue2</var> with start and end time
+  offsets <var title="">(x1, y1)</var> and <var title="">(x2, y2)</var> respectively,</p>
+
+  <ul>
+    <li>either <var title="">cue1</var> lies fully within <var title"">cue2</var>, i.e. 
+    <var title="">x1 >= x2</var> and <var title="">y1 &lt;= y2</var></li>
+    <li>or <var title="">cue1</var> fully contains <var title"">cue2</var>, i.e. 
+    <var title="">x1 &lt;= x2</var> and <var title="">y1 >= y2</var.></li>
+  </ul>
 
   <div class="example">
 
@@ -3031,7 +3043,7 @@ The Final Minute</pre>
      <td><a>WebVTT Voice Object</a>
      <td><code>HTMLElement</code> element node with <code title="dom-Node-localName">localName</code> "<code>span</code>", and a <code title="attr-title">title</code> attribute set to the <a>WebVTT Voice Object</a>'s value.
     <tr>
-     <td><a>WebVTT Class Object</a>
+     <td><a>WebVTT Language Object</a>
      <td><code>HTMLElement</code> element node with <code title="dom-Node-localName">localName</code> "<code>span</code>", and a <code title="attr-lang">lang</code> attribute set to the <a>WebVTT Language Object</a>'s <a title="WebVTT Node Object's applicable language">applicable language</a>.
     <tr>
      <td><a>WebVTT Text Object</a>
