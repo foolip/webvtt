@@ -798,7 +798,9 @@ Region: id=bill width=50% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
    <li>One or more <a title="WebVTT line terminator">WebVTT line terminators</a> to
    terminate the line with the file magic and separate it from the rest of the body.</li>
 
-   <li>Zero or more <a title="WebVTT metadata header">WebVTT metadata headers</a>.</li>
+   <li>Zero or more <a title="WebVTT metadata header">WebVTT metadata headers</a> and
+   <a title="WebVTT comment">WebVTT comments</a> separated from each other by two or more
+   <a title="WebVTT line terminator">WebVTT line terminators</a>.</li>
 
    <li>One or more <a title="WebVTT line terminator">WebVTT line terminators</a> to
    terminate the header block and separate the cues from the file header.</li>
@@ -825,10 +827,9 @@ Region: id=bill width=50% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
   the given order:</p>
 
   <ol>
-    <li>A <a>WebVTT metadata header name</a>.</li>
+    <li>A <a title="WebVTT metadata header name">WebVTT metadata header name</a>.</li>
     <li>A U+003A COLON (colon) character.</li>
-    <li>A <a>WebVTT metadata header value</a>.</li>
-    <li>A <a>WebVTT line terminator</a>.</li>
+    <li>A <a title="WebVTT metadata header value">WebVTT metadata header value</a>.</li>
   </ol>
 
   <p>A <dfn>WebVTT metadata header name</dfn> and
