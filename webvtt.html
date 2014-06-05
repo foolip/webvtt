@@ -510,6 +510,9 @@ Transcribed by Celestials&trade;</pre>
   <!-- Add some content here about cues and serialisation format in general -->
   <!-- Describe metadata, caption/subtitle, chapter & description cues -->
 
+  <section>
+  <h3>Text Track Cues</h3>
+
   <p>WebVTT cues are HTML <a title="text track cue">text track cues</a> that additionally
   consist of the following: <a href="#refsHTML5">[HTML5]</a></p>
 
@@ -669,6 +672,8 @@ Transcribed by Celestials&trade;</pre>
   <a>rules for updating the display of WebVTT text tracks</a>.</p>
 
   </div>
+
+  </section>
 
   </section>
 
@@ -1707,6 +1712,11 @@ The Final Minute</pre>
    processed.</p></li>
 
   </ol>
+
+  </section>
+
+  <section>
+  <h3>Cue timings and settings parsing</h3>
 
   <p>When the algorithm above requires that the user agent
   <dfn>Collect WebVTT cue timings and settings</dfn> from a string
@@ -4295,6 +4305,9 @@ The Final Minute</pre>
   <section>
   <h2>WebVTT API for Browsers</h2>
 
+  <section>
+  <h3>WebVTTCue interface</h3>
+
   <p>The following interface is used to expose WebVTT cues in the DOM API:</p>
 
   <pre class="idl_whatwg">enum <dfn>AutoKeyword</dfn> { "auto" };
@@ -4533,6 +4546,8 @@ interface <dfn>WebVTTCue</dfn> : <a>TextTrackCue</a> {
   rules</a> to the <a>text track cue text</a>.</p>
 
   </section>
+
+  </section><!-- WebVTT API for browsers -->
 
   <section>
   <h2 id="iana">IANA considerations</h2>
