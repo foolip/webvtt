@@ -706,7 +706,7 @@ Region: id=bill width=50% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
   </section>
 
   <section>
-  <h3>Text Track Region</h3>
+  <h3>Text track region</h3>
   
   <p>A <dfn title="text track region">text track region</dfn> represents a subpart of the video viewport and provides a rendering area for <a title="text track cue">text track cues</a>.</p>
 
@@ -756,7 +756,7 @@ Region: id=bill width=50% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
   </section>
 
   <section>
-  <h3>Text Track List of Regions</h3>
+  <h3>Text track list of regions</h3>
 
   <dl>
   <dt><dfn title="text track list of regions">A text track list of regions</dfn></dfn>
@@ -795,15 +795,10 @@ Region: id=bill width=50% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
    characters that are not U+000A LINE FEED (LF) or U+000D CARRIAGE
    RETURN (CR) characters.</li> <!-- allows for Emacs line -->
 
-   <li>One or more <a title="WebVTT line terminator">WebVTT line terminators</a> to
-   terminate the line with the file magic and separate it from the rest of the body.</li>
-
-   <li>Zero or more <a title="WebVTT metadata header">WebVTT metadata headers</a> and
-   <a title="WebVTT comment">WebVTT comments</a> separated from each other by two or more
-   <a title="WebVTT line terminator">WebVTT line terminators</a>.</li>
-
-   <li>One or more <a title="WebVTT line terminator">WebVTT line terminators</a> to
-   terminate the header block and separate the cues from the file header.</li>
+   <li>Two or more <a title="WebVTT line terminator">WebVTT line
+   terminators</a>.</li> <!-- the first one to terminate the magic
+   line, the second one to terminate the header block: in the future,
+   we can add a metadata block before the first blank line -->
 
    <li>Zero or more <a title="WebVTT cue">WebVTT cues</a> and <a title="WebVTT
    comment">WebVTT comments</a> separated from each other by one or more <a title="WebVTT
@@ -1380,22 +1375,6 @@ Region: id=bill width=50% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
   configures the alignment of the text within the cue. The keywords
   are relative to the text direction; for left-to-right English text,
   "<code title="">start</code>" means left-aligned.</p>
-
-  <p>A <dfn>WebVTT region cue setting</dfn> consists of the
-  following components, in the order given:</p>
-
-  <ol>
-    <li><p>The string "<code>region</code>" as the <a>WebVTT cue setting name</a>.</p></li>
-    <li><p>A U+003A COLON character (:).</p></li>
-    <li><p>As the <a>WebVTT cue setting value</a>: an arbitrary string of one or more characters other than U+0020 SPACE or U+0009 CHARACTER TABULATION character. The string must not contain the substring "<code>--></code>" (U+002D HYPHEN-MINUS, U+002D HYPHEN-MINUS, U+003E GREATER-THAN SIGN).</p></li>
-  </ol>
-
-  <p class ="note">A <a>WebVTT region cue setting</a>
-  configures a cue to become part of a region by referencing the region's identifier unless
-  the cue has a <a>"vertical"</a>, <a>"line"</a> or <a>"size"</a> cue setting. If a cue is
-  part of a region, its cue settings for <a>"position"</a> and
-  <a>"align"</a> are applied to the line boxes in the cue relative to the
-  region box.</p>
 
   </section>
 
