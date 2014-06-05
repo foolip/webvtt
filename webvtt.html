@@ -186,8 +186,7 @@
   </head>
   <body>
   <section id='abstract'>
-    <p>This is the specification of WebVTT, the Web Video Text Tracks format.
-    </p>
+    <p>This is the specification of WebVTT, the Web Video Text Tracks format.</p>
 
     <p>If you wish to make comments or file bugs regarding this document in a manner
       that is tracked by the W3C, please submit them via <a
@@ -197,8 +196,7 @@
   </section>
 
   <section id='sotd'>
-    <p>This specification is being developed as a Living Specification. There is a plan to take a snapshot and publish it as a W3C Recommendation through the <a href="http://www.w3.org/AudioVideo/TT/">W3C Timed Text Working Group</a>.
-    </p>
+    <p>This specification is being developed as a Living Specification. There is a plan to take a snapshot and publish it as a W3C Recommendation through the <a href="http://www.w3.org/AudioVideo/TT/">W3C Timed Text Working Group</a>.</p>
   </section>
 
   <section>
@@ -665,13 +663,11 @@ What are you waiting for?</pre>
        <a title="text track cue vertical growing right writing direction">vertical growing right</a>),
        or right side (for
        <a title="text track cue vertical growing left writing direction">vertical growing left</a>)
-       is aligned at the <a title="text track cue line position">line position</a>.
-       </dd>
+       is aligned at the <a title="text track cue line position">line position</a>.</dd>
 
        <dt><dfn title="text track cue line middle alignment">Middle alignment</dfn></dt>
        <dd>The <a title="text track cue box">cue box</a> is centered at the
-       <a title="text track cue line position">line position</a>.
-       </dd>
+       <a title="text track cue line position">line position</a>.</dd>
 
        <dt><dfn title="text track cue line end alignment">End alignment</dfn></dt>
        <dd>The <a title="text track cue box">cue box</a>'s bottom side (for
@@ -680,8 +676,7 @@ What are you waiting for?</pre>
         <a title="text track cue vertical growing right writing direction">vertical growing right</a>),
         or left side (for
         <a title="text track cue vertical growing left writing direction">vertical growing left</a>)
-        is aligned at the <a title="text track cue line position">line position</a>.
-       </dd>
+        is aligned at the <a title="text track cue line position">line position</a>.</dd>
 
       </dl>
 
@@ -748,18 +743,15 @@ What are you waiting for?</pre>
        <dt><dfn title="text track cue text position start alignment">Start alignment</dfn></dt>
        <dd>The <a title="text track cue box">cue box</a>'s left side (for
        <a title="text track cue horizontal writing direction">horizontal</a> cues) or top
-       side (otherwise) is aligned at the <a title="text track cue text position">text position</a>.
-       </dd>
+       side (otherwise) is aligned at the <a title="text track cue text position">text position</a>.</dd>
 
        <dt><dfn title="text track cue text position middle alignment">Middle alignment</dfn></dt>
-       <dd>The <a title="text track cue box">cue box</a> is centered at the <a title="text track cue text position">text position</a>.
-       </dd>
+       <dd>The <a title="text track cue box">cue box</a> is centered at the <a title="text track cue text position">text position</a>.</dd>
 
        <dt><dfn title="text track cue text position end alignment">End alignment</dfn></dt>
        <dd>The <a title="text track cue box">cue box</a>'s right side (for
         <a title="text track cue horizontal writing direction">horizontal</a> cues) or bottom
-        side (otherwise) is aligned at the <a title="text track cue text position">text position</a>.
-       </dd>
+        side (otherwise) is aligned at the <a title="text track cue text position">text position</a>.</dd>
 
       </dl>
 
@@ -1462,8 +1454,7 @@ What are you waiting for?</pre>
   <a title="text track cue text position middle alignment">middle</a>, or
   <a title="text track cue text position end alignment">end</a>
   of the cue box, depending on the <a>default text track cue text position alignment</a> value, which is
-  overridden by the <a>WebVTT text position cue setting</a> alignment value.
-  </p>
+  overridden by the <a>WebVTT text position cue setting</a> alignment value.</p>
 
   <p>A <dfn>WebVTT alignment cue setting</dfn> consists of the
   following components, in the order given:</p>
@@ -2076,8 +2067,7 @@ The Final Minute</pre>
             <dd><p>If <a>parse a percentage string</a> from
             <var title="">linepos</var> doesn't fail, let <var title="">number</var>
             be the returned <var>percentage</var>, otherwise jump to the
-            step labeled <i>next setting</i>.</p>
-            </dd>
+            step labeled <i>next setting</i>.</p></dd>
 
             <dt><p>Otherwise</p></dt>
 
@@ -3600,8 +3590,7 @@ The Final Minute</pre>
 
             <dt>If the <a>text track cue line alignment</a> is
             <a title="text track cue text position end alignment">end alignment</a>:</dt>
-            <dd><p>Let <var title="">x-position</var> be 100 minus the <a>text track cue computed line position</a>.</p>
-            </dd>
+            <dd><p>Let <var title="">x-position</var> be 100 minus the <a>text track cue computed line position</a>.</p></dd>
           </dl>
         </dd>
 
@@ -3634,14 +3623,12 @@ The Final Minute</pre>
 
         <dt>If the <a>text track cue writing direction</a> is
         <a title="text track cue horizontal writing direction">horizontal</a>:</dt>
-        <dd><p>Let <var title="">y-position</var> be 0.</p>
-        </dd>
+        <dd><p>Let <var title="">y-position</var> be 0.</p></dd>
 
         <dt>If the <a>text track cue writing direction</a> is
         <a title="text track cue vertical growing left writing direction">vertical growing left</a> or
         <a title="text track cue vertical growing right writing direction">vertical growing right</a>:</dt>
-        <dd><p>Let <var title="">x-position</var> be 0.</p>
-        </dd>
+        <dd><p>Let <var title="">x-position</var> be 0.</p></dd>
 
         </dl>
       </dd>
@@ -3651,8 +3638,7 @@ The Final Minute</pre>
 
     <li><p>Let <var title="">left</var> be '<var title="">x-position</var>&#x2009;vw' and <var title="">top</var>
     be '<var title="">y-position</var>&#x2009;vh'. (These are CSS values used by the next section to set
-    CSS properties for the rendering; 'vw' and 'vh' are CSS units.) <a href="#refsCSSVALUES">[CSSVALUES]</a>.</p>
-    </li>
+    CSS properties for the rendering; 'vw' and 'vh' are CSS units.) <a href="#refsCSSVALUES">[CSSVALUES]</a>.</p></li>
 
     <li>
 
