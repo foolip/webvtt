@@ -481,8 +481,15 @@ What are you waiting for?</pre>
   <section>
   <h3>Dependencies</h3>
 
-  <p>This specification relies upon the following terms defined in the
-  HTML standard. <a href="#refsHTML5">[HTML5]</a></p>
+  <p>This specification relies on several other underlying specifications.</p>
+
+  <p>The following term is defined in the Encoding standard: <a href="#refsENCODING">[ENCODING]</a></p>
+
+  <ul class="brief">
+   <li><a href="http://encoding.spec.whatwg.org/#utf-8-decode"><dfn>UTF-8 decode</dfn></a>
+  </ul>
+
+  <p>The following terms are defined in the HTML standard: <a href="#refsHTML5">[HTML5]</a></p>
 
   <ul class="brief">
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html
@@ -493,8 +500,6 @@ What are you waiting for?</pre>
 #entry-script"><dfn>Entry script</dfn></a>
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html
 #mime-type"><dfn>MIME type</dfn></a>
-   <li><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html
-#utf-8-decode"><dfn>UTF-8 decode</dfn></a>
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html
 #case-sensitive"><dfn>Case-sensitive</dfn></a>
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html
@@ -3566,7 +3571,7 @@ The Final Minute</pre>
     direction">vertical growing right</a>; let <var
     title="">writing-mode</var> be 'vertical-lr'.</p></li>
 
-    <li><p>Let <var title="">size</var> be <a>text track cue size</a>.</li>
+    <li><p>Let <var title="">size</var> be <a>text track cue size</a>.</p></li>
 
     <li><p>If the <a>text track cue writing direction</a> is
     <a title="text track cue horizontal writing
@@ -3586,14 +3591,45 @@ The Final Minute</pre>
 
      <dl class="switch">
 
-       <dt>If the <a>text track cue writing direction</a> is <a title="text track cue horizontal writing direction">horizontal</a>:</dt>
+       <dt>If the <a>text track cue writing direction</a> is
+       <a title="text track cue horizontal writing direction">horizontal</a>:</dt>
        <dd>
-        <p>Let <var title="">x-position</var> be the <a>text track cue text position</a>.</p>
+         <dl class="switch">
+           <dt>If the <a>text track cue text position alignment</a> is
+           <a title="text track cue text position start alignment">start alignment</a>:</dt>
+           <dd><p>Let <var title="">x-position</var> be the <a>text track cue text position</a>.</p></dd>
+
+           <dt>If the <a>text track cue text position alignment</a> is
+           <a title="text track cue text position middle alignment">middle alignment</a>:</dt>
+           <dd><p>Let <var title="">x-position</var> be the <a>text track cue text position</a> minus
+           half of <var title="">size</var>.</p></dd>
+
+           <dt>If the <a>text track cue text position alignment</a> is
+           <a title="text track cue text position end alignment">end alignment</a>:</dt>
+           <dd><p>Let <var title="">x-position</var> be the <a>text track cue text position</a> minus
+           <var title="">size</var>.</p></dd>
+         </dl>
        </dd>
 
-       <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical growing left writing direction">vertical growing left</a> or <a title="text track cue vertical growing right writing direction">vertical growing right</a>:</dt>
+       <dt>If the <a>text track cue writing direction</a> is
+       <a title="text track cue vertical growing left writing direction">vertical growing left</a>
+       or <a title="text track cue vertical growing right writing direction">vertical growing right</a>:</dt>
        <dd>
-        <p>Let <var title="">y-position</var> be the <a>text track cue text position</a>.</p>
+         <dl class="switch">
+           <dt>If the <a>text track cue text position alignment</a> is
+           <a title="text track cue text position start alignment">start alignment</a>:</dt>
+           <dd><p>Let <var title="">y-position</var> be the <a>text track cue text position</a>.</p></dd>
+
+           <dt>If the <a>text track cue text position alignment</a> is
+           <a title="text track cue text position middle alignment">middle alignment</a>:</dt>
+           <dd><p>Let <var title="">y-position</var> be the <a>text track cue text position</a> minus
+           half of <var title="">size</var>.</p></dd>
+
+           <dt>If the <a>text track cue text position alignment</a> is
+           <a title="text track cue text position end alignment">end alignment</a>:</dt>
+           <dd><p>Let <var title="">y-position</var> be the <a>text track cue text position</a> minus
+           <var title="">size</var>.</p></dd>
+         </dl>
        </dd>
 
      </dl>
@@ -3601,79 +3637,104 @@ The Final Minute</pre>
     </li>
 
     <li>
-
-      <p>If the <a>text track cue text alignment</a> is <a title="text track cue middle alignment">middle</a>,
-      adjust the value of <var title="">x-position</var> or <var title="">y-position</var> for
-      <var title="">cue</var> as per the appropriate rules from the following list:</p>
-
-      <dl class="switch">
-
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue horizontal writing direction">horizontal</a>:</dt>
-        <dd>
-         <p>Let <var title="">x-position</var> be <var title="">x-position</var> minus half of <var title="">size</var>.</p>
-        </dd>
-
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical growing left writing direction">vertical growing left</a> or <a title="text track cue vertical growing right writing direction">vertical growing right</a>:</dt>
-        <dd>
-         <p>Let <var title="">y-position</var> be <var title="">y-position</var> minus half of <var title="">size</var>.</p>
-        </dd>
-
-      </dl>
-
-    </li>
-
-    <li>
-
-      <p>If the <a>text track cue text alignment</a> is <a title="text track cue end alignment">end</a>,
-      or <a title="text track cue right alignment">right</a> for a <var title="">direction</var> of 'ltr',
-      or <a title="text track cue start alignment">start</a> for a <var title="">direction</var> of 'rtl',
-      adjust the value of <var title="">x-position</var> or <var title="">y-position</var> for
-      <var title="">cue</var> as per the appropriate rules from the following list:</p>
-
-      <dl class="switch">
-
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue horizontal writing direction">horizontal</a>:</dt>
-        <dd>
-         <p>Let <var title="">x-position</var> be <var title="">x-position</var> minus <var title="">size</var>.</p>
-        </dd>
-
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical growing left writing direction">vertical growing left</a> or <a title="text track cue vertical growing right writing direction">vertical growing right</a>:</dt>
-        <dd>
-         <p>Let <var title="">y-position</var> be <var title="">y-position</var> minus <var title="">size</var>.</p>
-        </dd>
-
-      </dl>
-
-    </li>
-
-    <li>
       
-      <p>Convert <var title="">x-position</var> and <var title="">y-position</var> to CSS values
-      to be used by the next section to set CSS properties for the rendering as follows
-      ('vw' and 'vh' are CSS units <a href="#refsCSSVALUES">[CSSVALUES]</a>):</p>
+      <p>Determine the value of whichever of <var title="">x-position</var> or <var title="">y-position</var>
+      is not yet calculated for <var title="">cue</var> as per the appropriate rules from the following list:</p>
 
       <dl class="switch">
 
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue horizontal writing direction">horizontal</a>:</dt>
+      <dt>If the <a>text track cue snap-to-lines flag</a> is not set:</dt>
+      <dd>
+        <dl class="switch">
+
+        <dt>If the <a>text track cue writing direction</a> is
+        <a title="text track cue horizontal writing direction">horizontal</a>:</dt>
         <dd>
-         <p>Let <var title="">left</var> be '<var title="">x-position</var>&#x2009;vw' and
-         <var title="">top</var> be '<var title="">y-position</var>&#x2009;vh'.</p>
+          <dl class="switch">
+            <dt>If the <a>text track cue line alignment</a> is
+            <a title="text track cue line start alignment">start alignment</a>:</dt>
+            <dd><p>Let <var title="">y-position</var> be the <a>text track cue computed line position</a>.</p></dd>
+
+            <dt>If the <a>text track cue line alignment</a> is
+            <a title="text track cue text position middle alignment">middle alignment</a>:</dt>
+            <dd><p>Let <var title="">y-position</var> be the <a>text track cue computed line position</a> minus
+            half of the cue box height.</p></dd>
+
+            <dt>If the <a>text track cue line alignment</a> is
+            <a title="text track cue text position end alignment">end alignment</a>:</dt>
+            <dd><p>Let <var title="">y-position</var> be the <a>text track cue computed line position</a> minus
+            the cue box height.</p></dd>
+          </dl>
         </dd>
 
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical growing left writing direction">vertical growing left</a>:</dt>
+        <dt>If the <a>text track cue writing direction</a> is
+        <a title="text track cue vertical growing left writing direction">vertical growing left</a>:</dt>
         <dd>
-         <p>Let <var title="">right</var> be '<var title="">x-position</var>&#x2009;vw' and
-         <var title="">top</var> be '<var title="">y-position</var>&#x2009;vh'.</p>
+          <dl class="switch">
+            <dt>If the <a>text track cue line alignment</a> is
+            <a title="text track cue text position start alignment">start alignment</a>:</dt>
+            <dd><p>Let <var title="">x-position</var> be 100 minus the <a>text track cue computed line position</a>
+            minus the cue box width.</p></dd>
+
+            <dt>If the <a>text track cue line alignment</a> is
+            <a title="text track cue text position middle alignment">middle alignment</a>:</dt>
+            <dd><p>Let <var title="">x-position</var> be 100 minus the <a>text track cue computed line position</a>
+            minus half of the cue box width.</p></dd>
+
+            <dt>If the <a>text track cue line alignment</a> is
+            <a title="text track cue text position end alignment">end alignment</a>:</dt>
+            <dd><p>Let <var title="">x-position</var> be 100 minus the <a>text track cue computed line position</a>.</p>
+            </dd>
+          </dl>
         </dd>
 
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical growing right writing direction">vertical growing right</a>:</dt>
+        <dt>If the <a>text track cue writing direction</a> is
+        <a title="text track cue vertical growing right writing direction">vertical growing right</a>:</dt>
         <dd>
-         <p>Let <var title="">left</var> be '<var title="">x-position</var>&#x2009;vw' and
-         <var title="">top</var> be '<var title="">y-position</var>&#x2009;vh'.</p>
+          <dl class="switch">
+            <dt>If the <a>text track cue line alignment</a> is
+            <a title="text track cue text position start alignment">start alignment</a>:</dt>
+            <dd><p>Let <var title="">x-position</var> be the <a>text track cue computed line position</a>.</p></dd>
+
+            <dt>If the <a>text track cue line alignment</a> is
+            <a title="text track cue text position middle alignment">middle alignment</a>:</dt>
+            <dd><p>Let <var title="">x-position</var> be the <a>text track cue computed line position</a> plus
+            half of the cue box width.</p></dd>
+
+            <dt>If the <a>text track cue line alignment</a> is
+            <a title="text track cue text position end alignment">end alignment</a>:</dt>
+            <dd><p>Let <var title="">x-position</var> be the <a>text track cue computed line position</a> plus
+            the cue box width.</p></dd>
+          </dl>
         </dd>
+
+        </dl>
+      </dd>
+
+      <dt>If the <a>text track cue snap-to-lines flag</a> is set:</dt>
+      <dd>
+        <dl class="switch">
+
+        <dt>If the <a>text track cue writing direction</a> is
+        <a title="text track cue horizontal writing direction">horizontal</a>:</dt>
+        <dd><p>Let <var title="">y-position</var> be 0.</p>
+        </dd>
+
+        <dt>If the <a>text track cue writing direction</a> is
+        <a title="text track cue vertical growing left writing direction">vertical growing left</a> or
+        <a title="text track cue vertical growing right writing direction">vertical growing right</a>:</dt>
+        <dd><p>Let <var title="">x-position</var> be 0.</p>
+        </dd>
+
+        </dl>
+      </dd>
 
       </dl>
+    </li>
 
+    <li><p>Let <var title="">left</var> be '<var title="">x-position</var>&#x2009;vw' and <var title="">top</var>
+    be '<var title="">y-position</var>&#x2009;vh'. (These are CSS values used by the next section to set
+    CSS properties for the rendering; 'vw' and 'vh' are CSS units.) <a href="#refsCSSVALUES">[CSSVALUES]</a>.</p>
     </li>
 
     <li>
@@ -4893,6 +4954,9 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
 
   <dt id="refsCSSVALUES">[CSSVALUES]</dt>
   <dd><cite><a href="http://dev.w3.org/csswg/css3-values/">CSS3 Values and Units</a></cite>, H. Lie, T. Atkins, E. Etemad. W3C.</dd>
+
+   <dt id="refsENCODING">[ENCODING]</dt>
+   <dd><cite><a href="http://encoding.spec.whatwg.org/">Encoding</a></cite>, A. van Kesteren, J. Bell. WHATWG.</dd>
 
   <dt id="refsHTML">[HTML]</dt>
   <dd><cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML</a></cite>, I. Hickson. WHATWG.</dd>
