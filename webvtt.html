@@ -4311,7 +4311,6 @@ The Final Minute</pre>
   <pre class="idl_whatwg">enum <dfn>AutoKeyword</dfn> { "auto" };
 [<a title="dom-VTTCue">Constructor</a>(double startTime, double endTime, DOMString text)]
 interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
-           attribute DOMString <a title="dom-VTTCue-regionId">regionId</a>;
            attribute DOMString <a title="dom-VTTCue-vertical">vertical</a>;
            attribute boolean <a title="dom-VTTCue-snapToLines">snapToLines</a>;
            attribute (long or <a>AutoKeyword</a>) <a title="dom-VTTCue-line">line</a>;
@@ -4330,12 +4329,6 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
     <p>The <var title="">startTime</var> argument sets the <a>text track cue start time</a>.</p>
     <p>The <var title="">endTime</var> argument sets the <a>text track cue end time</a>.</p>
     <p>The <var title="">text</var> argument sets the <a>text track cue text</a>.</p>
-   </dd>
-
-   <dt><var title="">cue</var> . <a title="dom-VTTCue-regionId">regionId</a></dt>
-   <dd>
-    <p>Returns a string representing the <a>text track cue region identifier</a> of the text track region that the <a>TextTrackCue</a> object belongs to. If the <a>TextTrackCue</a> doesn't belong to a text track region, returns the empty string.</p>
-    <p>Can be set.</p>
    </dd>
 
    <dt><var title="">cue</var> . <a title="dom-VTTCue-vertical">vertical</a> [ = <var title="">value</var> ]</dt>
