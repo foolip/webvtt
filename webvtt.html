@@ -663,10 +663,10 @@ Transcribed by Celestials&trade;</pre>
   direction</a>, <a title="text track cue snap-to-lines flag">snap-to-lines flag</a>, <a
   title="text track cue line position">line position</a>, <a title="text track cue text
   position">text position</a>, <a title="text track cue size">size</a>, <a title="text
-  track cue alignment">alignment</a>, or <a title="text track cue text">text</a> change
-  value, then the user agent must empty the <a>text track cue display state</a>, and then
-  immediately run the <a>text track</a>'s <a>rules for updating the display of WebVTT text
-  tracks</a>.</p>
+  track cue alignment">alignment</a>,
+  or <a title="text track cue text">text</a> change value, then the user agent must empty
+  the <a>text track cue display state</a>, and then immediately run the <a>text track</a>'s
+  <a>rules for updating the display of WebVTT text tracks</a>.</p>
 
   </div>
 
@@ -1417,7 +1417,6 @@ The Final Minute</pre>
 
 
   <section>
-
   <h2>WebVTT file format: Parsing</h3>
 
   <section>
@@ -1516,12 +1515,10 @@ The Final Minute</pre>
    <a title="text track cue">text track cues</a> where added to
    <var title="">output</var>.</p></li>
 
-
    <li><p>The character indicated by <var title="">position</var> is a
    U+000A LINE FEED (LF) character. Advance <var
    title="">position</var> to the next character in <var
    title="">input</var>.</p></li>
-
 
    <li><p><i title="">Header</i>: <a>Collect a sequence of
    characters</a> that are <em>not</em> U+000A LINE FEED (LF)
