@@ -75,7 +75,7 @@
           noIDLIn: "true",
           noIDLSorting: "true",
 
-          additionalHeaderContent: "",
+          doRDFa: false,
       };
     </script>
     <!-- script to register bugs -->
@@ -389,20 +389,23 @@ NOTE end of file</pre>
 
   <div class="example">
 
-   <p>In this example, one of the cues has an identifier:</p>
+   <p>In this example, the cues have an identifier:</p>
 
    <pre>WEBVTT
 
+1
 00:00.000 --> 00:02.000
 That's an, an, that's an L!
 
-transcription-credit
+transcript credit
 00:04.000 --> 00:05.000
 Transcribed by Celestials&trade;</pre>
 
-   <p>This allows a style sheet to specifically target that cue:</p>
+   <p>This allows a style sheet to specifically target the cues (notice the use
+   of CSS character escape sequences):</p>
 
-   <pre>::cue(#transcription-credit) { color: red }</pre>
+   <pre>::cue(#\31) { color: green; }
+::cue(#transcript\ credit) { color: red; }</pre>
 
   </div>
 
@@ -1413,7 +1416,7 @@ What are you waiting for?</pre>
   position. The positioning is calculated relative to the <a title="text track cue line start alignment">start</a>,
   <a title="text track cue line middle alignment">middle</a>, or <a title="text track cue line end alignment">end</a>
   of the cue box, depending on the <a>text track cue line alignment</a> value -
-  <a title="text track cue line middle alignment">middle</a> by default.
+  <a title="text track cue line start alignment">start</a> by default.
   The position can be given either as a percentage of the video dimension
   or as a line number. Line numbers are based on the size of the first line of the
   cue. Positive line numbers count from the start of the video frame (the first
@@ -4878,7 +4881,7 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
   <dd><cite><a href="http://tools.ietf.org/html/rfc3629">UTF-8, a transformation format of ISO 10646</a></cite>, F. Yergeau. IETF.</dd>
 
   <dt id="refsSELECTORS">[SELECTORS]</dt>
-  <dd><cite><a href="http://dev.w3.org/csswg/selectors4/">Selectors</a></cite>, E. Etemad, T. &Ccedil;elik, D. Glazman, I. Hickson, P. Linss, J. Williams. W3C.</dd>
+  <dd><cite><a href="http://www.w3.org/TR/selectors4/">Selectors</a></cite>, E. Etemad, T. Atkins Jr. W3C.</dd>
 
 <!--REFERENCES OFF-->
   </dl>
@@ -4900,6 +4903,7 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
   Anna Cavender,
   Cyril Concolato,
   Rick Eyre,
+  fantasai,
   John Foliot,
   Lawrence Forooghian,
   Ralph Giles,
