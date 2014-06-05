@@ -267,12 +267,13 @@ span.note, span.issue { padding: .1em .5em .15em; }
   </p>
   <h1 class="title p-name" id="title">WebVTT: The Web Video Text Tracks Format</h1>
   
-  <h2 id="unofficial-draft-04-june-2014">Unofficial Draft <time class="dt-published" datetime="2014-06-04">04 June 2014</time></h2>
+  <h2 id="unofficial-draft-05-june-2014">Unofficial Draft <time class="dt-published" datetime="2014-06-05">05 June 2014</time></h2>
   <dl>
     
     
       <dt>Latest editor's draft:</dt>
       <dd><a href="http://dev.w3.org/html5/webvtt/">http://dev.w3.org/html5/webvtt/</a></dd>
+    
     
     
     
@@ -321,7 +322,7 @@ span.note, span.issue { padding: .1em .5em .15em; }
     
   
   
-</section><section id="toc"><h2 class="introductory" aria-level="1" role="heading" id="h2_toc">Table of Contents</h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a><ul class="toc"><li class="tocline"><a href="#cues-with-multiple-lines" class="tocxref"><span class="secno">1.1 </span>Cues with multiple lines</a></li><li class="tocline"><a href="#comments" class="tocxref"><span class="secno">1.2 </span>Comments</a></li><li class="tocline"><a href="#other-features" class="tocxref"><span class="secno">1.3 </span>Other features</a></li></ul></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a><ul class="toc"><li class="tocline"><a href="#dependencies" class="tocxref"><span class="secno">2.1 </span>Dependencies</a></li></ul></li><li class="tocline"><a href="#data-model" class="tocxref"><span class="secno">3. </span>Data model</a><ul class="toc"><li class="tocline"><a href="#text-track-cues" class="tocxref"><span class="secno">3.1 </span>Text track cues</a></li><li class="tocline"><a href="#text-track-regions" class="tocxref"><span class="secno">3.2 </span>Text track regions</a></li></ul></li><li class="tocline"><a href="#syntax" class="tocxref"><span class="secno">4. </span>Syntax</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-structure" class="tocxref"><span class="secno">4.1 </span>WebVTT file structure</a></li><li class="tocline"><a href="#webvtt-comments" class="tocxref"><span class="secno">4.2 </span>WebVTT comments</a></li><li class="tocline"><a href="#types-of-webvtt-cue-payload" class="tocxref"><span class="secno">4.3 </span>Types of WebVTT cue payload</a><ul class="toc"><li class="tocline"><a href="#webvtt-metadata-text" class="tocxref"><span class="secno">4.3.1 </span>WebVTT metadata text</a></li><li class="tocline"><a href="#webvtt-cue-text" class="tocxref"><span class="secno">4.3.2 </span>WebVTT cue text</a></li></ul></li><li class="tocline"><a href="#webvtt-cue-settings" class="tocxref"><span class="secno">4.4 </span>WebVTT cue settings</a><ul class="toc"><li class="tocline"><a href="#webvtt-region-definition" class="tocxref"><span class="secno">4.4.1 </span>WebVTT region definition</a></li><li class="tocline"><a href="#webvtt-cue-settings-1" class="tocxref"><span class="secno">4.4.2 </span>WebVTT cue settings</a></li></ul></li><li class="tocline"><a href="#properties-of-cue-sequences" class="tocxref"><span class="secno">4.5 </span>Properties of cue sequences</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-using-only-nested-cues" class="tocxref"><span class="secno">4.5.1 </span>WebVTT file using only nested cues</a></li></ul></li><li class="tocline"><a href="#types-of-webvtt-files" class="tocxref"><span class="secno">4.6 </span>Types of WebVTT files</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-using-metadata-content" class="tocxref"><span class="secno">4.6.1 </span>WebVTT file using metadata content</a></li><li class="tocline"><a href="#webvtt-file-using-chapter-title-text" class="tocxref"><span class="secno">4.6.2 </span>WebVTT file using chapter title text</a></li><li class="tocline"><a href="#webvtt-file-using-cue-text" class="tocxref"><span class="secno">4.6.3 </span>WebVTT file using cue text</a></li></ul></li></ul></li><li class="tocline"><a href="#parsing" class="tocxref"><span class="secno">5. </span>Parsing</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-parsing" class="tocxref"><span class="secno">5.1 </span>WebVTT file parsing</a></li><li class="tocline"><a href="#webvtt-region-settings-parsing" class="tocxref"><span class="secno">5.2 </span>WebVTT region settings parsing</a></li><li class="tocline"><a href="#webvtt-cue-timings-and-settings-parsing" class="tocxref"><span class="secno">5.3 </span>WebVTT cue timings and settings parsing</a></li><li class="tocline"><a href="#webvtt-cue-text-parsing-rules" class="tocxref"><span class="secno">5.4 </span><span>WebVTT cue text parsing rules</span></a></li><li class="tocline"><a href="#webvtt-cue-text-dom-construction-rules" class="tocxref"><span class="secno">5.5 </span><span>WebVTT cue text DOM construction rules</span></a></li></ul></li><li class="tocline"><a href="#rendering" class="tocxref"><span class="secno">6. </span>Rendering</a><ul class="toc"><li class="tocline"><a href="#cues-in-isolation" class="tocxref"><span class="secno">6.1 </span>Cues in isolation</a></li><li class="tocline"><a href="#cues-with-video" class="tocxref"><span class="secno">6.2 </span>Cues with video</a><ul class="toc"><li class="tocline"><a href="#processing-model" class="tocxref"><span class="secno">6.2.1 </span>Processing model</a></li><li class="tocline"><a href="#applying-css-properties-to-webvtt-node-objects" class="tocxref"><span class="secno">6.2.2 </span>Applying CSS properties to <span title="WebVTT Node Object" class="formerLink">WebVTT Node Objects</span></a></li><li class="tocline"><a href="#css-extensions" class="tocxref"><span class="secno">6.2.3 </span>CSS extensions</a><ul class="toc"><li class="tocline"><a href="#the-cue-pseudo-element" class="tocxref"><span class="secno">6.2.3.1 </span>The '::cue' pseudo-element</a></li><li class="tocline"><a href="#the-past-and-future-pseudo-classes" class="tocxref"><span class="secno">6.2.3.2 </span>The ':past' and ':future' pseudo-classes</a></li><li class="tocline"><a href="#the-cue-region-pseudo-element" class="tocxref"><span class="secno">6.2.3.3 </span>The '::cue-region' pseudo-element</a></li></ul></li></ul></li></ul></li><li class="tocline"><a href="#api" class="tocxref"><span class="secno">7. </span>API</a><ul class="toc"><li class="tocline"><a href="#the-vttcue-interface" class="tocxref"><span class="secno">7.1 </span>The <span class="formerLink"><code>VTTCue</code></span> interface</a></li><li class="tocline"><a href="#the-vttregion-interface" class="tocxref"><span class="secno">7.2 </span>The <code>VTTRegion</code> interface</a></li></ul></li><li class="tocline"><a href="#iana-considerations" class="tocxref"><span class="secno">8. </span>IANA considerations</a><ul class="toc"><li class="tocline"><a href="#text-vtt" class="tocxref"><span class="secno">8.1 </span><span><code>text/vtt</code></span></a></li></ul></li><li class="tocline"><a href="#references-1" class="tocxref"><span class="secno">9. </span>References</a></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">10. </span>Acknowledgements</a></li></ul></section>
+</section><section id="toc"><h2 class="introductory" aria-level="1" role="heading" id="h2_toc">Table of Contents</h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a><ul class="toc"><li class="tocline"><a href="#cues-with-multiple-lines" class="tocxref"><span class="secno">1.1 </span>Cues with multiple lines</a></li><li class="tocline"><a href="#comments" class="tocxref"><span class="secno">1.2 </span>Comments</a></li><li class="tocline"><a href="#other-features" class="tocxref"><span class="secno">1.3 </span>Other features</a></li></ul></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a><ul class="toc"><li class="tocline"><a href="#dependencies" class="tocxref"><span class="secno">2.1 </span>Dependencies</a></li></ul></li><li class="tocline"><a href="#data-model" class="tocxref"><span class="secno">3. </span>Data model</a><ul class="toc"><li class="tocline"><a href="#text-track-cues" class="tocxref"><span class="secno">3.1 </span>Text track cues</a></li><li class="tocline"><a href="#text-track-regions" class="tocxref"><span class="secno">3.2 </span>Text track regions</a></li></ul></li><li class="tocline"><a href="#syntax" class="tocxref"><span class="secno">4. </span>Syntax</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-structure" class="tocxref"><span class="secno">4.1 </span>WebVTT file structure</a></li><li class="tocline"><a href="#webvtt-comments" class="tocxref"><span class="secno">4.2 </span>WebVTT comments</a></li><li class="tocline"><a href="#types-of-webvtt-cue-payload" class="tocxref"><span class="secno">4.3 </span>Types of WebVTT cue payload</a><ul class="toc"><li class="tocline"><a href="#webvtt-metadata-text" class="tocxref"><span class="secno">4.3.1 </span>WebVTT metadata text</a></li><li class="tocline"><a href="#webvtt-cue-text" class="tocxref"><span class="secno">4.3.2 </span>WebVTT cue text</a></li></ul></li><li class="tocline"><a href="#webvtt-cue-settings" class="tocxref"><span class="secno">4.4 </span>WebVTT cue settings</a><ul class="toc"><li class="tocline"><a href="#webvtt-region-definition" class="tocxref"><span class="secno">4.4.1 </span>WebVTT region definition</a></li><li class="tocline"><a href="#webvtt-cue-settings-1" class="tocxref"><span class="secno">4.4.2 </span>WebVTT cue settings</a></li></ul></li><li class="tocline"><a href="#properties-of-cue-sequences" class="tocxref"><span class="secno">4.5 </span>Properties of cue sequences</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-using-only-nested-cues" class="tocxref"><span class="secno">4.5.1 </span>WebVTT file using only nested cues</a></li></ul></li><li class="tocline"><a href="#types-of-webvtt-files" class="tocxref"><span class="secno">4.6 </span>Types of WebVTT files</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-using-metadata-content" class="tocxref"><span class="secno">4.6.1 </span>WebVTT file using metadata content</a></li><li class="tocline"><a href="#webvtt-file-using-chapter-title-text" class="tocxref"><span class="secno">4.6.2 </span>WebVTT file using chapter title text</a></li><li class="tocline"><a href="#webvtt-file-using-cue-text" class="tocxref"><span class="secno">4.6.3 </span>WebVTT file using cue text</a></li></ul></li></ul></li><li class="tocline"><a href="#parsing" class="tocxref"><span class="secno">5. </span>Parsing</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-parsing" class="tocxref"><span class="secno">5.1 </span>WebVTT file parsing</a></li><li class="tocline"><a href="#webvtt-region-settings-parsing" class="tocxref"><span class="secno">5.2 </span>WebVTT region settings parsing</a></li><li class="tocline"><a href="#webvtt-cue-timings-and-settings-parsing" class="tocxref"><span class="secno">5.3 </span>WebVTT cue timings and settings parsing</a></li><li class="tocline"><a href="#webvtt-cue-text-parsing-rules" class="tocxref"><span class="secno">5.4 </span><span>WebVTT cue text parsing rules</span></a></li><li class="tocline"><a href="#webvtt-cue-text-dom-construction-rules" class="tocxref"><span class="secno">5.5 </span><span>WebVTT cue text DOM construction rules</span></a></li></ul></li><li class="tocline"><a href="#rendering" class="tocxref"><span class="secno">6. </span>Rendering</a><ul class="toc"><li class="tocline"><a href="#cues-in-isolation" class="tocxref"><span class="secno">6.1 </span>Cues in isolation</a></li><li class="tocline"><a href="#cues-with-video" class="tocxref"><span class="secno">6.2 </span>Cues with video</a><ul class="toc"><li class="tocline"><a href="#processing-model" class="tocxref"><span class="secno">6.2.1 </span>Processing model</a></li><li class="tocline"><a href="#applying-css-properties-to-webvtt-node-objects" class="tocxref"><span class="secno">6.2.2 </span>Applying CSS properties to <span title="WebVTT Node Object" class="formerLink">WebVTT Node Objects</span></a></li><li class="tocline"><a href="#css-extensions" class="tocxref"><span class="secno">6.2.3 </span>CSS extensions</a><ul class="toc"><li class="tocline"><a href="#the-cue-pseudo-element" class="tocxref"><span class="secno">6.2.3.1 </span>The '::cue' pseudo-element</a></li><li class="tocline"><a href="#the-past-and-future-pseudo-classes" class="tocxref"><span class="secno">6.2.3.2 </span>The ':past' and ':future' pseudo-classes</a></li><li class="tocline"><a href="#the-cue-region-pseudo-element" class="tocxref"><span class="secno">6.2.3.3 </span>The '::cue-region' pseudo-element</a></li></ul></li></ul></li></ul></li><li class="tocline"><a href="#api" class="tocxref"><span class="secno">7. </span>API</a><ul class="toc"><li class="tocline"><a href="#the-vttcue-interface" class="tocxref"><span class="secno">7.1 </span>The <span class="formerLink"><code>VTTCue</code></span> interface</a></li><li class="tocline"><a href="#the-vttregion-interface" class="tocxref"><span class="secno">7.2 </span>The <span class="formerLink"><code>VTTRegion</code></span> interface</a></li></ul></li><li class="tocline"><a href="#iana-considerations" class="tocxref"><span class="secno">8. </span>IANA considerations</a><ul class="toc"><li class="tocline"><a href="#text-vtt" class="tocxref"><span class="secno">8.1 </span><span><code>text/vtt</code></span></a></li></ul></li><li class="tocline"><a href="#references-1" class="tocxref"><span class="secno">9. </span>References</a></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">10. </span>Acknowledgements</a></li></ul></section>
 
   
 
@@ -649,6 +650,8 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/#split-a-string-on-spaces"><dfn id="dfn-split-a-string-on-spaces">Split a string on spaces</dfn></a></li>
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/#html-namespace"><dfn id="dfn-html-namespace">HTML namespace</dfn></a></li>
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/#media-element"><dfn id="dfn-media-element">Media element</dfn></a></li>
+   <li><a href="http://www.w3.org/html/wg/drafts/html/master/#audio"><dfn id="dfn-audio"><code>audio</code></dfn> element</a></li>
+   <li><a href="http://www.w3.org/html/wg/drafts/html/master/#video"><dfn id="dfn-video"><code>video</code></dfn> element</a></li>
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/#current-playback-position"><dfn id="dfn-current-playback-position">Current playback position</dfn></a></li>
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/#expose-a-user-interface-to-the-user"><dfn id="dfn-expose-a-user-interface-to-the-user">Expose a user interface to the user</dfn></a></li>
    <li><a href="http://www.w3.org/html/wg/drafts/html/master/#list-of-text-tracks"><dfn id="dfn-list-of-text-tracks">List of text tracks</dfn></a></li>
@@ -3654,7 +3657,7 @@ The Final Minute</pre>
   <p>The <dfn id="dfn-rules-for-updating-the-display-of-webvtt-text-tracks">rules for updating the display of WebVTT text
   tracks</dfn> render the <a title="text track" href="#dfn-text-track" class="internalDFN">text
   tracks</a> of a <a href="#dfn-media-element" class="internalDFN">media element</a> (specifically, a
-  <code>video</code> element), or of another playback mechanism, by
+  <a href="#dfn-video" class="internalDFN"><code>video</code></a> element), or of another playback mechanism, by
   applying the steps below. All the <a title="text track" href="#dfn-text-track" class="internalDFN">text
   tracks</a> that use these rules for a given <a href="#dfn-media-element" class="internalDFN">media
   element</a>, or other playback mechanism, are rendered together,
@@ -3669,7 +3672,7 @@ The Final Minute</pre>
 
   <ol>
 
-   <li><p>If the <a href="#dfn-media-element" class="internalDFN">media element</a> is an <code>audio</code>
+   <li><p>If the <a href="#dfn-media-element" class="internalDFN">media element</a> is an <a href="#dfn-audio" class="internalDFN"><code>audio</code></a>
    element, or is another playback mechanism with no rendering area,
    abort these steps. There is nothing to render.</p></li>
 
@@ -3833,7 +3836,7 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
 
   <p>User agents may allow the user to override the above algorithm's
   positioning of cues, e.g. by dragging them to another location on
-  the <code>video</code>, or even off the <code>video</code>
+  the <a href="#dfn-video" class="internalDFN"><code>video</code></a>, or even off the <a href="#dfn-video" class="internalDFN"><code>video</code></a>
   entirely.</p>
 
   <p>When the algorithm above requires that the user agent <dfn id="dfn-apply-webvtt-cue-settings">Apply WebVTT cue settings</dfn>
@@ -4686,7 +4689,7 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
   <i>matched element</i>.</p>
 
   <div class="note"><div class="note-title" aria-level="4" role="heading" id="h_note_28"><span>Note</span></div><p class="">If the <i>matched element</i> is not a
-  <code>video</code> element, the pseudo-elements defined below won't
+  <a href="#dfn-video" class="internalDFN"><code>video</code></a> element, the pseudo-elements defined below won't
   have any effect according to this specification.</p></div>
 
   <p>A CSS user agent that implements the <a title="text
@@ -4950,22 +4953,22 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
   <pre class="idl_whatwg">enum <dfn id="dfn-autokeyword">AutoKeyword</dfn> { "auto" };
 enum <dfn id="dfn-directionsetting">DirectionSetting</dfn> { "" /* horizontal */, "rl", "lr" };
 enum <dfn id="dfn-alignsetting">AlignSetting</dfn> { "start", "middle", "end", "left", "right" };
-[<a title="dom-VTTCue" href="#dfn-dom-vttcue" class="internalDFN">Constructor</a>(double startTime, double endTime, DOMString text)]
+[<a title="VTTCue-constructor" href="#dfn-vttcue-constructor" class="internalDFN">Constructor</a>(double startTime, double endTime, DOMString text)]
 interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class="internalDFN">TextTrackCue</a> {
-           attribute <a href="#dfn-vttregion" class="internalDFN">VTTRegion</a>? <a title="dom-VTTCue-region" href="#dfn-dom-vttcue-region" class="internalDFN">region</a>;
-           attribute <a href="#dfn-directionsetting" class="internalDFN">DirectionSetting</a> <a title="dom-VTTCue-vertical" href="#dfn-dom-vttcue-vertical" class="internalDFN">vertical</a>;
-           attribute boolean <a title="dom-VTTCue-snapToLines" href="#dfn-dom-vttcue-snaptolines" class="internalDFN">snapToLines</a>;
-           attribute (double or <a href="#dfn-autokeyword" class="internalDFN">AutoKeyword</a>) <a title="dom-VTTCue-line" href="#dfn-dom-vttcue-line" class="internalDFN">line</a>;
-           attribute (double or <a href="#dfn-autokeyword" class="internalDFN">AutoKeyword</a>) <a title="dom-VTTCue-position" href="#dfn-dom-vttcue-position" class="internalDFN">position</a>;
-           attribute double <a title="dom-VTTCue-size" href="#dfn-dom-vttcue-size" class="internalDFN">size</a>;
-           attribute <a href="#dfn-alignsetting" class="internalDFN">AlignSetting</a> <a title="dom-VTTCue-align" href="#dfn-dom-vttcue-align" class="internalDFN">align</a>;
-           attribute DOMString <a title="dom-VTTCue-text" href="#dfn-dom-vttcue-text" class="internalDFN">text</a>;
-  <a href="#dfn-documentfragment" class="internalDFN">DocumentFragment</a> <a title="dom-VTTCue-getCueAsHTML" href="#dfn-dom-vttcue-getcueashtml" class="internalDFN">getCueAsHTML</a>();
+           attribute <a href="#dfn-vttregion" class="internalDFN">VTTRegion</a>? <a title="VTTCue-region" href="#dfn-vttcue-region" class="internalDFN">region</a>;
+           attribute <a href="#dfn-directionsetting" class="internalDFN">DirectionSetting</a> <a title="VTTCue-vertical" href="#dfn-vttcue-vertical" class="internalDFN">vertical</a>;
+           attribute boolean <a title="VTTCue-snapToLines" href="#dfn-vttcue-snaptolines" class="internalDFN">snapToLines</a>;
+           attribute (double or <a href="#dfn-autokeyword" class="internalDFN">AutoKeyword</a>) <a title="VTTCue-line" href="#dfn-vttcue-line" class="internalDFN">line</a>;
+           attribute (double or <a href="#dfn-autokeyword" class="internalDFN">AutoKeyword</a>) <a title="VTTCue-position" href="#dfn-vttcue-position" class="internalDFN">position</a>;
+           attribute double <a title="VTTCue-size" href="#dfn-vttcue-size" class="internalDFN">size</a>;
+           attribute <a href="#dfn-alignsetting" class="internalDFN">AlignSetting</a> <a title="VTTCue-align" href="#dfn-vttcue-align" class="internalDFN">align</a>;
+           attribute DOMString <a title="VTTCue-text" href="#dfn-vttcue-text" class="internalDFN">text</a>;
+  <a href="#dfn-documentfragment" class="internalDFN">DocumentFragment</a> <a title="VTTCue-getCueAsHTML" href="#dfn-vttcue-getcueashtml" class="internalDFN">getCueAsHTML</a>();
 };</pre>
 
   <dl class="domintro">
 
-   <dt><var>cue</var> = new <code title="dom-VTTCue">VTTCue</code>( <var>startTime</var>, <var>endTime</var>, <var>text</var> )</dt>
+   <dt><var>cue</var> = new <a title="VTTCue-constructor" href="#dfn-vttcue-constructor" class="internalDFN"><code>VTTCue</code></a>( <var>startTime</var>, <var>endTime</var>, <var>text</var> )</dt>
    <dd>
     <p>Returns a new <a href="#dfn-vttcue" class="internalDFN"><code>VTTCue</code></a> object, for use with the <a href="#dfn-addcue" class="internalDFN"><code>addCue()</code></a> method.</p>
     <p>The <var>startTime</var> argument sets the <a href="#dfn-text-track-cue-start-time" class="internalDFN">text track cue start time</a>.</p>
@@ -4973,13 +4976,13 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
     <p>The <var>text</var> argument sets the <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a>.</p>
    </dd>
 
-   <dt><var>cue</var> . <a title="dom-VTTCue-region" href="#dfn-dom-vttcue-region" class="internalDFN">region</a></dt>
+   <dt><var>cue</var> . <a title="VTTCue-region" href="#dfn-vttcue-region" class="internalDFN">region</a></dt>
    <dd>
     <p>Returns the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object to which this cue belongs, if any, or null otherwise.</p>
     <p>Can be set.</p>
    </dd>
 
-   <dt><var>cue</var> . <a title="dom-VTTCue-vertical" href="#dfn-dom-vttcue-vertical" class="internalDFN">vertical</a> [ = <var>value</var> ]</dt>
+   <dt><var>cue</var> . <a title="VTTCue-vertical" href="#dfn-vttcue-vertical" class="internalDFN">vertical</a> [ = <var>value</var> ]</dt>
    <dd>
     <p>Returns a string representing the <a href="#dfn-text-track-cue-writing-direction" class="internalDFN">text track cue writing direction</a>, as follows:</p>
     <dl class="switch">
@@ -4993,13 +4996,13 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
     <p>Can be set.</p>
    </dd>
 
-   <dt><var>cue</var> . <a title="dom-VTTCue-snapToLines" href="#dfn-dom-vttcue-snaptolines" class="internalDFN">snapToLines</a> [ = <var>value</var> ]</dt>
+   <dt><var>cue</var> . <a title="VTTCue-snapToLines" href="#dfn-vttcue-snaptolines" class="internalDFN">snapToLines</a> [ = <var>value</var> ]</dt>
    <dd>
     <p>Returns true if the <a href="#dfn-text-track-cue-snap-to-lines-flag" class="internalDFN">text track cue snap-to-lines flag</a> is set, false otherwise.</p>
     <p>Can be set.</p>
    </dd>
 
-   <dt><var>cue</var> . <a title="dom-VTTCue-line" href="#dfn-dom-vttcue-line" class="internalDFN">line</a> [ = <var>value</var> ]</dt>
+   <dt><var>cue</var> . <a title="VTTCue-line" href="#dfn-vttcue-line" class="internalDFN">line</a> [ = <var>value</var> ]</dt>
    <dd>
     <p>Returns the <a href="#dfn-text-track-cue-line-position" class="internalDFN">text track cue line position</a>. In the
     case of the value being <a title="text track cue automatic line
@@ -5008,7 +5011,7 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
     <p>Can be set.</p>
    </dd>
 
-   <dt><var>cue</var> . <a title="dom-VTTCue-position" href="#dfn-dom-vttcue-position" class="internalDFN">position</a> [ = <var>value</var> ]</dt>
+   <dt><var>cue</var> . <a title="VTTCue-position" href="#dfn-vttcue-position" class="internalDFN">position</a> [ = <var>value</var> ]</dt>
    <dd>
     <p>Returns the <a href="#dfn-text-track-cue-text-position" class="internalDFN">text track cue text position</a>. In the
     case of the value being <a title="text track cue automatic text
@@ -5017,13 +5020,13 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
     <p>Can be set.</p>
    </dd>
 
-   <dt><var>cue</var> . <a title="dom-VTTCue-size" href="#dfn-dom-vttcue-size" class="internalDFN">size</a> [ = <var>value</var> ]</dt>
+   <dt><var>cue</var> . <a title="VTTCue-size" href="#dfn-vttcue-size" class="internalDFN">size</a> [ = <var>value</var> ]</dt>
    <dd>
     <p>Returns the <a href="#dfn-text-track-cue-size" class="internalDFN">text track cue size</a>.</p>
     <p>Can be set.</p>
    </dd>
 
-   <dt><var>cue</var> . <a title="dom-VTTCue-align" href="#dfn-dom-vttcue-align" class="internalDFN">align</a> [ = <var>value</var> ]</dt>
+   <dt><var>cue</var> . <a title="VTTCue-align" href="#dfn-vttcue-align" class="internalDFN">align</a> [ = <var>value</var> ]</dt>
    <dd>
     <p>Returns a string representing the <a href="#dfn-text-track-cue-alignment" class="internalDFN">text track cue alignment</a>, as follows:</p>
     <dl class="switch">
@@ -5041,20 +5044,20 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
     <p>Can be set.</p>
    </dd>
 
-   <dt><var>cue</var> . <a title="dom-VTTCue-text" href="#dfn-dom-vttcue-text" class="internalDFN">text</a> [ = <var>value</var> ]</dt>
+   <dt><var>cue</var> . <a title="VTTCue-text" href="#dfn-vttcue-text" class="internalDFN">text</a> [ = <var>value</var> ]</dt>
    <dd>
     <p>Returns the <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a> in raw unparsed form.</p>
     <p>Can be set.</p>
    </dd>
 
-   <dt><var>fragment</var> = <var>cue</var> . <a title="dom-VTTCue-getCueAsHTML" href="#dfn-dom-vttcue-getcueashtml" class="internalDFN">getCueAsHTML</a>()</dt>
+   <dt><var>fragment</var> = <var>cue</var> . <a title="VTTCue-getCueAsHTML" href="#dfn-vttcue-getcueashtml" class="internalDFN">getCueAsHTML</a>()</dt>
    <dd>
     <p>Returns the <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a> as a <a href="#dfn-documentfragment" class="internalDFN"><code>DocumentFragment</code></a> of <a href="#dfn-html-elements" class="internalDFN">HTML elements</a> and other DOM nodes.</p>
    </dd>
 
   </dl>
 
-  <p>The <dfn title="dom-VTTCue" id="dfn-dom-vttcue"><code>VTTCue(<var>startTime</var>, <var>endTime</var>,
+  <p>The <dfn title="VTTCue-constructor" id="dfn-vttcue-constructor"><code>VTTCue(<var>startTime</var>, <var>endTime</var>,
   <var>text</var>)</code></dfn> constructor, when invoked, must run the following steps:</p>
 
   <ol>
@@ -5102,12 +5105,12 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
 
   </ol>
 
-  <p>The <dfn title="dom-VTTCue-region" id="dfn-dom-vttcue-region"><code>region</code></dfn> attribute, on getting, must return
+  <p>The <dfn title="VTTCue-region" id="dfn-vttcue-region"><code>region</code></dfn> attribute, on getting, must return
   the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object representing the <a href="#dfn-text-track-cue-region" class="internalDFN">text track cue region</a> of the <a href="#dfn-text-track-cue" class="internalDFN">text
   track cue</a> that the <a href="#dfn-vttcue" class="internalDFN"><code>VTTCue</code></a> object represents, if any; or null otherwise. On
   setting, the <a href="#dfn-text-track-cue-region" class="internalDFN">text track cue region</a> must be set to the new value.</p>
 
-  <p>The <dfn title="dom-VTTCue-vertical" id="dfn-dom-vttcue-vertical"><code>vertical</code></dfn>
+  <p>The <dfn title="VTTCue-vertical" id="dfn-vttcue-vertical"><code>vertical</code></dfn>
   attribute, on getting, must return the string from the second cell
   of the row in the table below whose first cell is the <a href="#dfn-text-track-cue-writing-direction" class="internalDFN">text
   track cue writing direction</a> of the <a href="#dfn-text-track-cue" class="internalDFN">text track
@@ -5116,8 +5119,8 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
   <table>
    <thead>
     <tr>
-     <th><a href="#dfn-text-track-cue-writing-direction" class="internalDFN">text track cue writing direction</a></th>
-     <th><code title="dom-VTTCue-direction">direction</code> value</th>
+     <th><a href="#dfn-text-track-cue-writing-direction" class="internalDFN">Text track cue writing direction</a></th>
+     <th><a title="VTTCue-vertical" href="#dfn-vttcue-vertical" class="internalDFN"><code>vertical</code></a> value</th>
     </tr>
    </thead>
    <tbody>
@@ -5140,13 +5143,13 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
   the first cell of the row in the table above whose second cell is a <a href="#dfn-case-sensitive" class="internalDFN">case-sensitive</a>
   match for the new value.</p>
 
-  <p>The <dfn title="dom-VTTCue-snapToLines" id="dfn-dom-vttcue-snaptolines"><code>snapToLines</code></dfn> attribute, on
+  <p>The <dfn title="VTTCue-snapToLines" id="dfn-vttcue-snaptolines"><code>snapToLines</code></dfn> attribute, on
   getting, must return true if the <a href="#dfn-text-track-cue-snap-to-lines-flag" class="internalDFN">text track cue snap-to-lines flag</a> of the <a href="#dfn-text-track-cue" class="internalDFN">text
   track cue</a> that the <a href="#dfn-vttcue" class="internalDFN"><code>VTTCue</code></a> object represents is set; or false otherwise.
   On setting, the <a href="#dfn-text-track-cue-snap-to-lines-flag" class="internalDFN">text track cue snap-to-lines flag</a> must be set if the new value is
   true, and must be unset otherwise.</p>
 
-  <p>The <dfn title="dom-VTTCue-line" id="dfn-dom-vttcue-line"><code>line</code></dfn> attribute, on getting, must
+  <p>The <dfn title="VTTCue-line" id="dfn-vttcue-line"><code>line</code></dfn> attribute, on getting, must
   return the <a href="#dfn-text-track-cue-line-position" class="internalDFN">text track cue line position</a> of the <a href="#dfn-text-track-cue" class="internalDFN">text track cue</a> that the
   <a href="#dfn-vttcue" class="internalDFN"><code>VTTCue</code></a> object represents. The special value <a title="text track cue
   automatic line position" href="#dfn-text-track-cue-automatic-line-position" class="internalDFN">auto</a> must be represented as the string
@@ -5155,7 +5158,7 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
   interpreted as the special value <a title="text track cue automatic line
   position" href="#dfn-text-track-cue-automatic-line-position" class="internalDFN">auto</a>.</p>
 
-  <p>The <dfn title="dom-VTTCue-position" id="dfn-dom-vttcue-position"><code>position</code></dfn> attribute, on getting, must
+  <p>The <dfn title="VTTCue-position" id="dfn-vttcue-position"><code>position</code></dfn> attribute, on getting, must
   return the <a href="#dfn-text-track-cue-text-position" class="internalDFN">text track cue text position</a> of the <a href="#dfn-text-track-cue" class="internalDFN">text track cue</a> that the
   <a href="#dfn-vttcue" class="internalDFN"><code>VTTCue</code></a> object represents. The special value <a title="text track cue automatic
   text position" href="#dfn-text-track-cue-automatic-text-position" class="internalDFN">auto</a> must be represented as the string "<code>auto</code>". On setting, if the
@@ -5164,13 +5167,13 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
   if the new value is the string "<code>auto</code>", then it must be interpreted as the special
   value <a title="text track cue automatic text position" href="#dfn-text-track-cue-automatic-text-position" class="internalDFN">auto</a>.</p>
 
-  <p>The <dfn title="dom-VTTCue-size" id="dfn-dom-vttcue-size"><code>size</code></dfn> attribute, on getting, must
+  <p>The <dfn title="VTTCue-size" id="dfn-vttcue-size"><code>size</code></dfn> attribute, on getting, must
   return the <a href="#dfn-text-track-cue-size" class="internalDFN">text track cue size</a> of the <a href="#dfn-text-track-cue" class="internalDFN">text track cue</a> that the
   <a href="#dfn-vttcue" class="internalDFN"><code>VTTCue</code></a> object represents. On setting, if the new value is negative or greater
   than 100, then an <a href="#dfn-indexsizeerror" class="internalDFN"><code>IndexSizeError</code></a> exception must be thrown. Otherwise, the <a href="#dfn-text-track-cue-size" class="internalDFN">text
   track cue size</a> must be set to the new value.</p>
 
-  <p>The <dfn title="dom-VTTCue-align" id="dfn-dom-vttcue-align"><code>align</code></dfn> attribute, on getting, must
+  <p>The <dfn title="VTTCue-align" id="dfn-vttcue-align"><code>align</code></dfn> attribute, on getting, must
   return the string from the second cell of the row in the table below whose first cell is the
   <a href="#dfn-text-track-cue-alignment" class="internalDFN">text track cue alignment</a> of the <a href="#dfn-text-track-cue" class="internalDFN">text track cue</a> that the
   <a href="#dfn-vttcue" class="internalDFN"><code>VTTCue</code></a> object represents:</p>
@@ -5179,7 +5182,7 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
    <thead>
     <tr>
      <th><a href="#dfn-text-track-cue-alignment" class="internalDFN">Text track cue alignment</a></th>
-     <th><code title="dom-VTTCue-align">align</code> value</th>
+     <th><a title="VTTCue-align" href="#dfn-vttcue-align" class="internalDFN"><code>align</code></a> value</th>
     </tr>
    </thead>
    <tbody>
@@ -5210,12 +5213,12 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
   first cell of the row in the table above whose second cell is a <a href="#dfn-case-sensitive" class="internalDFN">case-sensitive</a> match
   for the new value.</p>
 
-  <p>The <dfn title="dom-VTTCue-text" id="dfn-dom-vttcue-text"><code>text</code></dfn> attribute, on getting, must
+  <p>The <dfn title="VTTCue-text" id="dfn-vttcue-text"><code>text</code></dfn> attribute, on getting, must
   return the raw <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a> of the <a href="#dfn-text-track-cue" class="internalDFN">text track cue</a> that the
   <a href="#dfn-vttcue" class="internalDFN"><code>VTTCue</code></a> object represents. On setting, the <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a> must
   be set to the new value.</p>
 
-  <p>The <dfn title="dom-VTTCue-getCueAsHTML" id="dfn-dom-vttcue-getcueashtml"><code>getCueAsHTML()</code></dfn> method must
+  <p>The <dfn title="VTTCue-getCueAsHTML" id="dfn-vttcue-getcueashtml"><code>getCueAsHTML()</code></dfn> method must
   convert the <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a> to a <a href="#dfn-documentfragment" class="internalDFN"><code>DocumentFragment</code></a> for the
   <a href="#dfn-script-s-document" class="internalDFN">script's document</a> of the <a href="#dfn-entry-script" class="internalDFN">entry script</a> by applying the <a href="#dfn-webvtt-cue-text-dom-construction-rules" class="internalDFN">WebVTT cue
   text DOM construction rules</a> to the result of applying the <a href="#dfn-webvtt-cue-text-parsing-rules" class="internalDFN">WebVTT cue text parsing
@@ -5224,60 +5227,60 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
   </section>
 
   <section id="the-vttregion-interface">
-  <h3 aria-level="2" role="heading" id="h3_the-vttregion-interface"><span class="secno">7.2 </span>The <code>VTTRegion</code> interface</h3>
+  <h3 aria-level="2" role="heading" id="h3_the-vttregion-interface"><span class="secno">7.2 </span>The <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> interface</h3>
 
   <p>The following interface is used to expose WebVTT regions in the DOM API:</p>
 
   <pre class="idl_whatwg">enum <dfn id="dfn-scrollsetting">ScrollSetting</dfn> { "" /* none */, "up" };
-[Constructor]
+[<a title="VTTRegion-constructor" href="#dfn-vttregion-constructor" class="internalDFN">Constructor</a>]
 interface <dfn id="dfn-vttregion">VTTRegion</dfn> {
-           attribute double <a title="dom-VTTRegion-width" href="#dfn-dom-vttregion-width" class="internalDFN">width</a>;
-           attribute long <a title="dom-VTTRegion-lines" href="#dfn-dom-vttregion-lines" class="internalDFN">lines</a>;
-           attribute double <a title="dom-VTTRegion-regionAnchorX" href="#dfn-dom-vttregion-regionanchorx" class="internalDFN">regionAnchorX</a>;
-           attribute double <a title="dom-VTTRegion-regionAnchorY" href="#dfn-dom-vttregion-regionanchory" class="internalDFN">regionAnchorY</a>;
-           attribute double <a title="dom-VTTRegion-viewportAnchorX" href="#dfn-dom-vttregion-viewportanchorx" class="internalDFN">viewportAnchorX</a>;
-           attribute double <a title="dom-VTTRegion-viewportAnchorY" href="#dfn-dom-vttregion-viewportanchory" class="internalDFN">viewportAnchorY</a>;
-           attribute <a href="#dfn-scrollsetting" class="internalDFN">ScrollSetting</a> <a title="dom-VTTRegion-scroll" href="#dfn-dom-vttregion-scroll" class="internalDFN">scroll</a>;
+           attribute double <a title="VTTRegion-width" href="#dfn-vttregion-width" class="internalDFN">width</a>;
+           attribute long <a title="VTTRegion-lines" href="#dfn-vttregion-lines" class="internalDFN">lines</a>;
+           attribute double <a title="VTTRegion-regionAnchorX" href="#dfn-vttregion-regionanchorx" class="internalDFN">regionAnchorX</a>;
+           attribute double <a title="VTTRegion-regionAnchorY" href="#dfn-vttregion-regionanchory" class="internalDFN">regionAnchorY</a>;
+           attribute double <a title="VTTRegion-viewportAnchorX" href="#dfn-vttregion-viewportanchorx" class="internalDFN">viewportAnchorX</a>;
+           attribute double <a title="VTTRegion-viewportAnchorY" href="#dfn-vttregion-viewportanchory" class="internalDFN">viewportAnchorY</a>;
+           attribute <a href="#dfn-scrollsetting" class="internalDFN">ScrollSetting</a> <a title="VTTRegion-scroll" href="#dfn-vttregion-scroll" class="internalDFN">scroll</a>;
 };</pre>
 
   <dl class="domintro">
 
-   <dt><var>region</var> = new <code title="dom-VTTRegion">VTTRegion</code>()</dt>
+   <dt><var>region</var> = new <a title="VTTRegion-constructor" href="#dfn-vttregion-constructor" class="internalDFN"><code>VTTRegion</code></a>()</dt>
    <dd>
-    <p>Returns a new <code>VTTRegion</code> object.</p>
+    <p>Returns a new <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object.</p>
    </dd>
 
-   <dt><var>region</var> . <a title="dom-VTTRegion-width" href="#dfn-dom-vttregion-width" class="internalDFN">width</a></dt>
+   <dt><var>region</var> . <a title="VTTRegion-width" href="#dfn-vttregion-width" class="internalDFN">width</a></dt>
    <dd>
     <p>Returns the text track region width as a percentage of the video width. Can be set. Throws an <a href="#dfn-indexsizeerror" class="internalDFN"><code>IndexSizeError</code></a> if the new value is not in the range 0..100.</p>
    </dd>
 
-   <dt><var>region</var> . <a title="dom-VTTRegion-lines" href="#dfn-dom-vttregion-lines" class="internalDFN">lines</a></dt>
+   <dt><var>region</var> . <a title="VTTRegion-lines" href="#dfn-vttregion-lines" class="internalDFN">lines</a></dt>
    <dd>
     <p>Returns the text track region height as a number of lines. Can be set.</p>
    </dd>
 
-   <dt><var>region</var> . <a title="dom-VTTRegion-regionAnchorX" href="#dfn-dom-vttregion-regionanchorx" class="internalDFN">regionAnchorX</a></dt>
+   <dt><var>region</var> . <a title="VTTRegion-regionAnchorX" href="#dfn-vttregion-regionanchorx" class="internalDFN">regionAnchorX</a></dt>
    <dd>
     <p>Returns the text track region anchor X offset as a percentage of the region width. Can be set. Throws an <a href="#dfn-indexsizeerror" class="internalDFN"><code>IndexSizeError</code></a> if the new value is not in the range 0..100.</p>
    </dd>
 
-   <dt><var>region</var> . <a title="dom-VTTRegion-regionAnchorX" href="#dfn-dom-vttregion-regionanchorx" class="internalDFN">regionAnchorX</a></dt>
+   <dt><var>region</var> . <a title="VTTRegion-regionAnchorX" href="#dfn-vttregion-regionanchorx" class="internalDFN">regionAnchorX</a></dt>
    <dd>
     <p>Returns the text track region anchor Y offset as a percentage of the region height. Can be set. Throws an <a href="#dfn-indexsizeerror" class="internalDFN"><code>IndexSizeError</code></a> if the new value is not in the range 0..100.</p>
    </dd>
 
-   <dt><var>region</var> . <a title="dom-VTTRegion-viewportAnchorX" href="#dfn-dom-vttregion-viewportanchorx" class="internalDFN">viewportAnchorX</a></dt>
+   <dt><var>region</var> . <a title="VTTRegion-viewportAnchorX" href="#dfn-vttregion-viewportanchorx" class="internalDFN">viewportAnchorX</a></dt>
    <dd>
     <p>Returns the text track region viewport anchor X offset as a percentage of the video width. Can be set. Throws an <a href="#dfn-indexsizeerror" class="internalDFN"><code>IndexSizeError</code></a> if the new value is not in the range 0..100.</p>
    </dd>
 
-   <dt><var>region</var> . <a title="dom-VTTRegion-viewportAnchorY" href="#dfn-dom-vttregion-viewportanchory" class="internalDFN">viewportAnchorY</a></dt>
+   <dt><var>region</var> . <a title="VTTRegion-viewportAnchorY" href="#dfn-vttregion-viewportanchory" class="internalDFN">viewportAnchorY</a></dt>
    <dd>
     <p>Returns the text track region viewport anchor Y offset as a percentage of the video height. Can be set. Throws an <a href="#dfn-indexsizeerror" class="internalDFN"><code>IndexSizeError</code></a> if the new value is not in the range 0..100.</p>
    </dd>
 
-   <dt><var>region</var> . <a title="dom-VTTRegion-scroll" href="#dfn-dom-vttregion-scroll" class="internalDFN">scroll</a></dt>
+   <dt><var>region</var> . <a title="VTTRegion-scroll" href="#dfn-vttregion-scroll" class="internalDFN">scroll</a></dt>
    <dd>
     <p>Returns a string representing the <a href="#dfn-text-track-region-scroll" class="internalDFN">text track region scroll</a> as follows:</p>
     <dl class="switch">
@@ -5290,7 +5293,7 @@ interface <dfn id="dfn-vttregion">VTTRegion</dfn> {
    </dd>
   </dl>
 
-  <p>The <dfn title="dom-VTTRegion" id="dfn-dom-vttregion"><code>VTTRegion()</code></dfn> constructor, when invoked, must run the following steps:</p>
+  <p>The <dfn title="VTTRegion-constructor" id="dfn-vttregion-constructor"><code>VTTRegion()</code></dfn> constructor, when invoked, must run the following steps:</p>
 
   <ol>
     <li><p>Create a new <a href="#dfn-text-track-region" class="internalDFN">text track region</a>. Let <var>region</var> be that <a href="#dfn-text-track-region" class="internalDFN">text track region</a>.</p></li>
@@ -5312,27 +5315,27 @@ interface <dfn id="dfn-vttregion">VTTRegion</dfn> {
 
     <li><p>Let <var>region</var>'s <a href="#dfn-text-track-region-scroll" class="internalDFN">text track region scroll</a> be the empty string.</p></li>
 
-    <li><p>Return the <code>VTTRegion</code> object representing region.</p></li>
+    <li><p>Return the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object representing region.</p></li>
   </ol>
 
-  <p>The <dfn title="dom-VTTRegion-width" id="dfn-dom-vttregion-width"><code>width</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-width" class="internalDFN">text track region width</a> of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <code>VTTRegion</code> object represents, in percent of video width. On setting, the <a href="#dfn-text-track-region-width" class="internalDFN">text track region width</a> must be set to the new value, interpreted as a percentage.</p>
+  <p>The <dfn title="VTTRegion-width" id="dfn-vttregion-width"><code>width</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-width" class="internalDFN">text track region width</a> of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object represents, in percent of video width. On setting, the <a href="#dfn-text-track-region-width" class="internalDFN">text track region width</a> must be set to the new value, interpreted as a percentage.</p>
 
-  <p>The <dfn title="dom-VTTRegion-lines" id="dfn-dom-vttregion-lines"><code>lines</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-lines" class="internalDFN">text track region lines</a> of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <code>VTTRegion</code> object represents, as number of lines. On setting, the <a href="#dfn-text-track-region-lines" class="internalDFN">text track region lines</a> must be set to the new value, interpreted as a number of lines.</p>
+  <p>The <dfn title="VTTRegion-lines" id="dfn-vttregion-lines"><code>lines</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-lines" class="internalDFN">text track region lines</a> of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object represents, as number of lines. On setting, the <a href="#dfn-text-track-region-lines" class="internalDFN">text track region lines</a> must be set to the new value, interpreted as a number of lines.</p>
 
-  <p>The <dfn title="dom-VTTRegion-regionAnchorX" id="dfn-dom-vttregion-regionanchorx"><code>regionAnchorX</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-anchor" class="internalDFN">text track region anchor</a> X offset of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <code>VTTRegion</code> object represents, in percent of region width. On setting, the <a href="#dfn-text-track-region-anchor" class="internalDFN">text track region anchor</a> X distance must be set to the new value, interpreted as a percentage.</p>
+  <p>The <dfn title="VTTRegion-regionAnchorX" id="dfn-vttregion-regionanchorx"><code>regionAnchorX</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-anchor" class="internalDFN">text track region anchor</a> X offset of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object represents, in percent of region width. On setting, the <a href="#dfn-text-track-region-anchor" class="internalDFN">text track region anchor</a> X distance must be set to the new value, interpreted as a percentage.</p>
 
-  <p>The <dfn title="dom-VTTRegion-regionAnchorY" id="dfn-dom-vttregion-regionanchory"><code>regionAnchorY</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-anchor" class="internalDFN">text track region anchor</a> Y offset of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <code>VTTRegion</code> object represents, in percent of region height. On setting, the <a href="#dfn-text-track-region-anchor" class="internalDFN">text track region anchor</a> Y distance must be set to the new value, interpreted as a percentage.</p>
+  <p>The <dfn title="VTTRegion-regionAnchorY" id="dfn-vttregion-regionanchory"><code>regionAnchorY</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-anchor" class="internalDFN">text track region anchor</a> Y offset of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object represents, in percent of region height. On setting, the <a href="#dfn-text-track-region-anchor" class="internalDFN">text track region anchor</a> Y distance must be set to the new value, interpreted as a percentage.</p>
 
-  <p>The <dfn title="dom-VTTRegion-viewportAnchorX" id="dfn-dom-vttregion-viewportanchorx"><code>viewportAnchorX</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-viewport-anchor" class="internalDFN">text track region viewport anchor</a> X offset of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <code>VTTRegion</code> object represents, in percent of video width. On setting, the <a href="#dfn-text-track-region-viewport-anchor" class="internalDFN">text track region viewport anchor</a> X distance must be set to the new value, interpreted as a percentage.</p>
+  <p>The <dfn title="VTTRegion-viewportAnchorX" id="dfn-vttregion-viewportanchorx"><code>viewportAnchorX</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-viewport-anchor" class="internalDFN">text track region viewport anchor</a> X offset of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object represents, in percent of video width. On setting, the <a href="#dfn-text-track-region-viewport-anchor" class="internalDFN">text track region viewport anchor</a> X distance must be set to the new value, interpreted as a percentage.</p>
 
-  <p>The <dfn title="dom-VTTRegion-viewportAnchorY" id="dfn-dom-vttregion-viewportanchory"><code>viewportAnchorY</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-viewport-anchor" class="internalDFN">text track region viewport anchor</a> Y offset of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <code>VTTRegion</code> object represents, in percent of video height. On setting, the <a href="#dfn-text-track-region-viewport-anchor" class="internalDFN">text track region viewport anchor</a> Y distance must be set to the new value, interpreted as a percentage.</p>
+  <p>The <dfn title="VTTRegion-viewportAnchorY" id="dfn-vttregion-viewportanchory"><code>viewportAnchorY</code></dfn> attribute, on getting, must return the <a href="#dfn-text-track-region-viewport-anchor" class="internalDFN">text track region viewport anchor</a> Y offset of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object represents, in percent of video height. On setting, the <a href="#dfn-text-track-region-viewport-anchor" class="internalDFN">text track region viewport anchor</a> Y distance must be set to the new value, interpreted as a percentage.</p>
 
-  <p>The <dfn title="dom-VTTRegion-scroll" id="dfn-dom-vttregion-scroll"><code>scroll</code></dfn> attribute, on getting, must return the string from the second cell of the row in the table below whose first cell is the <a href="#dfn-text-track-region-scroll" class="internalDFN">text track region scroll</a> setting of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <code>VTTRegion</code> object represents:</p>
+  <p>The <dfn title="VTTRegion-scroll" id="dfn-vttregion-scroll"><code>scroll</code></dfn> attribute, on getting, must return the string from the second cell of the row in the table below whose first cell is the <a href="#dfn-text-track-region-scroll" class="internalDFN">text track region scroll</a> setting of the <a href="#dfn-text-track-region" class="internalDFN">text track region</a> that the <a href="#dfn-vttregion" class="internalDFN"><code>VTTRegion</code></a> object represents:</p>
   <table>
    <thead>
     <tr>
-     <th><a href="#dfn-text-track-region-scroll" class="internalDFN">Text track region scroll</a> setting</th>
-     <th><code id="dom-VTTRegion-scroll">scroll</code> value</th>
+     <th><a href="#dfn-text-track-region-scroll" class="internalDFN">Text track region scroll</a></th>
+     <th><a title="VTTRegion-scroll" href="#dfn-vttregion-scroll" class="internalDFN"><code>scroll</code></a> value</th>
     </tr>
    </thead>
    <tbody>
