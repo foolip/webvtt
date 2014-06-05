@@ -3813,6 +3813,9 @@ The Final Minute</pre>
         <li><p>Let <var title="">line position</var> be the
         <a>text track cue computed line position</a>.</p></li>
 
+        <li><p>Round <var title="">line position</var> to an integer
+        by adding 0.5 and then flooring it.</p></li>
+
         <li><p><strong>Vertical Growing Left</strong>: Add one to
         <var title="">line position</var> then negate it.</p></li>
 
@@ -4111,10 +4114,6 @@ The Final Minute</pre>
   background box</a> must be set to 'rgba(0,0,0,0.8)'. <a
   href="#refsCSSCOLOR">[CSSCOLOR]</a></p>
 
-  <p>A text outline or stroke may also be set on the (root) <a>list
-  of WebVTT Node Objects</a>, if supported.</p> <!-- 'text-outline'
-  is in CSS3 Text, but Tab says that's awaiting medical attention. -->
-
   <p>The 'white-space' property on the (root) <a>list of WebVTT
   Node Objects</a> must be set to 'pre-line'. <a
   href="#refsCSS">[CSS]</a></p>
@@ -4232,7 +4231,6 @@ The Final Minute</pre>
    <li>'opacity'</li>
    <li>'visibility'</li>
    <li>'text-decoration'</li>
-   <li>'text-outline'</li>
    <li>'text-shadow'</li>
    <li>the properties corresponding to the 'background' shorthand</li>
    <li>the properties corresponding to the 'outline' shorthand</li>
@@ -4363,7 +4361,6 @@ The Final Minute</pre>
    <li>'opacity'</li>
    <li>'visibility'</li>
    <li>'text-decoration'</li>
-   <li>'text-outline'</li>
    <li>'text-shadow'</li>
    <li>the properties corresponding to the 'background' shorthand</li>
    <li>the properties corresponding to the 'outline' shorthand</li>
@@ -4932,6 +4929,7 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
   Frank Olivier,
   Giuseppe Pascale,
   Simon Pieters,
+  Caitlin Potter,
   David Singer.
   </p>
 
