@@ -31,6 +31,7 @@
           // and its maturity status
           //previousPublishDate:  "2013-03-11",
           //previousMaturity:  "WD",
+          prevED: "http://dev.w3.org/html5/webvtt/",
 
           // if there a publicly available Editor's Draft, this is the link
           edDraftURI:           "https://dvcs.w3.org/hg/text-tracks/raw-file/default/webvtt/Overview.html",
@@ -205,10 +206,11 @@
       that is tracked by the W3C, please submit them via <a
       href="http://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&component=WebVTT&short_desc=%5BWebVTT%5D%20">our
       public bug database</a>.</p>
+
   </section>
 
   <section id='sotd'>
-    <p>This specification was originally created by the WHATWG as a Living Standard and last published at <a href="http://dev.w3.org/html5/webvtt/">http://dev.w3.org/html5/webvtt/</a>.
+    <p>This specification is being developed as a Living Specification. There is a plan to take a snapshot and publish it as a W3C Recommendation through the <a href="http://www.w3.org/AudioVideo/TT/">W3C Timed Text Working Group</a>.
     </p>
   </section>
 
@@ -455,16 +457,16 @@ Transcribed by Celestials&trade;</pre>
 
   <pre>WEBVTT
 
-00:00:00.000 --> 00:00:04.000 position:10%,left align:left size:35%
+00:00:00.000 --> 00:00:04.000 position:10%,start align:start size:35%
 Where did he go?
 
-00:00:03.000 --> 00:00:06.500 position:90% align:right size:35%
+00:00:03.000 --> 00:00:06.500 position:90% align:end size:35%
 I think he went down this lane.
 
-00:00:04.000 --> 00:00:06.500 position:10%,left align:middle size:35%
+00:00:04.000 --> 00:00:06.500 position:10%,end align:middle size:35%
 What are you waiting for?</pre>
 
-  <p>The cues cover only 35% of the video viewport's width. The first cue has its <a title="text track cue box">cue box</a> left aligned at the 10% mark of the video viewport width and the text is left aligned within that box - probably underneath a speaker on the left of the video image. "left" alignment of the cue box is the default for left aligned text, so does not need to be specified in "position". The second cue has its <a title="text track cue box">cue box</a> right aligned at the 90% mark of the video viewport width. The same effect can be achieved with "position:55%,left", which explicitly positions the cue box. The third cue has middle aligned text within the same type of cue box as the first cue.</p>
+  <p>The cues cover only 35% of the video viewport's width. The first cue has its <a title="text track cue box">cue box</a> left aligned at the 10% mark of the video viewport width and the text is left aligned within that box - probably underneath a speaker on the left of the video image. "start" alignment of the cue box is the default for start aligned text, so does not need to be specified in "position". The second cue has its <a title="text track cue box">cue box</a> right aligned at the 90% mark of the video viewport width. The same effect can be achieved with "position:55%,start", which explicitly positions the cue box. The third cue has middle aligned text within the same type of cue box as the first cue.</p>
   </div>
 
   </section>
@@ -4727,7 +4729,7 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
 
   <p>Thanks to the SubRip community, including in particular Zuggy and ai4spam, for their work on the SubRip software program whose SRT file format was used as the basis for the WebVTT text track file format.</p>
 
-  <p>Thanks to the many contributors to the HTML standard, where WebVTT was originally specified. <a href="#refsHTML">[HTML]</a>, <a href="#refsHTML5">[HTML5]</a></p>
+  <p>Thanks to the many contributors to the HTML standard at the WHATWG and W3C HTML Working Group, where WebVTT was originally specified. <a href="#refsHTML">[HTML]</a>, <a href="#refsHTML5">[HTML5]</a></p>
 
   <p>Thanks to the following active contributors to this spec: 
   Victor Carbune,
