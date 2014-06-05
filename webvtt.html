@@ -609,7 +609,7 @@ What are you waiting for?</pre>
     interpreted as defined by the <a title="text track cue writing direction">writing direction</a>
     and <a title="text track cue snap-to-lines flag">snap-to-lines flag</a> of the cue, or the special
     value <dfn title="text track cue automatic line position">auto</dfn>, which means the position
-    is to depend on the other <a title="Text track cue active flag">active</a> cues.</p>
+    is to depend on the other showing tracks.</p>
 
     <p>A <a>text track cue</a> has a <dfn>text track cue computed line position</dfn> whose
     value is that returned by the following algorithm, which is defined in terms of the other
@@ -1718,7 +1718,7 @@ The Final Minute</pre>
    <li><p>If <var>position</var> is past the end of
    <var>input</var>, then abort these steps. The file was
    successfully processed, but it contains no useful data and so no
-   <a title="text track cue">text track cues</a> where added to
+   <a title="text track cue">text track cues</a> were added to
    <var>output</var>.</p></li>
 
    <li><p>The character indicated by <var>position</var> is a
