@@ -1306,12 +1306,12 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
   <p>The <dfn>WebVTT region setting list</dfn> of a <a>WebVTT region metadata header</a> consists of zero or more of the following components, in any order, separated from each other by one or more U+0020 SPACE characters or U+0009 CHARACTER TABULATION (tab) characters. Each component must not be included more than once per <a>WebVTT region setting list</a> string.</p>
 
   <ul>
-   <li>A <a>WebVTT region identifier</a>.</li> <!-- id:fred -->
-   <li>A <a>WebVTT region width setting</a>.</li> <!-- width:80.5% -->
-   <li>A <a>WebVTT region lines setting</a>.</li> <!-- lines:3 -->
-   <li>A <a>WebVTT region anchor setting</a>.</li> <!-- regionanchor:0%,100% -->
-   <li>A <a>WebVTT region viewport anchor setting</a>.</li> <!-- viewportanchor:10.5%,90.5% -->
-   <li>A <a>WebVTT region scroll setting</a>.</li> <!-- scroll:up -->
+   <li>A <a>WebVTT region identifier</a>.</li>
+   <li>A <a>WebVTT region width setting</a>.</li>
+   <li>A <a>WebVTT region lines setting</a>.</li>
+   <li>A <a>WebVTT region anchor setting</a>.</li>
+   <li>A <a>WebVTT region viewport anchor setting</a>.</li>
+   <li>A <a>WebVTT region scroll setting</a>.</li>
   </ul>
 
   <p class="note">The <a>WebVTT region setting list</a> gives configuration
@@ -1424,15 +1424,12 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
   setting must not be included more than once per <a>WebVTT cue settings list</a>.</p>
 
   <ul class="brief">
-   <li>A <a>WebVTT vertical text cue setting</a>.</li> <!-- vertical:rl/lr [writing direction] -->
-   <li>A <a>WebVTT line position cue setting</a>.</li> <!-- line:100% line:1 line:-1
-                                                       [snap-to-lines & line position & line alignment] -->
-   <li>A <a>WebVTT size cue setting</a>.</li>          <!-- size:100% -->
-   <li>A <a>WebVTT text position cue setting</a>.</li> <!-- position:100%
-                                                       [text position & text position alignment] -->
-   <li>A <a>WebVTT alignment cue setting</a>.</li>     <!-- align:start/middle/end/left/right
-                                                       [text alignment] -->
-   <li>A <a>WebVTT region cue setting</a>.</li>        <!-- region:fred [region id] -->
+   <li>A <a>WebVTT vertical text cue setting</a>.</li>
+   <li>A <a>WebVTT line position cue setting</a>.</li>
+   <li>A <a>WebVTT size cue setting</a>.</li>
+   <li>A <a>WebVTT text position cue setting</a>.</li>
+   <li>A <a>WebVTT alignment cue setting</a>.</li>
+   <li>A <a>WebVTT region cue setting</a>.</li>
   </ul>
 
   <p class="note">A <a>WebVTT cue settings list</a> gives configuration
@@ -2407,21 +2404,6 @@ The Final Minute</pre>
      above a clean way to 'break' -->
 
     </ol>
-
-   </li>
-
-   <li>
-
-    <p>If <var>cue</var>'s <a>text track cue line position</a> is not <a>text track cue automatic line position</a>
-    or <var>cue</var>'s <a>text track cue size</a> is not 100 or <var>cue</var>'s <a>text track cue writing direction</a>
-    is not <a title="text track cue horizontal writing direction">horizontal</a>, let <var>cue</var>'s <a>text track cue
-    region</a> be null.</p>
-
-    <p class="note">This makes sure that no matter in which order the cue settings are provided, if
-    if the cue has a <a>text track cue line position</a> or a <a>text track cue size</a> setting or
-    is <a title="text track cue vertical growing left writing direction">text track cue vertical
-    growing left</a> or <a title="text track cue vertical growing right writing direction">growing
-    right writing direction</a>, the <a>text track cue region</a> will be ignored.</p>
 
    </li>
 
@@ -3550,10 +3532,7 @@ The Final Minute</pre>
    title="text track showing">showing</a>.</p></li>
 
    <li><p>Let <var>cues</var> be an empty list of <a
-   title="text track cue">text track cues</a> and <var>regions</var>
-   be an empty list of <a title="text track region">text track regions</a>. For each track <var>track</var>
-   in <var>tracks</var> append to <var>regions</var> all the <a title="text track region">regions</a> from
-   <var>track</var>'s <a>text track list of regions</a>.</p></li>
+   title="text track cue">text track cues</a>.</p></li>
 
    <li><p>For each track <var>track</var> in
    <var>tracks</var>, append to <var>cues</var> all the
@@ -3561,6 +3540,15 @@ The Final Minute</pre>
    <var>track</var>'s <a title="text track list of cues">list
    of cues</a> that have their <a>text track cue active
    flag</a> set.</p></li>
+
+   <li><p>Let <var>regions</var> be an empty list of <a
+   title="text track region">text track regions</a>.</p></li>
+
+   <li><p>For each track <var>track</var> in
+   <var>tracks</var>, append to <var>regions</var> all the
+   <a title="text track region">regions</a> from
+   <var>track</var>'s <a title="text track list of regions">list
+   of regions</a>.</p></li>
 
    <li><p>If <var>reset</var> is false, then, for each <a>text track region</a> <var>region</var> in <var>regions</var> let <var>regionNode</var> be a <a>WebVTT region object</a>.</p></li>
 
@@ -3614,16 +3602,18 @@ The Final Minute</pre>
     boxes added to <var>output</var>, in <a>text track
     cue order</a>, run the following substeps:</p>
 
-    <ul>
+    <ol>
+
+     <li><p>Let <var>nodes</var> be the <a>list of WebVTT Node Objects</a> obtained by applying the
+     <a>WebVTT cue text parsing rules</a> to the <var>cue</var>'s <a>text track cue text</a>.</p></li>
+
      <li>
       <p>If <var>cue</var>'s <a>text track cue region</a> is null, run the following substeps:</p>
 
       <ol>
 
-       <li><a>Apply WebVTT cue settings</a> to calculate CSS boxes <var>boxes</var> from the
-       <a>list of WebVTT Node Objects</a> <var>nodes</var> obtained by applying the
-       <a>WebVTT cue text parsing rules</a> to the <var>cue</var>'s
-       <a>text track cue text</a>.</li>
+       <li><a>Apply WebVTT cue settings</a> to obtain CSS boxes <var>boxes</var> from
+       <var>nodes</var>.</li>
 
        <li><p>Let <var>cue</var>'s <a>text track cue display state</a> have the CSS boxes in
        <var>boxes</var>.</p></li>
@@ -3641,9 +3631,7 @@ The Final Minute</pre>
 
          <li><p>If <var>region</var>'s <a>text track region scroll</a> setting is '<code>up</code>' and <var>region</var> already has one child, set <var>region</var>'s 'transition-property' to 'top' and 'transition-duration' to '0.433s'.</p></li>
 
-         <li><p>Let <var>nodes</var> be the <a>list of WebVTT Node Objects</a> obtained by applying the <a>WebVTT cue text parsing rules</a> to the <var>cue</var>'s <a>text track cue text</a>.</p></li>
-
-         <!-- The following steps are the subpart of the "Apply WebVTT cue settings" algorithm
+         <!-- The following steps are the subpart of the "apply WebVTT cue settings" algorithm
               that applies to regions -->
          <li>
            <p>Apply the Unicode Bidirectional Algorithm's Paragraph Level steps to the concatenation of the values of each <a>WebVTT Text Object</a> in <var>nodes</var>, in a pre-order, depth-first traversal, excluding <a title="WebVTT Ruby Text Object">WebVTT Ruby Text Objects</a> and their descendants, to determine the <i>paragraph embedding level</i> of the first
@@ -3677,7 +3665,7 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
        </ol>
      </li>
 
-    </ul>
+    </ol>
    </li>
 
    <li><p>Return <var>output</var>.</p></li>
@@ -3689,10 +3677,9 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
   the <a><code>video</code></a>, or even off the <a><code>video</code></a>
   entirely.</p>
 
-  <p>When the algorithm above requires that the user agent <dfn>Apply WebVTT cue settings</dfn>
-  to calculate CSS boxes from the <a>list of WebVTT Node Objects</a> <var>nodes</var>
-  obtained by applying the <a>WebVTT cue text parsing rules</a> to the <var>cue</var>'s
-  <a>text track cue text</a>, the user agent must run the following algorithm.</p>
+  <p>When the algorithm above requires that the user agent <dfn>apply WebVTT cue settings</dfn>
+  to obtain CSS boxes from a <a>list of WebVTT Node Objects</a> <var>nodes</var>,
+  the user agent must run the following algorithm.</p>
 
   <ol>
 
@@ -4369,6 +4356,8 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
     area, remove those offending line boxes from
     <var>boxes</var>.</p></li>
 
+    <li><p>Return <var>boxes</var>.</p></li>
+
   </ol>
 
   </section>
@@ -4392,7 +4381,7 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
    <li>the 'left' property must be set to <var>left</var>, if <var>left</var> has a value</li>
    <li>the 'right' property must be set to <var>right</var>, if <var>right</var> has a value</li>
    <li>the 'width' property must be set to <var>width</var></li>
-   <li>the 'height' property must be set to<var>height</var></li>
+   <li>the 'height' property must be set to <var>height</var></li>
   </ul>
 
   <p>The variables <var>direction</var>,
