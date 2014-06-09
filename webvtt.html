@@ -3647,6 +3647,12 @@ The Final Minute</pre>
       value 'inline'. This is the <dfn>WebVTT cue background
       box</dfn>.</li>
 
+      <li>Runs of children of <a title="WebVTT Ruby Object">WebVTT
+      Ruby Objects</a> that are not <a title="WebVTT Ruby Text
+      Object">WebVTT Ruby Text Objects</a> must be wrapped in
+      anonymous boxes whose 'display' property has the value
+      'ruby-base'. <a href="#refsCSSRUBY">[CSSRUBY]</a></li>
+
       <li>Properties on <a title="WebVTT Node Object">WebVTT Node
       Objects</a> have their values set as defined in the next
       section. (That section uses some of the variables whose values
@@ -4114,12 +4120,6 @@ The Final Minute</pre>
   <p>The 'display' property on <a title="WebVTT Ruby Text
   Object">WebVTT Ruby Text Objects</a> must be set to
   'ruby-text'. <a href="#refsCSSRUBY">[CSSRUBY]</a></p>
-
-  <p>Runs of children of <a title="WebVTT Ruby Object">WebVTT
-  Ruby Objects</a> that are not <a title="WebVTT Ruby Text
-  Object">WebVTT Ruby Text Objects</a> must be wrapped in
-  anonymous boxes whose 'display' property has the value
-  'ruby-base'. <a href="#refsCSSRUBY">[CSSRUBY]</a></p>
 
   <p>All other non-inherited properties must be set to their initial
   values; inherited properties on the root <a>list of WebVTT Node
