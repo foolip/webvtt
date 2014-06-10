@@ -633,25 +633,25 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
     that returned by the following algorithm, which is defined in terms of the other aspects of the
     cue:</p>
 
-    <ol>
+     <ol>
 
-     <li><p>If the <a>text track cue text position</a> is numeric, then return the value of
-     the <a>text track cue text position</a> and abort these steps. (Otherwise, the <a>text track
-     cue text position</a> is the special value <a title="text track cue automatic text
-     position">auto</a>.)</p></li>
+       <li><p>If the <a>text track cue text position</a> is numeric, then return the value of
+       the <a>text track cue text position</a> and abort these steps. (Otherwise, the <a>text track cue text
+       position</a> is the special value <a title="text track cue automatic text
+       position">auto</a>.)</p></li>
 
-     <li><p>If the <a>text track cue alignment</a> is <a title="text track cue start
-     alignment">start</a> or <a title="text track cue left alignment">left</a>, return 0 and abort
-     these steps.</p></li>
+       <li><p>If the <a>text track cue text alignment</a> is <a title="text track cue start
+       alignment">start</a> or <a title="text track cue left alignment">left</a>, return 0 and abort
+       these steps.</p></li>
 
-     <li><p>If the <a>text track cue alignment</a> is <a title="text track cue end
-     alignment">end</a> or <a title="text track cue right alignment">right</a>, return 100 and abort
-     these steps.</p></li>
+       <li><p>If the <a>text track cue text alignment</a> is <a title="text track cue end
+       alignment">end</a> or <a title="text track cue right alignment">right</a>, return 100 and abort
+       these steps.</p></li>
 
-     <li><p>If the <a>text track cue alignment</a> is <a title="text track cue middle
-     alignment">middle</a>, return 50 and abort these steps.</p></li>
+       <li><p>If the <a>text track cue text alignment</a> is <a title="text track cue middle
+       alignment">middle</a>, return 50 and abort these steps.</p></li>
 
-    </ol>
+     </ol>
 
    </dd>
 
@@ -1426,8 +1426,8 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
   <ul class="brief">
    <li>A <a>WebVTT vertical text cue setting</a>.</li>
    <li>A <a>WebVTT line position cue setting</a>.</li>
-   <li>A <a>WebVTT size cue setting</a>.</li>
    <li>A <a>WebVTT text position cue setting</a>.</li>
+   <li>A <a>WebVTT size cue setting</a>.</li>
    <li>A <a>WebVTT alignment cue setting</a>.</li>
    <li>A <a>WebVTT region cue setting</a>.</li>
   </ul>
@@ -1484,21 +1484,6 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
   line is numbered 0), negative line numbers from the bottom of the
   frame (the bottom line is numbered &#x2212;1).</p>
 
-  <p>A <dfn>WebVTT size cue setting</dfn> consists of the
-  following components, in the order given:</p>
-
-  <ol>
-   <li><p>The string "<code>size</code>" as the <a>WebVTT cue setting name</a>.</p></li>
-   <li><p>A U+003A COLON character (:).</p></li>
-   <li><p>As the <a>WebVTT cue setting value</a>: a
-     <a>WebVTT percentage</a>.</p></li>
-  </ol>
-
-  <p class="note">A <a>WebVTT size cue setting</a> configures
-  the size of the cue in the same direction as the <a>WebVTT text
-  position cue setting</a>. For horizontal cues, this is the width
-  of the cue, given as a percentage of the width of the frame.</p>
-
   <p>A <dfn>WebVTT text position cue setting</dfn> consists of the
   following components, in the order given:</p>
 
@@ -1514,6 +1499,21 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
   the <a>WebVTT line position cue setting</a>. For horizontal
   cues, this is the horizontal position measured from the left edge,
   given as a percentage of the width of the frame.</p>
+
+  <p>A <dfn>WebVTT size cue setting</dfn> consists of the
+  following components, in the order given:</p>
+
+  <ol>
+   <li><p>The string "<code>size</code>" as the <a>WebVTT cue setting name</a>.</p></li>
+   <li><p>A U+003A COLON character (:).</p></li>
+   <li><p>As the <a>WebVTT cue setting value</a>: a
+     <a>WebVTT percentage</a>.</p></li>
+  </ol>
+
+  <p class="note">A <a>WebVTT size cue setting</a> configures
+  the size of the cue in the same direction as the <a>WebVTT text
+  position cue setting</a>. For horizontal cues, this is the width
+  of the cue, given as a percentage of the width of the frame.</p>
 
   <p>A <dfn>WebVTT alignment cue setting</dfn> consists of the
   following components, in the order given:</p>
@@ -2321,6 +2321,23 @@ The Final Minute</pre>
 
        </dd>
 
+       <dt>If <var>name</var> is a <a>case-sensitive</a> match for "<code>position</code>"</dt>
+
+       <dd>
+
+        <ol>
+
+         <li><p>If <a>parse a percentage string</a> from <var>value</var> doesn't fail,
+         let <var>number</var> be the returned <var>percentage</var>, otherwise jump to
+         the step labeled <i>next setting</i> (<a>text track cue text position</a>'s value remains
+         the special value <a title="text track cue automatic text position">auto</a>).</p></li>
+
+         <li><p>Let <var>cue</var>'s <a>text track cue text position</a> be <var>number</var>.</p></li>
+
+        </ol>
+
+       </dd>
+
        <dt>If <var>name</var> is a <a>case-sensitive</a> match for "<code>size</code>"</dt>
 
        <dd>
@@ -2333,23 +2350,6 @@ The Final Minute</pre>
 
          <li><p>Let <var>cue</var>'s <a>text track cue
          size</a> be <var>number</var>.</p></li>
-
-        </ol>
-
-       </dd>
-
-       <dt>If <var>name</var> is a <a>case-sensitive</a> match for "<code>position</code>"</dt>
-
-       <dd>
-
-        <ol>
-
-         <li><p>If <a>parse a percentage string</a> from <var>value</var> doesn't fail,
-         let <var>number</var> be the returned <var>percentage</var>, otherwise jump to
-         the step labeled <i>next setting</i>.</p></li>
-
-         <li><p>Let <var>cue</var>'s <a>text track cue text position</a> be
-         <var>number</var>.</p></li>
 
         </ol>
 
@@ -3990,6 +3990,12 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
       value 'inline'. This is the <dfn>WebVTT cue background
       box</dfn>.</li>
 
+      <li>Runs of children of <a title="WebVTT Ruby Object">WebVTT
+      Ruby Objects</a> that are not <a title="WebVTT Ruby Text
+      Object">WebVTT Ruby Text Objects</a> must be wrapped in
+      anonymous boxes whose 'display' property has the value
+      'ruby-base'. <a href="#refsCSSRUBY">[CSSRUBY]</a></li>
+
       <li>Properties on <a title="WebVTT Node Object">WebVTT Node
       Objects</a> have their values set as defined in the next
       section. (That section uses some of the variables whose values
@@ -4464,12 +4470,6 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
   Object">WebVTT Ruby Text Objects</a> must be set to
   'ruby-text'. <a href="#refsCSSRUBY">[CSSRUBY]</a></p>
 
-  <p>Runs of children of <a title="WebVTT Ruby Object">WebVTT
-  Ruby Objects</a> that are not <a title="WebVTT Ruby Text
-  Object">WebVTT Ruby Text Objects</a> must be wrapped in
-  anonymous boxes whose 'display' property has the value
-  'ruby-base'. <a href="#refsCSSRUBY">[CSSRUBY]</a></p>
-
   <p>Every <a>WebVTT region object</a> is initialized with the following CSS settings:</p>
   <ul>
     <li>the 'position' property must be set to 'absolute'</li>
@@ -4876,9 +4876,8 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
 
    <dt><var>cue</var> . <a title="VTTCue-position">position</a> [ = <var>value</var> ]</dt>
    <dd>
-    <p>Returns the <a>text track cue text position</a>. In the
-    case of the value being <a title="text track cue automatic text
-    position">auto</a>, the string "<code>auto</code>" is
+    <p>Returns the <a>text track cue text position</a>. In the case of the value being
+    <a title="text track cue automatic text position">auto</a>, the string "<code>auto</code>" is
     returned.</p>
     <p>Can be set.</p>
    </dd>
@@ -4956,10 +4955,10 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
    <li><p>Let <var>cue</var>'s <a>text track cue line position</a> be
    <a title="text track cue automatic line position">auto</a>.</p></li>
 
-   <li><p>Let <var>cue</var>'s <a>text track cue text position</a> be 50.</p></li>
-
    <li><p>Let <var>cue</var>'s <a>text track cue text position</a> be
    <a title="text track cue automatic text position">auto</a>.</p></li>
+
+   <li><p>Let <var>cue</var>'s <a>text track cue size</a> be 100.</p></li>
 
    <li><p>Let <var>cue</var>'s <a>text track cue alignment</a> be
    <a title="text track cue middle alignment">middle alignment</a>.</p></li>
@@ -5021,9 +5020,9 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
   interpreted as the special value <a title="text track cue automatic line
   position">auto</a>.</p>
 
-  <p>The <dfn title="VTTCue-position"><code>position</code></dfn> attribute, on getting, must
-  return the <a>text track cue text position</a> of the <a>text track cue</a> that the
-  <a><code>VTTCue</code></a> object represents. The special value <a title="text track cue automatic
+  <p>The <dfn title="VTTCue-position"><code>position</code></dfn> attribute, on getting,
+  must return the <a>text track cue text position</a> of the <a>text track cue</a> that
+  the <a><code>VTTCue</code></a> object represents. The special value <a title="text track cue automatic
   text position">auto</a> must be represented as the string "<code>auto</code>". On setting, if the
   new value is negative or greater than 100, then an <a><code>IndexSizeError</code></a> exception
   must be thrown. Otherwise, the <a>text track cue text position</a> must be set to the new value;
