@@ -3845,33 +3845,37 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
 
       <dl class="switch">
 
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue horizontal writing direction">horizontal</a>,
-               and the <a>text track cue snap-to-lines flag</a> is set</dt>
-        <dd>
-         <p>Let <var>y-position</var> be zero.</p>
-        </dd>
+      <dt>If the <a>text track cue snap-to-lines flag</a> is not set</dt>
+      <dd>
+        <dl class="switch">
 
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue horizontal writing direction">horizontal</a>,
-               and the <a>text track cue snap-to-lines flag</a> is not set</dt>
-        <dd>
-         <p>Let <var>y-position</var> be the <a>text track cue computed line position</a>.</p>
-        </dd>
+        <dt>If the <a>text track cue writing direction</a> is
+        <a title="text track cue horizontal writing direction">horizontal</a></dt>
+        <dd><p>Let <var>y-position</var> be the <a>text track cue computed line position</a>.</p></dd>
 
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical growing left writing direction">vertical growing left</a>,
-               and the <a>text track cue snap-to-lines flag</a> is set</dt>
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical growing right writing direction">vertical growing right</a>,
-               and the <a>text track cue snap-to-lines flag</a> is set</dt>
-        <dd>
-         <p>Let <var>x-position</var> be zero.</p>
-        </dd>
+        <dt>If the <a>text track cue writing direction</a> is
+        <a title="text track cue vertical growing left writing direction">vertical growing left</a> or
+        <a title="text track cue vertical growing right writing direction">vertical growing right</a></dt>
+        <dd><p>Let <var>x-position</var> be the <a>text track cue computed line position</a>.</p></dd>
 
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical growing left writing direction">vertical growing left</a>,
-               and the <a>text track cue snap-to-lines flag</a> is not set</dt>
-        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical growing right writing direction">vertical growing right</a>,
-               and the <a>text track cue snap-to-lines flag</a> is not set</dt>
-        <dd>
-         <p>Let <var>x-position</var> be the <a>text track cue computed line position</a>.</p>
-        </dd>
+        </dl>
+      </dd>
+
+      <dt>If the <a>text track cue snap-to-lines flag</a> is set</dt>
+      <dd>
+        <dl class="switch">
+
+        <dt>If the <a>text track cue writing direction</a> is
+        <a title="text track cue horizontal writing direction">horizontal</a></dt>
+        <dd><p>Let <var>y-position</var> be 0.</p></dd>
+
+        <dt>If the <a>text track cue writing direction</a> is
+        <a title="text track cue vertical growing left writing direction">vertical growing left</a> or
+        <a title="text track cue vertical growing right writing direction">vertical growing right</a></dt>
+        <dd><p>Let <var>x-position</var> be 0.</p></dd>
+
+        </dl>
+      </dd>
 
       </dl>
 
