@@ -640,15 +640,15 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
        position</a> is the special value <a title="text track cue automatic text
        position">auto</a>.)</p></li>
 
-       <li><p>If the <a>text track cue text alignment</a> is <a title="text track cue start
+       <li><p>If the <a>text track cue alignment</a> is <a title="text track cue start
        alignment">start</a> or <a title="text track cue left alignment">left</a>, return 0 and abort
        these steps.</p></li>
 
-       <li><p>If the <a>text track cue text alignment</a> is <a title="text track cue end
+       <li><p>If the <a>text track cue alignment</a> is <a title="text track cue end
        alignment">end</a> or <a title="text track cue right alignment">right</a>, return 100 and abort
        these steps.</p></li>
 
-       <li><p>If the <a>text track cue text alignment</a> is <a title="text track cue middle
+       <li><p>If the <a>text track cue alignment</a> is <a title="text track cue middle
        alignment">middle</a>, return 50 and abort these steps.</p></li>
 
      </ol>
@@ -3645,17 +3645,17 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
          <var>region</var>'s <a>text track region width</a> and divided by 100 (i.e. interpret it as a
          percentage of the region width).</p></li>
 
-         <li><p>Adjust <var>offset</var> using the <a>text track cue computed text position alignment</a>
+         <li><p>Adjust <var>offset</var> using the <a>text track cue alignment</a>
          as follows:
            <dd>
              <dl class="switch">
-               <dt>If the <a>text track cue computed text position alignment</a> is
-               <a title="text track cue text position middle alignment">middle alignment</a>:</dt>
+               <dt>If the <a>text track cue alignment</a> is
+               <a title="text track cue middle alignment">middle alignment</a>:</dt>
                <dd><p>Subtract half of <var>region</var>'s <a>text track region width</a> from
                <var>offset</var>.</p></dd>
 
-               <dt>If the <a>text track cue computed text position alignment</a> is
-               <a title="text track cue text position end alignment">end alignment</a>:</dt>
+               <dt>If the <a>text track cue alignment</a> is
+               <a title="text track cue end alignment">end alignment</a>:</dt>
                <dd><p>Subtract <var>region</var>'s <a>text track region width</a> from
                <var>offset</var>.</p></dd>
              </dl>
