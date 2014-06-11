@@ -3777,6 +3777,16 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
     <a>text track cue size</a>. Otherwise, let
     <var>size</var> be <var>maximum size</var>.</p></li>
 
+    <li><p>If the <a>text track cue writing direction</a> is
+    <a title="text track cue horizontal writing
+    direction">horizontal</a>, then let <var>width</var>
+    be '<var>size</var>&#x2009;vw' and
+    <var>height</var> be 'auto'. Otherwise, let
+    <var>width</var> be 'auto' and <var>height</var> be
+    '<var>size</var>&#x2009;vh'. (These are CSS values used
+    by the next section to set CSS properties for the rendering; 'vw'
+    and 'vh' are CSS units.) <a href="#refsCSSVALUES">[CSSVALUES]</a></p></li>
+
     <li>
 
      <p>Determine the value of <var>x-position</var> or
@@ -3946,23 +3956,9 @@ Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
 
     </li>
 
-    <li><p>If the <a>text track cue writing direction</a> is
-    <a title="text track cue horizontal writing
-    direction">horizontal</a>, then let <var>width</var>
-    be '<var>size</var>&#x2009;vw' and
-    <var>height</var> be 'auto'. Otherwise, let
-    <var>width</var> be 'auto' and <var>height</var> be
-    '<var>size</var>&#x2009;vh'. (These are CSS values used
-    by the next section to set CSS properties for the rendering; 'vw'
-    and 'vh' are CSS units.) <a
-    href="#refsCSSVALUES">[CSSVALUES]</a></p></li>
-
-    <li><p>Let <var>left</var> be
-    '<var>x-position</var>&#x2009;vw' and <var>top</var>
-    be '<var>y-position</var>&#x2009;vh'. (These again are
-    CSS values used by the next section to set CSS properties for the
-    rendering; 'vw' and 'vh' are CSS units.) <a
-    href="#refsCSSVALUES">[CSSVALUES]</a></p></li>
+    <li><p>Let <var>left</var> be '<var>x-position</var>&#x2009;vw' and <var>top</var>
+    be '<var>y-position</var>&#x2009;vh'. (These are CSS values used by the next section to set
+    CSS properties for the rendering; 'vw' and 'vh' are CSS units.) <a href="#refsCSSVALUES">[CSSVALUES]</a>.</p></li>
 
     <li>
 
