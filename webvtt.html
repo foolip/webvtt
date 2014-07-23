@@ -752,10 +752,9 @@ What are you waiting for?</pre>
 
       <ol>
 
-        <li><p>If the <a>text track cue text position alignment</a> is set, then return the value of
-        the <a>text track cue text position alignment</a> and abort these steps. (Otherwise, the <a>text
-        track cue text position alignment</a> is the special value <a title="text track cue text position
-        automatic alignment">auto</a>.)</p></li>
+        <li><p>If the <a>text track cue text position alignment</a> is not <a title="text track cue
+        text position automatic alignment">auto</a>, then return the value of the <a>text track cue
+        text position alignment</a> and abort these steps.</p></li>
 
         <li><p>If the <a>text track cue text alignment</a> is <a title="text track cue start
         alignment">start</a> or <a title="text track cue left alignment">left</a>, return <a title="text
@@ -4376,15 +4375,17 @@ The Final Minute</pre>
 
   <pre class="idl_whatwg">enum <dfn>AutoKeyword</dfn> { "auto" };
 enum <dfn>DirectionSetting</dfn> { "" /* horizontal */, "rl", "lr" };
+enum <dfn>LineAlignSetting</dfn> { "start", "middle", "end" };
+enum <dfn>PositionAlignSetting</dfn> { "start", "middle", "end", "auto" };
 enum <dfn>AlignSetting</dfn> { "start", "middle", "end", "left", "right" };
 [<a title="VTTCue-constructor">Constructor</a>(double startTime, double endTime, DOMString text)]
 interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
            attribute <a>DirectionSetting</a> <a title="VTTCue-vertical">vertical</a>;
            attribute boolean <a title="VTTCue-snapToLines">snapToLines</a>;
            attribute (double or <a>AutoKeyword</a>) <a title="VTTCue-line">line</a>;
-           attribute <a>AlignSetting</a> <a title="VTTCue-lineAlign">lineAlign</a>;
+           attribute <a>LineAlignSetting</a> <a title="VTTCue-lineAlign">lineAlign</a>;
            attribute (double or <a>AutoKeyword</a>) <a title="VTTCue-position">position</a>;
-           attribute (<a>AlignSetting</a> or <a>AutoKeyword</a>) <a title="VTTCue-positionAlign">positionAlign</a>;
+           attribute <a>PositionAlignSetting</a> <a title="VTTCue-positionAlign">positionAlign</a>;
            attribute double <a title="VTTCue-size">size</a>;
            attribute <a>AlignSetting</a> <a title="VTTCue-align">align</a>;
            attribute DOMString <a title="VTTCue-text">text</a>;
