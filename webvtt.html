@@ -4118,15 +4118,15 @@ enum <dfn>PositionAlignSetting</dfn> { "start", "middle", "end", "auto" };
 enum <dfn>AlignSetting</dfn> { "start", "middle", "end", "left", "right" };
 [<a title="VTTCue-constructor">Constructor</a>(double startTime, double endTime, DOMString text)]
 interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
-           attribute <a>DirectionSetting</a> <a title="VTTCue-vertical">vertical</a>;
-           attribute boolean <a title="VTTCue-snapToLines">snapToLines</a>;
-           attribute (double or <a>AutoKeyword</a>) <a title="VTTCue-line">line</a>;
-           attribute <a>LineAlignSetting</a> <a title="VTTCue-lineAlign">lineAlign</a>;
-           attribute (double or <a>AutoKeyword</a>) <a title="VTTCue-position">position</a>;
-           attribute <a>PositionAlignSetting</a> <a title="VTTCue-positionAlign">positionAlign</a>;
-           attribute double <a title="VTTCue-size">size</a>;
-           attribute <a>AlignSetting</a> <a title="VTTCue-align">align</a>;
-           attribute DOMString <a title="VTTCue-text">text</a>;
+  attribute <a>DirectionSetting</a> <a title="VTTCue-vertical">vertical</a>;
+  attribute boolean <a title="VTTCue-snapToLines">snapToLines</a>;
+  attribute (double or <a>AutoKeyword</a>) <a title="VTTCue-line">line</a>;
+  attribute <a>LineAlignSetting</a> <a title="VTTCue-lineAlign">lineAlign</a>;
+  attribute (double or <a>AutoKeyword</a>) <a title="VTTCue-position">position</a>;
+  attribute <a>PositionAlignSetting</a> <a title="VTTCue-positionAlign">positionAlign</a>;
+  attribute double <a title="VTTCue-size">size</a>;
+  attribute <a>AlignSetting</a> <a title="VTTCue-align">align</a>;
+  attribute DOMString <a title="VTTCue-text">text</a>;
   <a>DocumentFragment</a> <a title="VTTCue-getCueAsHTML">getCueAsHTML</a>();
 };</pre>
 
