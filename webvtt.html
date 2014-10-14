@@ -116,11 +116,14 @@
    <p>This is Philip J&auml;genstedt's unofficial draft of <a
    href="http://dev.w3.org/html5/webvtt/">WebVTT</a>, with these changes applied:</p>
    <ul>
-    <li>Revert the redesigned positioning mechanism <a
-    href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=20037">[bug]</a></li>
-    <li>Let position have the same interpretation for LTR and RTL text</li>
-    <li>Let position have a default "auto" value, which depends on align <a
-    href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=25632">[bug]</a></li>
+    <li>
+     <p>Undo parts of the <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=20037">positioning
+     mechanism redesign</a>:</p>
+     <ul>
+      <li><p>Remove lineAlign and positionAlign.</p></li>
+      <li><p>Restore the user-agent-defined edge margin, used to handle overscan.</p></li>
+     </ul>
+    </li>
    </ul>
   </section>
 
