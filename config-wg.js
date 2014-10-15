@@ -30,12 +30,12 @@ var respecConfig = {
     wgURI: "http://www.w3.org/AudioVideo/TT/",
 
     // name (without the @w3c.org) of the public mailing to which comments are due
-    wgPublicList: "public-texttracks",
+    wgPublicList: "public-tt",
     wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/34314/status#disclosures",
     processVersion: 2014,
 
     bugTracker: {
-        new: "http://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&amp;component=WebVTT&amp;short_desc=%5BWebVTT%5D%20",
+        new: "http://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&amp;component=WebVTT",
         open: "http://www.w3.org/Bugs/Public/buglist.cgi?product=TextTracks%20CG&amp;component=WebVTT&amp;resolution=---",
     },
 
