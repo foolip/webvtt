@@ -1,6 +1,6 @@
 var respecConfig = {
     // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
-    specStatus: "unofficial",
+    specStatus: "CG-DRAFT",
 
     // the specification's short name, as in http://www.w3.org/TR/short-name/
     shortName: "webvtt",
@@ -16,7 +16,7 @@ var respecConfig = {
     // only "name" is required
     editors:  [
         { name: "Silvia Pfeiffer", url: "mailto:silviapfeiffer1@gmail.com",
-          company: "NICTA", companyURL: "http://nicta.com.au/", note: "W3C editor" },
+          company: "NICTA", companyURL: "http://nicta.com.au/" },
         { name: "Philip J&auml;genstedt", url: "mailto:philipj@opera.com",
           company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
         { name: "Ian Hickson", url: "mailto:ian@hixie.ch",
