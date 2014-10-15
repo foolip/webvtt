@@ -116,14 +116,7 @@
    <p>This is Philip J&auml;genstedt's unofficial draft of <a
    href="http://dev.w3.org/html5/webvtt/">WebVTT</a>, with these changes applied:</p>
    <ul>
-    <li>
-     <p>Undo parts of the <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=20037">positioning
-     mechanism redesign</a>:</p>
-     <ul>
-      <li><p>Remove lineAlign and positionAlign.</p></li>
-      <li><p>Restore the user-agent-defined edge margin, used to handle overscan.</p></li>
-     </ul>
-    </li>
+    <li><p>Remove lineAlign and positionAlign.</p></li>
    </ul>
   </section>
 
@@ -137,8 +130,8 @@
    <p>The <dfn>WebVTT</dfn> (Web Video Text Tracks) format is intended for marking up external text
    track resources.</p>
 
-   <p>The main use for WebVTT files is captioning video content. Here is a sample file that captions
-   an interview:</p>
+   <p>The main use for WebVTT files is captioning or subtitling video content. Here is a sample file
+   that captions an interview:</p>
 
    <pre>WEBVTT
 
@@ -432,7 +425,7 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
     normative parts of this document are to be interpreted as described in RFC2119. The key word
     "OPTIONALLY" in the normative parts of this document is to be interpreted with the same
     normative meaning as "MAY" and "OPTIONAL". For readability, these words do not appear in all
-    uppercase letters in this specification. <a href="refsRFC2119">[RFC2119]</a></p>
+    uppercase letters in this specification. <a href="#refsRFC2119">[RFC2119]</a></p>
 
     <p>Requirements phrased in the imperative as part of algorithms (such as "strip any leading
     space characters" or "return false and abort these steps") are to be interpreted with the
@@ -5092,6 +5085,10 @@ interface <dfn>VTTRegion</dfn> {
     <dt id="refsHTML5">[HTML5]</dt>
     <dd><cite><a href="http://www.w3.org/html/wg/drafts/html/master/">HTML 5.1</a></cite>, R.
     Berjon, T. Leithead, E. Doyle Navara, E. O'Connor, S. Pfeiffer. W3C.</dd>
+
+    <dt id="refsMAUR">[MAUR]</dt>
+    <dd><cite><a href="http://www.w3.org/TR/media-accessibility-reqs/">Media Accessibility User
+    Requirements</a></cite>, S. McCarron, M. Cooper, M. Sadecki (eds). W3C.</dd>
 
     <dt id="refsRFC2119">[RFC2119]</dt>
     <dd><cite><a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate
