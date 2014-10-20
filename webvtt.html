@@ -3,13 +3,64 @@
  <head>
   <title>WebVTT: The Web Video Text Tracks Format</title>
   <meta charset="utf-8">
+  <meta name="revision" content="$Revision$">
   <script src="respec/builds/respec-w3c-common.js" async class="remove"></script>
   <script class="remove" src="config-cg.js"></script>
-  <!-- script to register bugs -->
-  <script src="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/assets/scripts/bug-assist.js"></script>
-  <meta name="bug.short_desc" content="[WebVTT] ">
-  <meta name="bug.product" content="TextTracks CG">
-  <meta name="bug.component" content="WebVTT">
+  <script class="remove">
+    // Include the spec URL in bug reports.
+    var specUrl = respecConfig.edDraftURI;
+    if (respecConfig.shortName == "webvtt1") {
+      specUrl = "http://www.w3.org/TR/webvtt1/";
+    }
+    respecConfig.bugTracker.new += "&amp;bug_file_loc=" + encodeURIComponent(specUrl);
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var bugUi = document.getElementById("bug-ui");
+      var bugLink = bugUi.getElementsByTagName("a")[0];
+      if (window.respecConfig) {
+        // Building with ReSpec. Forward the new bug URL from config.
+        bugLink.href = respecConfig.bugTracker.new;
+      } else {
+        // Static spec. Set up click handler and show UI.
+        bugLink.addEventListener("click", function(event) {
+          var bugUrl = bugLink.href;
+          var selectedText = getSelection().toString();
+          if (selectedText) {
+            bugUrl += "&amp;comment=" + encodeURIComponent('"' + selectedText + '"');
+          }
+          open(bugUrl);
+          event.preventDefault();
+        }, false);
+        bugUi.removeAttribute("hidden");
+      }
+    }, false);
+  </script>
+  <script class="snapshot">
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.respecConfig) {
+        // Building with ReSpec. Remove the note from the output of the CG-DRAFT.
+        if (respecConfig.specStatus == "CG-DRAFT") {
+          var elements = document.getElementsByClassName("snapshot");
+          for (var i = elements.length - 1; i >= 0; i--) {
+            elements[i].parentNode.removeChild(elements[i]);
+          }
+        }
+      } else {
+        // Static snapshot. Show the note if it hasn't already been dismissed.
+        var snapshot = document.body.getElementsByClassName("snapshot")[0];
+        var button = snapshot.getElementsByTagName("button")[0];
+        button.addEventListener("click", function() {
+          snapshot.setAttribute("hidden", "");
+          localStorage["webvtt-snapshot-note"] = "hidden";
+        }, false);
+        var hidden = localStorage["webvtt-snapshot-note"] == "hidden";
+        if (!hidden) {
+          snapshot.removeAttribute("hidden");
+        }
+      }
+    }, false);
+  </script>
   <style>
     body {
       line-height: 1.35;
@@ -97,40 +148,70 @@
       margin-bottom: 0.25em;
       clear: left;
     }
-    /* fix bug entry form styling */
-    #bug-assist-form {
-      padding: 4px;
-      border: 1px solid red;
-      background-color: rgba(255, 255, 255, 0.6);
+    #bug-ui {
       position: fixed;
       top: 1em;
       right: 1em;
-      width: 115px;
-      opacity: 0.8;
+      background: #fbe9e9;
+      border-left: .5em solid #e05252;
       text-align: right;
     }
-    /* move respec button out of the way of the bug button */
-    #respec-ui{
-        top: 100px !important;
+    #bug-ui p {
+      margin: 1em;
+    }
+    #bug-ui p a {
+      color: inherit;
+    }
+    #bug-ui button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      margin: 0;
+      padding: 0;
+      text-decoration: underline;
+    }
+  </style>
+  <style class="snapshot">
+    .snapshot {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fbe9e9;
+      border-top: .5em solid #e05252;
+      text-align: center;
+      z-index: 2;
+    }
+    .snapshot a {
+      color: inherit;
     }
   </style>
  </head>
  <body>
+  <div class="snapshot" hidden>
+   <p>This is a Recommendation Track snapshot. For the latest updates, possibly including important
+   bug fixes, please see the <a href="http://dev.w3.org/html5/webvtt/">Living Standard</a>.
+   <button>Dismiss</button></p>
+  </div>
+
   <section id="abstract">
-   <p>This is the specification of WebVTT, the Web Video Text Tracks format.</p>
+   <p>This specification defines WebVTT, the Web Video Text Tracks format. Its main use is for
+   marking up external text track resources in connection with the HTML &lt;track> element.</p>
 
-   <p>This specification is being developed as a Living Standard in the <a
-   href="http://www.w3.org/community/texttracks/">Web Media Text Tracks Community Group</a>. A
-   snapshot version 1.0 of this specification is also being progressed through the <a
-   href="http://www.w3.org/AudioVideo/TT/">W3C Timed Text Working Group</a> to be published as a W3C
-   Recommendation for reference purposes.</p>
-
-   <p>To email the Timed Text Working Group, add [webvtt] at the start of your email's subject.
-   Implementors that target the Living Standard should provide feedback to the Community Group.</p>
-
+   <p>WebVTT files provide captions or subtitles for video content, and also text video descriptions
+   <a href="#refsMAUR">[MAUR]</a>, chapters for content navigation, and more generally any form of
+   metadata that is time-aligned with audio or video content.</p>
   </section>
 
-  <section id="sotd"></section>
+  <section id="sotd">
+   <p>Work on this specification is being undertaken both in the <a
+   href="http://www.w3.org/community/texttracks/">Web Media Text Tracks Community Group</a> as well
+   as in the <a href="http://www.w3.org/AudioVideo/TT/">W3C Timed Text Working Group</a>. The latter
+   group works towards a W3C Recommendation for reference purposes with interoperability
+   requirements, while the earlier is as a Living Standard that continues to evolve.</p>
+  </section>
 
   <section>
    <h2>Introduction</h2>
@@ -140,8 +221,8 @@
    <p>The <dfn>WebVTT</dfn> (Web Video Text Tracks) format is intended for marking up external text
    track resources.</p>
 
-   <p>The main use for WebVTT files is captioning video content. Here is a sample file that captions
-   an interview:</p>
+   <p>The main use for WebVTT files is captioning or subtitling video content. Here is a sample file
+   that captions an interview:</p>
 
    <pre>WEBVTT
 
@@ -413,15 +494,15 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
    <section>
     <h3>Conformance for authors</h3>
 
-    <p>The <a href="#h2_syntax">Syntax</a> section of this specification defines what consists a
-    valid WebVTT document. Authors need to follow the <a href="#h2_syntax">Syntax</a> specification
-    and are encouraged to use a validator.</p>
+    <p>The <a href="#syntax">Syntax</a> section of this specification defines what consists a valid
+    WebVTT document. Authors need to follow the <a href="#syntax">Syntax</a> specification and are
+    encouraged to use a validator.</p>
 
-    <p>The <a href="#h2_parser">Parser</a> section of this specification defines in some detail the
+    <p>The <a href="#parsing">Parsing</a> section of this specification defines in some detail the
     required processing for valid and also for invalid documents. It is a little more tolerant to
     author errors than the syntax allows, so as to reject less documents and provide for
     extensibility. However, authors must not take advantage of it. Only documents that follow the <a
-    href="#h2_syntax">Syntax</a> specification are valid.</p>
+    href="#syntax">Syntax</a> specification are valid.</p>
    </section>
 
    <section>
@@ -435,7 +516,7 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
     normative parts of this document are to be interpreted as described in RFC2119. The key word
     "OPTIONALLY" in the normative parts of this document is to be interpreted with the same
     normative meaning as "MAY" and "OPTIONAL". For readability, these words do not appear in all
-    uppercase letters in this specification. <a href="refsRFC2119">[RFC2119]</a></p>
+    uppercase letters in this specification. <a href="#refsRFC2119">[RFC2119]</a></p>
 
     <p>Requirements phrased in the imperative as part of algorithms (such as "strip any leading
     space characters" or "return false and abort these steps") are to be interpreted with the
@@ -455,138 +536,120 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
     href="#refsENCODING">[ENCODING]</a></p>
 
     <ul class="brief">
-     <li><a href="http://encoding.spec.whatwg.org/#utf-8-decode"><dfn>UTF-8 decode</dfn></a></li>
+     <li><a href="https://encoding.spec.whatwg.org/#utf-8-decode"><dfn>UTF-8 decode</dfn></a></li>
     </ul>
 
     <p>The following terms are defined in the DOM specification: <a href="#refsDOM">[DOM]</a></p>
 
     <ul class="brief">
-     <li><a href="http://dom.spec.whatwg.org/#document"><dfn><code>Document</code></dfn></a>
+     <li><a href="https://dom.spec.whatwg.org/#document"><dfn><code>Document</code></dfn></a>
      interface</li>
      <li><a
-     href="http://dom.spec.whatwg.org/#interface-documentfragment"><dfn><code>DocumentFragment</code></dfn></a>
+     href="https://dom.spec.whatwg.org/#interface-documentfragment"><dfn><code>DocumentFragment</code></dfn></a>
      interface</li>
      <li><a
-     href="http://dom.spec.whatwg.org/#processinginstruction"><dfn><code>ProcessingInstruction</code></dfn></a>
+     href="https://dom.spec.whatwg.org/#processinginstruction"><dfn><code>ProcessingInstruction</code></dfn></a>
      interface</li>
-     <li><a href="http://dom.spec.whatwg.org/#text"><dfn><code>Text</code></dfn></a> interface</li>
+     <li><a href="https://dom.spec.whatwg.org/#text"><dfn><code>Text</code></dfn></a> interface</li>
      <li><a
-     href="http://dom.spec.whatwg.org/#dom-characterdata-data"><dfn><code>data</code></dfn></a>
+     href="https://dom.spec.whatwg.org/#dom-characterdata-data"><dfn><code>data</code></dfn></a>
      attribute</li>
      <li><a
-     href="http://dom.spec.whatwg.org/#dom-element-localname"><dfn><code>localName</code></dfn></a>
+     href="https://dom.spec.whatwg.org/#dom-element-localname"><dfn><code>localName</code></dfn></a>
      attribute</li>
      <li><a
-     href="http://dom.spec.whatwg.org/#dom-element-namespaceuri"><dfn><code>namespaceURI</code></dfn></a>
+     href="https://dom.spec.whatwg.org/#dom-element-namespaceuri"><dfn><code>namespaceURI</code></dfn></a>
      attribute</li>
      <li><a
-     href="http://dom.spec.whatwg.org/#dom-node-ownerdocument"><dfn><code>ownerDocument</code></dfn></a>
+     href="https://dom.spec.whatwg.org/#dom-node-ownerdocument"><dfn><code>ownerDocument</code></dfn></a>
      attribute</li>
      <li><a
-     href="http://dom.spec.whatwg.org/#dom-processinginstruction-target"><dfn><code>target</code></dfn></a>
+     href="https://dom.spec.whatwg.org/#dom-processinginstruction-target"><dfn><code>target</code></dfn></a>
      attribute</li>
-     <li><a
-     href="http://dom.spec.whatwg.org/#indexsizeerror"><dfn><code>IndexSizeError</code></dfn></a></li>
     </ul>
 
-    <p>The following terms are defined in the HTML standard: <a href="#refsHTML5">[HTML5]</a></p>
+    <p>The following terms are defined in the HTML standard: <a href="#refsHTML">[HTML]</a></p>
 
     <ul class="brief">
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#html-elements"><dfn>HTML
-     elements</dfn></a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#htmlelement"><dfn><code>HTMLElement</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#html-elements"><dfn>HTML elements</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#htmlelement"><dfn><code>HTMLElement</code></dfn></a>
      interface</li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#attr-class"><dfn><code>class</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#classes"><dfn><code>class</code></dfn></a>
      attribute</li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#attr-lang"><dfn><code>lang</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#attr-lang"><dfn><code>lang</code></dfn></a>
      attribute</li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#attr-title"><dfn><code>title</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#attr-title"><dfn><code>title</code></dfn></a>
      attribute</li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#script's-document"><dfn>Script's
+     <li><a href="https://html.spec.whatwg.org/#responsible-document"><dfn>Responsible
      document</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#entry-script"><dfn>Entry
-     script</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#mime-type"><dfn>MIME
-     type</dfn></a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#case-sensitive"><dfn>Case-sensitive</dfn></a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#collect-a-sequence-of-characters"><dfn>Collect
-     a sequence of characters</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#ascii-digits"><dfn>ASCII
-     digits</dfn></a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#alphanumeric-ascii-characters"><dfn>Alphanumeric
+     <li><a href="https://html.spec.whatwg.org/#entry-settings-object"><dfn>Entry settings
+     object</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#mime-type"><dfn>MIME type</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#case-sensitive"><dfn>Case-sensitive</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#collect-a-sequence-of-characters"><dfn>Collect a
+     sequence of characters</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#ascii-digits"><dfn>ASCII digits</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#alphanumeric-ascii-characters"><dfn>Alphanumeric
      ASCII characters</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#space-character"><dfn>Space
-     character</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#skip-whitespace"><dfn>Skip
-     whitespace</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#split-a-string-on-spaces"><dfn>Split
-     a string on spaces</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#html-namespace"><dfn>HTML
-     namespace</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#media-element"><dfn>Media
-     element</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#audio"><dfn><code>audio</code></dfn>
+     <li><a href="https://html.spec.whatwg.org/#space-character"><dfn>Space character</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#skip-whitespace"><dfn>Skip whitespace</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#split-a-string-on-spaces"><dfn>Split a string on
+     spaces</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#html-namespace"><dfn>HTML namespace</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#media-element"><dfn>Media element</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#audio"><dfn><code>audio</code></dfn>
      element</a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#video"><dfn><code>video</code></dfn>
+     <li><a href="https://html.spec.whatwg.org/#video"><dfn><code>video</code></dfn>
      element</a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#current-playback-position"><dfn>Current
-     playback position</dfn></a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#expose-a-user-interface-to-the-user"><dfn>Expose
-     a user interface to the user</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#list-of-text-tracks"><dfn>List of
-     text tracks</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track"><dfn>Text
-     track</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-kind"><dfn>Text track
-     kind</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-mode"><dfn>Text track
-     mode</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-showing"><dfn>Text track
+     <li><a href="https://html.spec.whatwg.org/#current-playback-position"><dfn>Current playback
+     position</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#expose-a-user-interface-to-the-user"><dfn>Expose a
+     user interface to the user</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#list-of-text-tracks"><dfn>List of text
+     tracks</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track"><dfn>Text track</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-kind"><dfn>Text track kind</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-mode"><dfn>Text track mode</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-showing"><dfn>Text track
      showing</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue"><dfn>Text track
-     cue</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-list-of-cues"><dfn>Text
-     track list of cues</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-order"><dfn>Text
-     track cue order</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-identifier"><dfn>Text
-     track cue identifier</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-start-time"><dfn>Text
-     track cue start time</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-end-time"><dfn>Text
-     track cue end time</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue"><dfn>Text track cue</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-list-of-cues"><dfn>Text track list of
+     cues</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-order"><dfn>Text track cue
+     order</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-identifier"><dfn>Text track cue
+     identifier</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-start-time"><dfn>Text track cue start
+     time</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-end-time"><dfn>Text track cue end
+     time</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-pause-on-exit-flag"><dfn>Text track
+     cue pause-on-exit flag</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-text"><dfn>Text track cue
+     text</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-active-flag"><dfn>Text track cue
+     active flag</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-display-state"><dfn>Text track cue
+     display state</dfn></a></li>
      <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-pause-on-exit-flag"><dfn>Text
-     track cue pause-on-exit flag</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-text"><dfn>Text track
-     cue text</dfn></a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-active-flag"><dfn>Text track
-     cue active flag</dfn></a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-display-state"><dfn>Text
-     track cue display state</dfn></a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#rules-for-updating-the-text-track-rendering"><dfn>Rules
-     for updating the text track rendering</dfn></a></li>
-     <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#rules-for-rendering-the-cue-in-isolation"><dfn>Rules
+     href="https://html.spec.whatwg.org/#rules-for-updating-the-text-track-rendering"><dfn>Rules for
+     updating the text track rendering</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#rules-for-rendering-the-cue-in-isolation"><dfn>Rules
      for rendering the cue in isolation</dfn></a></li>
      <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#texttrackcue"><dfn><code>TextTrackCue</code></dfn></a>
+     href="https://html.spec.whatwg.org/#texttrackcue"><dfn><code>TextTrackCue</code></dfn></a>
      interface</li>
      <li><a
-     href="http://www.w3.org/html/wg/drafts/html/master/#dom-texttrack-addcue"><dfn><code>addCue()</code></dfn></a>
+     href="https://html.spec.whatwg.org/#dom-texttrack-addcue"><dfn><code>addCue()</code></dfn></a>
      method</li>
+    </ul>
+
+    <p>The following terms are defined in the Web IDL specification: <a
+    href="#refsWEBIDL">[WEBIDL]</a></p>
+
+    <ul>
+     <li><a
+     href="http://heycam.github.io/webidl/#indexsizeerror"><dfn><code>IndexSizeError</code></dfn></a></li>
     </ul>
    </section>
   </section>
@@ -600,7 +663,7 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
     <h3>Text track cues</h3>
 
     <p>WebVTT cues are HTML <a title="text track cue">text track cues</a> that additionally consist
-    of the following: <a href="#refsHTML5">[HTML5]</a></p>
+    of the following: <a href="#refsHTML">[HTML]</a></p>
 
     <dl>
 
@@ -3800,6 +3863,76 @@ The Final Minute</pre>
 
       </li>
 
+      <li>
+
+       <p>If the <a>text track cue snap-to-lines flag</a> is set, then run the appropriate steps
+       from the following list:</p>
+
+       <dl class="switch">
+
+        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue horizontal
+        writing direction">horizontal</a></dt>
+        <dd>
+
+         <ol>
+
+          <li><p>Let <var>edge margin</var> be a user-agent-defined horizontal length, expressed as
+          a percentage of the width of the <var>video</var>'s rendering area, which will be used to
+          define a margin at the left and right edges of the video into which this cue will not be
+          placed. In situations with overscan, this margin should be sufficient to place the cue
+          within the title-safe area. In the absence of overscan, this value should be picked for
+          aesthetics (to avoid text being aligned precisely on the left or right edge of the video,
+          which can be ugly).</p></li>
+
+          <li><p>If <var>x-position</var> is less than <var>edge margin</var> and the sum of
+          <var>x-position</var> and <var>size</var> is more than <var>edge margin</var>, then
+          increase <var>x-position</var> by <var>edge margin</var> and decrease <var>size</var> by
+          the same amount.</p></li>
+
+          <li><p>Let <var>right margin edge</var> be 100 minus <var>edge margin</var>.</p></li>
+
+          <li><p>If <var>x-position</var> is less than <var>right margin edge</var>, and the sum of
+          <var>x-position</var> and <var>size</var> is more than <var>right margin edge</var>, then
+          decrease <var>size</var> by <var>edge margin</var>.</p></li>
+
+         </ol>
+
+        </dd>
+
+        <dt>If the <a>text track cue writing direction</a> is <a title="text track cue vertical
+        growing left writing direction">vertical growing left</a> or <a title="text track cue
+        vertical growing right writing direction">vertical growing right</a></dt>
+        <dd>
+
+         <ol>
+
+          <li><p>Let <var>edge margin</var> be a user-agent-defined vertical length, expressed as a
+          percentage of the height of the <var>video</var>'s rendering area, which will be used to
+          define a margin at the top and bottom edges of the video into which this cue will not be
+          placed. In situations with overscan, this margin should be sufficient to place the cue
+          within the title-safe area. In the absence of overscan, this value should be picked for
+          aesthetics (to avoid text being aligned precisely on the top or bottom edge of the video,
+          which can be ugly).</p></li>
+
+          <li><p>If <var>y-position</var> is less than <var>edge margin</var> and the sum of
+          <var>y-position</var> and <var>size</var> is more than <var>edge margin</var>, then
+          increase <var>y-position</var> by <var>edge margin</var> and decrease <var>size</var> by
+          the same amount.</p></li>
+
+          <li><p>Let <var>bottom margin edge</var> be 100 minus <var>edge margin</var>.</p></li>
+
+          <li><p>If <var>y-position</var> is less than <var>bottom margin edge</var>, and the sum of
+          <var>y-position</var> and <var>size</var> is more than <var>right margin edge</var>, then
+          decrease <var>size</var> by <var>edge margin</var>.</p></li>
+
+         </ol>
+
+        </dd>
+
+       </dl>
+
+      </li>
+
       <li><p>Let <var>left</var> be '<var>x-position</var>&#x2009;vw' and <var>top</var> be
       '<var>y-position</var>&#x2009;vh'. (These are CSS values used by the next section to set CSS
       properties for the rendering; 'vw' and 'vh' are CSS units.) <a
@@ -3901,16 +4034,39 @@ The Final Minute</pre>
 
           <li>
 
-           <p><strong>Horizontal</strong>: Let <var>max dimension</var> be the height of
-           <var>video</var>'s rendering area minus twice the 'padding-top' space defined in the next
-           section.</p>
+           <p><strong>Horizontal</strong>: Let <var>margin</var> be a user-agent-defined vertical
+           length which will be used to define a margin at the top and bottom edges of the video
+           into which cues will not be placed. In situations with overscan, this margin should be
+           sufficient to place all cues within the title-safe area. In the absence of overscan, this
+           value should be picked for aesthetics (to avoid text being aligned precisely on the
+           bottom edge of the video, which can be ugly).</p>
 
-           <p><strong>Vertical</strong>: Let <var>max dimension</var> be the width of
-           <var>video</var>'s rendering area minus twice the 'padding-left' space defined in the
-           next section.</p>
+           <p><strong>Vertical</strong>: Let <var>margin</var> be a user-agent-defined horizontal
+           length which will be used to define a margin at the left and right edges of the video
+           into which cues will not be placed. In situations with overscan, this margin should be
+           sufficient to place all cues within the title-safe area. In the absence of overscan, this
+           value should be picked for aesthetics (to avoid text being aligned precisely on the left
+           or right edges of the video, which can be ugly).</p>
 
-           <p>These dimensions must not be adjusted for overscan. (The padding of the next section
-           takes care of this.)</p>
+          </li>
+
+          <li>
+
+           <p><strong>Horizontal</strong>: Let <var>full dimension</var> be the height of
+           <var>video</var>'s rendering area.</p>
+
+           <p><strong>Vertical</strong>: Let <var>full dimension</var> be the width of
+           <var>video</var>'s rendering area.</p>
+
+           <p>These dimensions must not be adjusted for overscan. (The algorithm does that
+           separately.)</p>
+
+          </li>
+
+          <li>
+
+           <p>Let <var>max dimension</var> be
+           <var>full&nbsp;dimension</var>&nbsp;-&nbsp;(2&nbsp;&times;&nbsp; <var>margin</var>).</p>
 
           </li>
 
@@ -4778,10 +4934,10 @@ interface <dfn>VTTCue</dfn> : <a>TextTrackCue</a> {
     object represents. On setting, the <a>text track cue text</a> must be set to the new value.</p>
 
     <p>The <dfn title="VTTCue-getCueAsHTML"><code>getCueAsHTML()</code></dfn> method must convert
-    the <a>text track cue text</a> to a <a><code>DocumentFragment</code></a> for the <a>script's
-    document</a> of the <a>entry script</a> by applying the <a>WebVTT cue text DOM construction
-    rules</a> to the result of applying the <a>WebVTT cue text parsing rules</a> to the <a>text
-    track cue text</a>.</p>
+    the <a>text track cue text</a> to a <a><code>DocumentFragment</code></a> for the <a>responsible
+    document</a> specified by the <a>entry settings object</a> by applying the <a>WebVTT cue text
+    DOM construction rules</a> to the result of applying the <a>WebVTT cue text parsing rules</a> to
+    the <a>text track cue text</a>.</p>
 
    </section>
 
@@ -5070,23 +5226,23 @@ interface <dfn>VTTRegion</dfn> {
     1</a></cite>, B. Bos, T. &Ccedil;elik, I. Hickson, H. Lie. W3C.</dd>
 
     <dt id="refsCSSCOLOR">[CSSCOLOR]</dt>
-    <dd><cite><a href="http://dev.w3.org/csswg/css3-color/">CSS Color Module Level 3</a></cite>, T.
-    &Ccedil;elik, C. Lilley, L. Baron. W3C.</dd>
+    <dd><cite><a href="http://dev.w3.org/csswg/css-color/">CSS Color Module Level 4</a></cite>, T.
+    Atkins Jr., C. Lilley, L. Baron. W3C.</dd>
 
     <dt id="refsCSSRUBY">[CSSRUBY]</dt>
-    <dd><cite><a href="http://dev.w3.org/csswg/css3-ruby/">CSS3 Ruby Module</a></cite>, R. Ishida.
-    W3C.</dd>
+    <dd><cite><a href="http://dev.w3.org/csswg/css-ruby/">CSS Ruby Layout Module Level 1</a></cite>,
+    E. Etemad, K. Ishii. W3C.</dd>
 
     <dt id="refsCSSVALUES">[CSSVALUES]</dt>
-    <dd><cite><a href="http://dev.w3.org/csswg/css3-values/">CSS3 Values and Units</a></cite>, H.
-    Lie, T. Atkins, E. Etemad. W3C.</dd>
+    <dd><cite><a href="http://dev.w3.org/csswg/css-values/">CSS Values and Units Module Level
+    3</a></cite>, T. Atkins Jr., fantasai, H. Lie. W3C.</dd>
 
     <dt id="refsDOM">[DOM]</dt>
-    <dd><cite><a href="http://dom.spec.whatwg.org/">W3C DOM 4</a></cite>, A. van Kesteren, A.
-    Gregor, Ms2ger. WHATWG.</dd>
+    <dd><cite><a href="https://dom.spec.whatwg.org/">DOM</a></cite>, A. van Kesteren, A. Gregor,
+    Ms2ger. WHATWG.</dd>
 
     <dt id="refsENCODING">[ENCODING]</dt>
-    <dd><cite><a href="http://encoding.spec.whatwg.org/">Encoding</a></cite>, A. van Kesteren, J.
+    <dd><cite><a href="https://encoding.spec.whatwg.org/">Encoding</a></cite>, A. van Kesteren, J.
     Bell. WHATWG.</dd>
 
     <dt id="refsHTML">[HTML]</dt>
@@ -5095,6 +5251,10 @@ interface <dfn>VTTRegion</dfn> {
     <dt id="refsHTML5">[HTML5]</dt>
     <dd><cite><a href="http://www.w3.org/html/wg/drafts/html/master/">HTML 5.1</a></cite>, R.
     Berjon, T. Leithead, E. Doyle Navara, E. O'Connor, S. Pfeiffer. W3C.</dd>
+
+    <dt id="refsMAUR">[MAUR]</dt>
+    <dd>(Non-normative) <cite><a href="http://www.w3.org/TR/media-accessibility-reqs/">Media
+    Accessibility User Requirements</a></cite>, S. McCarron, M. Cooper, M. Sadecki (eds). W3C.</dd>
 
     <dt id="refsRFC2119">[RFC2119]</dt>
     <dd><cite><a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate
@@ -5107,6 +5267,10 @@ interface <dfn>VTTRegion</dfn> {
     <dt id="refsSELECTORS">[SELECTORS]</dt>
     <dd><cite><a href="http://www.w3.org/TR/selectors4/">Selectors</a></cite>, E. Etemad, T. Atkins
     Jr. W3C.</dd>
+
+    <dt id="refsWEBIDL">[WEBIDL]</dt>
+    <dd><cite><a href="http://heycam.github.io/webidl/">Web IDL</a></cite>, C. McCormack, B.
+    Zbarsky. W3C.</dd>
 
    </dl>
 
@@ -5149,6 +5313,10 @@ interface <dfn>VTTRegion</dfn> {
    </p>
 
   </section>
+
+  <div id="bug-ui" hidden>
+   <p>See a problem?<br>Select text and <a target="_blank">file a bug</a>!</p>
+  </div>
 
  </body>
 </html>
