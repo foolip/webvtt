@@ -20,19 +20,29 @@ var respecConfig = {
         { name: "Philip J&auml;genstedt", url: "mailto:philipj@opera.com",
           company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
         { name: "Ian Hickson", url: "mailto:ian@hixie.ch",
-          company: "Google", companyURL: "http://google.com/", note: "previous editor" },
+          company: "Google", companyURL: "http://www.google.com/", note: "previous editor" },
     ],
 
     // name of the WG
-    wg: "Timed Text Community Group",
+    wg: "W3C Timed Text Working Group",
 
     // URI of the public WG page
     wgURI: "http://www.w3.org/AudioVideo/TT/",
 
     // name (without the @w3c.org) of the public mailing to which comments are due
     wgPublicList: "public-tt",
+    subjectPrefix: "[webvtt]",
     wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/34314/status#disclosures",
     processVersion: 2014,
+
+    bugTracker: {
+        new: "https://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&amp;component=WebVTT",
+        open: "https://www.w3.org/Bugs/Public/buglist.cgi?product=TextTracks%20CG&amp;component=WebVTT&amp;resolution=---",
+    },
+
+    testSuiteURI: "https://github.com/w3c/web-platform-tests/tree/master/webvtt",
+
+    otherLinks: [{key: "Version history", href:"https://github.com/w3c/webvtt/commits"}],
 
     doRDFa: false,
 };

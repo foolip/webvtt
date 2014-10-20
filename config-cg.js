@@ -20,17 +20,26 @@ var respecConfig = {
         { name: "Philip J&auml;genstedt", url: "mailto:philipj@opera.com",
           company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
         { name: "Ian Hickson", url: "mailto:ian@hixie.ch",
-          company: "Google", companyURL: "http://google.com/", note: "previous editor" },
+          company: "Google", companyURL: "http://www.google.com/", note: "previous editor" },
     ],
 
     // name of the WG
-    wg: "Text Tracks Community Group",
+    wg: "Web Media Text Tracks Community Group",
 
     // URI of the public WG page
     wgURI: "http://www.w3.org/community/texttracks/",
 
     // name (without the @w3c.org) of the public mailing to which comments are due
     wgPublicList: "public-texttracks",
+
+    bugTracker: {
+        new: "https://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&amp;component=WebVTT",
+        open: "https://www.w3.org/Bugs/Public/buglist.cgi?product=TextTracks%20CG&amp;component=WebVTT&amp;resolution=---",
+    },
+
+    testSuiteURI: "https://github.com/w3c/web-platform-tests/tree/master/webvtt",
+
+    otherLinks: [{key: "Version history", href:"https://github.com/w3c/webvtt/commits"}],
 
     doRDFa: false,
 };
