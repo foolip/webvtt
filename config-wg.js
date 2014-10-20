@@ -20,7 +20,7 @@ var respecConfig = {
         { name: "Philip J&auml;genstedt", url: "mailto:philipj@opera.com",
           company: "Opera Software ASA", companyURL: "http://www.opera.com/" },
         { name: "Ian Hickson", url: "mailto:ian@hixie.ch",
-          company: "Google", companyURL: "http://google.com/", note: "previous editor" },
+          company: "Google", companyURL: "http://www.google.com/", note: "previous editor" },
     ],
 
     // name of the WG
@@ -31,12 +31,13 @@ var respecConfig = {
 
     // name (without the @w3c.org) of the public mailing to which comments are due
     wgPublicList: "public-tt",
+    subjectPrefix: "[webvtt]",
     wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/34314/status#disclosures",
     processVersion: 2014,
 
     bugTracker: {
-        new: "http://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&amp;component=WebVTT",
-        open: "http://www.w3.org/Bugs/Public/buglist.cgi?product=TextTracks%20CG&amp;component=WebVTT&amp;resolution=---",
+        new: "https://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&amp;component=WebVTT",
+        open: "https://www.w3.org/Bugs/Public/buglist.cgi?product=TextTracks%20CG&amp;component=WebVTT&amp;resolution=---",
     },
 
     testSuiteURI: "https://github.com/w3c/web-platform-tests/tree/master/webvtt",
@@ -44,4 +45,44 @@ var respecConfig = {
     otherLinks: [{key: "Version history", href:"https://github.com/w3c/webvtt/commits"}],
 
     doRDFa: false,
+
+    localBiblio: {
+        "BIDI" : {
+            authors: ["Mark Davis", "Aharon Lanin", "Andrew Glass"],
+            href: "http://www.unicode.org/reports/tr9/",
+            publisher: "Unicode Consortium",
+            status: "Unicode Standard Annex #9",
+            title: "Unicode Bidirectional Algorithm",
+        },
+        "CSS": {
+            aliasOf: "CSS2",
+        },
+        "CSSCOLOR": {
+            aliasOf: "css3-color",
+        },
+        "CSSRUBY": {
+            aliasOf: "css-ruby-1",
+        },
+        "CSSVALUES": {
+            aliasOf: "css3-values",
+        },
+        "DOM" : {
+            aliasOf: "dom",
+        },
+        "ENCODING" : {
+            aliasOf: "encoding",
+        },
+        "HTML" : {
+            aliasOf: "html5",
+        },
+        "MAUR" : {
+            aliasOf: "media-accessibility-reqs",
+        },
+        "SELECTORS": {
+            aliasOf: "selectors4",
+        },
+        "WEBIDL" : {
+            aliasOf: "WebIDL",
+        },
+    },
 };
