@@ -61,6 +61,19 @@
       }
     }, false);
   </script>
+  <script class="remove">
+    // Remove dependency links in the snapshot spec.
+    if (respecConfig.shortName == "webvtt1") {
+      document.addEventListener("DOMContentLoaded", function() {
+        Array.prototype.forEach.call(document.querySelectorAll("#dependencies a"), function(a) {
+          while (a.firstChild) {
+            a.parentElement.insertBefore(a.firstChild, a);
+          }
+          a.parentElement.removeChild(a);
+        });
+      }, false);
+    }
+  </script>
   <style>
     body {
       line-height: 1.35;
@@ -519,7 +532,7 @@ What are you waiting for?</pre>
     specification are intended to be easy to follow, and not intended to be performant.)</p>
    </section>
 
-   <section>
+   <section id="dependencies">
     <h3>Dependencies</h3>
 
     <p>This specification relies on several other underlying specifications.</p>
@@ -530,7 +543,7 @@ What are you waiting for?</pre>
      <li><a href="https://encoding.spec.whatwg.org/#utf-8-decode"><dfn>UTF-8 decode</dfn></a></li>
     </ul>
 
-    <p>The following terms are defined in the DOM specification: [[!DOM]]</p>
+    <p>The following terms are defined in the DOM standard: [[!DOM]]</p>
 
     <ul class="brief">
      <li><a href="https://dom.spec.whatwg.org/#document"><dfn><code>Document</code></dfn></a>
