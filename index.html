@@ -3,8 +3,58 @@
 <head>
   <title>WebVTT: The Web Video Text Tracks Format</title>
   <meta charset="utf-8">
-  <meta name="robots'" content="noindex">
+  <meta name="revision" content="77b19e21af486eebdaff271bf80dce0abc78945e">
+  <meta name="robots" content="noindex">
   
+  
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var bugUi = document.getElementById("bug-ui");
+      var bugLink = bugUi.getElementsByTagName("a")[0];
+      if (window.respecConfig) {
+        // Building with ReSpec. Forward the new bug URL from config.
+        bugLink.href = respecConfig.bugTracker.new;
+      } else {
+        // Static spec. Set up click handler and show UI.
+        bugLink.addEventListener("click", function(event) {
+          var bugUrl = bugLink.href;
+          var selectedText = getSelection().toString();
+          if (selectedText) {
+            bugUrl += "&amp;comment=" + encodeURIComponent('"' + selectedText + '"');
+          }
+          open(bugUrl);
+          event.preventDefault();
+        }, false);
+        bugUi.removeAttribute("hidden");
+      }
+    }, false);
+  </script>
+  <script class="snapshot">
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.respecConfig) {
+        // Building with ReSpec. Remove the note from the output of the CG-DRAFT.
+        if (respecConfig.specStatus == "CG-DRAFT") {
+          var elements = document.getElementsByClassName("snapshot");
+          for (var i = elements.length - 1; i >= 0; i--) {
+            elements[i].parentNode.removeChild(elements[i]);
+          }
+        }
+      } else {
+        // Static snapshot. Show the note if it hasn't already been dismissed.
+        var snapshot = document.body.getElementsByClassName("snapshot")[0];
+        var button = snapshot.getElementsByTagName("button")[0];
+        button.addEventListener("click", function() {
+          snapshot.setAttribute("hidden", "");
+          localStorage["webvtt-snapshot-note"] = "hidden";
+        }, false);
+        var hidden = localStorage["webvtt-snapshot-note"] == "hidden";
+        if (!hidden) {
+          snapshot.removeAttribute("hidden");
+        }
+      }
+    }, false);
+  </script>
   
   <style>
     body {
@@ -93,21 +143,44 @@
       margin-bottom: 0.25em;
       clear: left;
     }
-    /* fix bug entry form styling */
-    #bug-assist-form {
-      padding: 4px;
-      border: 1px solid red;
-      background-color: rgba(255, 255, 255, 0.6);
+    #bug-ui {
       position: fixed;
       top: 1em;
       right: 1em;
-      width: 115px;
-      opacity: 0.8;
+      background: #fbe9e9;
+      border-left: .5em solid #e05252;
       text-align: right;
     }
-    /* move respec button out of the way of the bug button */
-    #respec-ui{
-        top: 100px !important;
+    #bug-ui p {
+      margin: 1em;
+    }
+    #bug-ui p a {
+      color: inherit;
+    }
+    #bug-ui button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      margin: 0;
+      padding: 0;
+      text-decoration: underline;
+    }
+  </style>
+  <style class="snapshot">
+    .snapshot {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fbe9e9;
+      border-top: .5em solid #e05252;
+      text-align: center;
+      z-index: 2;
+    }
+    .snapshot a {
+      color: inherit;
     }
   </style>
  <style>/*****************************************************************
@@ -273,7 +346,7 @@ span.note, span.issue { padding: .1em .5em .15em; }
   </p>
   <h1 class="title p-name" id="title">WebVTT: The Web Video Text Tracks Format</h1>
   
-  <h2 id="unofficial-draft-15-october-2014">Unofficial Draft <time class="dt-published" datetime="2014-10-15">15 October 2014</time></h2>
+  <h2 id="unofficial-draft-28-january-2015">Unofficial Draft <time class="dt-published" datetime="2015-01-28">28 January 2015</time></h2>
   <dl>
     
     
@@ -281,7 +354,13 @@ span.note, span.issue { padding: .1em .5em .15em; }
       <dd><a href="http://dev.w3.org/html5/webvtt/">http://dev.w3.org/html5/webvtt/</a></dd>
     
     
+      <dt>Test suite:</dt>
+      <dd><a href="https://github.com/w3c/web-platform-tests/tree/master/webvtt">https://github.com/w3c/web-platform-tests/tree/master/webvtt</a></dd>
     
+    
+    
+      <dt>Bug tracker:</dt>
+      <dd><a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&amp;component=WebVTT&amp;bug_file_loc=http%3A%2F%2Fdev.w3.org%2Fhtml5%2Fwebvtt%2F">file a bug</a> (<a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=TextTracks%20CG&amp;component=WebVTT&amp;resolution=---">open bugs</a>)</dd>
     
     
     
@@ -289,9 +368,24 @@ span.note, span.issue { padding: .1em .5em .15em; }
     <dt>Editors:</dt>
     <dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="mailto:philipj@opera.com">Philip Jägenstedt</a>, <a class="p-org org h-org h-card" href="http://www.opera.com/">Opera Software ASA</a></dd>
 <dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="mailto:silviapfeiffer1@gmail.com">Silvia Pfeiffer</a>, <a class="p-org org h-org h-card" href="http://nicta.com.au/">NICTA</a> (W3C editor)</dd>
-<dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="mailto:ian@hixie.ch">Ian Hickson</a>, <a class="p-org org h-org h-card" href="http://google.com/">Google</a> (previous editor)</dd>
+<dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="mailto:ian@hixie.ch">Ian Hickson</a>, <a class="p-org org h-org h-card" href="http://www.google.com/">Google</a> (previous editor)</dd>
 
     
+    
+      
+        
+          <dt>Version history:</dt>
+          
+            
+              
+                <dd>
+                  <a href="https://github.com/w3c/webvtt/commits">https://github.com/w3c/webvtt/commits</a>
+                </dd>
+              
+            
+          
+        
+      
     
   </dl>
   
@@ -310,6 +404,12 @@ span.note, span.issue { padding: .1em .5em .15em; }
   
   <hr>
 </div>
+  <div class="snapshot" hidden="">
+   <p>This is an unoffical draft. For the latest updates, possibly including important bug fixes,
+   please see the <a href="http://dev.w3.org/html5/webvtt/">Draft Community Group Report</a>.
+   <button>Dismiss</button></p>
+  </div>
+
   <section id="abstract" class="introductory"><h2 role="heading" id="h2_abstract">Abstract</h2>
    <p>This is Philip Jägenstedt's unofficial draft of <a href="http://dev.w3.org/html5/webvtt/">WebVTT</a>, with these changes applied:</p>
    <ul>
@@ -324,7 +424,7 @@ span.note, span.issue { padding: .1em .5em .15em; }
     </p>
     
   
-</section><section id="toc"><h2 class="introductory" role="heading" id="h2_toc">Table of Contents</h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a><ul class="toc"><li class="tocline"><a href="#cues-with-multiple-lines" class="tocxref"><span class="secno">1.1 </span>Cues with multiple lines</a></li><li class="tocline"><a href="#comments" class="tocxref"><span class="secno">1.2 </span>Comments</a></li><li class="tocline"><a href="#other-features" class="tocxref"><span class="secno">1.3 </span>Other features</a></li></ul></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a><ul class="toc"><li class="tocline"><a href="#conformance-for-authors" class="tocxref"><span class="secno">2.1 </span>Conformance for authors</a></li><li class="tocline"><a href="#document-conformance" class="tocxref"><span class="secno">2.2 </span>Document conformance</a></li><li class="tocline"><a href="#dependencies" class="tocxref"><span class="secno">2.3 </span>Dependencies</a></li></ul></li><li class="tocline"><a href="#data-model" class="tocxref"><span class="secno">3. </span>Data model</a><ul class="toc"><li class="tocline"><a href="#text-track-cues" class="tocxref"><span class="secno">3.1 </span>Text track cues</a></li><li class="tocline"><a href="#text-track-regions" class="tocxref"><span class="secno">3.2 </span>Text track regions</a></li></ul></li><li class="tocline"><a href="#syntax" class="tocxref"><span class="secno">4. </span>Syntax</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-structure" class="tocxref"><span class="secno">4.1 </span>WebVTT file structure</a></li><li class="tocline"><a href="#webvtt-comments" class="tocxref"><span class="secno">4.2 </span>WebVTT comments</a></li><li class="tocline"><a href="#types-of-webvtt-cue-payload" class="tocxref"><span class="secno">4.3 </span>Types of WebVTT cue payload</a><ul class="toc"><li class="tocline"><a href="#webvtt-metadata-text" class="tocxref"><span class="secno">4.3.1 </span>WebVTT metadata text</a></li><li class="tocline"><a href="#webvtt-cue-text" class="tocxref"><span class="secno">4.3.2 </span>WebVTT cue text</a></li></ul></li><li class="tocline"><a href="#webvtt-cue-settings" class="tocxref"><span class="secno">4.4 </span>WebVTT cue settings</a><ul class="toc"><li class="tocline"><a href="#webvtt-region-definition" class="tocxref"><span class="secno">4.4.1 </span>WebVTT region definition</a></li><li class="tocline"><a href="#webvtt-cue-settings-1" class="tocxref"><span class="secno">4.4.2 </span>WebVTT cue settings</a></li></ul></li><li class="tocline"><a href="#properties-of-cue-sequences" class="tocxref"><span class="secno">4.5 </span>Properties of cue sequences</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-using-only-nested-cues" class="tocxref"><span class="secno">4.5.1 </span>WebVTT file using only nested cues</a></li></ul></li><li class="tocline"><a href="#types-of-webvtt-files" class="tocxref"><span class="secno">4.6 </span>Types of WebVTT files</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-using-metadata-content" class="tocxref"><span class="secno">4.6.1 </span>WebVTT file using metadata content</a></li><li class="tocline"><a href="#webvtt-file-using-chapter-title-text" class="tocxref"><span class="secno">4.6.2 </span>WebVTT file using chapter title text</a></li><li class="tocline"><a href="#webvtt-file-using-cue-text" class="tocxref"><span class="secno">4.6.3 </span>WebVTT file using cue text</a></li></ul></li></ul></li><li class="tocline"><a href="#parsing" class="tocxref"><span class="secno">5. </span>Parsing</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-parsing" class="tocxref"><span class="secno">5.1 </span>WebVTT file parsing</a></li><li class="tocline"><a href="#webvtt-region-settings-parsing" class="tocxref"><span class="secno">5.2 </span>WebVTT region settings parsing</a></li><li class="tocline"><a href="#webvtt-cue-timings-and-settings-parsing" class="tocxref"><span class="secno">5.3 </span>WebVTT cue timings and settings parsing</a></li><li class="tocline"><a href="#webvtt-cue-text-parsing-rules" class="tocxref"><span class="secno">5.4 </span><span>WebVTT cue text parsing rules</span></a></li><li class="tocline"><a href="#webvtt-cue-text-dom-construction-rules" class="tocxref"><span class="secno">5.5 </span><span>WebVTT cue text DOM construction rules</span></a></li></ul></li><li class="tocline"><a href="#rendering" class="tocxref"><span class="secno">6. </span>Rendering</a><ul class="toc"><li class="tocline"><a href="#cues-in-isolation" class="tocxref"><span class="secno">6.1 </span>Cues in isolation</a></li><li class="tocline"><a href="#cues-with-video" class="tocxref"><span class="secno">6.2 </span>Cues with video</a><ul class="toc"><li class="tocline"><a href="#processing-model" class="tocxref"><span class="secno">6.2.1 </span>Processing model</a></li><li class="tocline"><a href="#applying-css-properties-to-webvtt-node-objects" class="tocxref"><span class="secno">6.2.2 </span>Applying CSS properties to <span title="WebVTT Node Object" class="formerLink">WebVTT Node Objects</span></a></li><li class="tocline"><a href="#css-extensions" class="tocxref"><span class="secno">6.2.3 </span>CSS extensions</a><ul class="toc"><li class="tocline"><a href="#the-cue-pseudo-element" class="tocxref"><span class="secno">6.2.3.1 </span>The '::cue' pseudo-element</a></li><li class="tocline"><a href="#the-past-and-future-pseudo-classes" class="tocxref"><span class="secno">6.2.3.2 </span>The ':past' and ':future' pseudo-classes</a></li><li class="tocline"><a href="#the-cue-region-pseudo-element" class="tocxref"><span class="secno">6.2.3.3 </span>The '::cue-region' pseudo-element</a></li></ul></li></ul></li></ul></li><li class="tocline"><a href="#api" class="tocxref"><span class="secno">7. </span>API</a><ul class="toc"><li class="tocline"><a href="#the-vttcue-interface" class="tocxref"><span class="secno">7.1 </span>The <span class="formerLink"><code>VTTCue</code></span> interface</a></li><li class="tocline"><a href="#the-vttregion-interface" class="tocxref"><span class="secno">7.2 </span>The <span class="formerLink"><code>VTTRegion</code></span> interface</a></li></ul></li><li class="tocline"><a href="#iana-considerations" class="tocxref"><span class="secno">8. </span>IANA considerations</a><ul class="toc"><li class="tocline"><a href="#text-vtt" class="tocxref"><span class="secno">8.1 </span><span><code>text/vtt</code></span></a></li></ul></li><li class="tocline"><a href="#references-1" class="tocxref"><span class="secno">9. </span>References</a></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">10. </span>Acknowledgements</a></li></ul></section>
+</section><section id="toc"><h2 class="introductory" role="heading" id="h2_toc">Table of Contents</h2><ul class="toc" role="directory" id="respecContents"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a><ul class="toc"><li class="tocline"><a href="#cues-with-multiple-lines" class="tocxref"><span class="secno">1.1 </span>Cues with multiple lines</a></li><li class="tocline"><a href="#comments" class="tocxref"><span class="secno">1.2 </span>Comments</a></li><li class="tocline"><a href="#other-features" class="tocxref"><span class="secno">1.3 </span>Other features</a></li></ul></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a><ul class="toc"><li class="tocline"><a href="#conformance-for-authors" class="tocxref"><span class="secno">2.1 </span>Conformance for authors</a></li><li class="tocline"><a href="#document-conformance" class="tocxref"><span class="secno">2.2 </span>Document conformance</a></li><li class="tocline"><a href="#dependencies" class="tocxref"><span class="secno">2.3 </span>Dependencies</a></li></ul></li><li class="tocline"><a href="#data-model" class="tocxref"><span class="secno">3. </span>Data model</a><ul class="toc"><li class="tocline"><a href="#text-track-cues" class="tocxref"><span class="secno">3.1 </span>Text track cues</a></li><li class="tocline"><a href="#text-track-regions" class="tocxref"><span class="secno">3.2 </span>Text track regions</a></li></ul></li><li class="tocline"><a href="#syntax" class="tocxref"><span class="secno">4. </span>Syntax</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-structure" class="tocxref"><span class="secno">4.1 </span>WebVTT file structure</a></li><li class="tocline"><a href="#webvtt-comments" class="tocxref"><span class="secno">4.2 </span>WebVTT comments</a></li><li class="tocline"><a href="#types-of-webvtt-cue-payload" class="tocxref"><span class="secno">4.3 </span>Types of WebVTT cue payload</a><ul class="toc"><li class="tocline"><a href="#webvtt-metadata-text" class="tocxref"><span class="secno">4.3.1 </span>WebVTT metadata text</a></li><li class="tocline"><a href="#webvtt-cue-text" class="tocxref"><span class="secno">4.3.2 </span>WebVTT cue text</a></li></ul></li><li class="tocline"><a href="#webvtt-region-definition" class="tocxref"><span class="secno">4.4 </span>WebVTT region definition</a></li><li class="tocline"><a href="#webvtt-cue-settings" class="tocxref"><span class="secno">4.5 </span>WebVTT cue settings</a></li><li class="tocline"><a href="#properties-of-cue-sequences" class="tocxref"><span class="secno">4.6 </span>Properties of cue sequences</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-using-only-nested-cues" class="tocxref"><span class="secno">4.6.1 </span>WebVTT file using only nested cues</a></li></ul></li><li class="tocline"><a href="#types-of-webvtt-files" class="tocxref"><span class="secno">4.7 </span>Types of WebVTT files</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-using-metadata-content" class="tocxref"><span class="secno">4.7.1 </span>WebVTT file using metadata content</a></li><li class="tocline"><a href="#webvtt-file-using-chapter-title-text" class="tocxref"><span class="secno">4.7.2 </span>WebVTT file using chapter title text</a></li><li class="tocline"><a href="#webvtt-file-using-cue-text" class="tocxref"><span class="secno">4.7.3 </span>WebVTT file using cue text</a></li></ul></li></ul></li><li class="tocline"><a href="#parsing" class="tocxref"><span class="secno">5. </span>Parsing</a><ul class="toc"><li class="tocline"><a href="#webvtt-file-parsing" class="tocxref"><span class="secno">5.1 </span>WebVTT file parsing</a></li><li class="tocline"><a href="#webvtt-region-settings-parsing" class="tocxref"><span class="secno">5.2 </span>WebVTT region settings parsing</a></li><li class="tocline"><a href="#webvtt-cue-timings-and-settings-parsing" class="tocxref"><span class="secno">5.3 </span>WebVTT cue timings and settings parsing</a></li><li class="tocline"><a href="#webvtt-cue-text-parsing-rules" class="tocxref"><span class="secno">5.4 </span><span>WebVTT cue text parsing rules</span></a></li><li class="tocline"><a href="#webvtt-cue-text-dom-construction-rules" class="tocxref"><span class="secno">5.5 </span><span>WebVTT cue text DOM construction rules</span></a></li></ul></li><li class="tocline"><a href="#rendering" class="tocxref"><span class="secno">6. </span>Rendering</a><ul class="toc"><li class="tocline"><a href="#cues-in-isolation" class="tocxref"><span class="secno">6.1 </span>Cues in isolation</a></li><li class="tocline"><a href="#cues-with-video" class="tocxref"><span class="secno">6.2 </span>Cues with video</a><ul class="toc"><li class="tocline"><a href="#processing-model" class="tocxref"><span class="secno">6.2.1 </span>Processing model</a></li><li class="tocline"><a href="#applying-css-properties-to-webvtt-node-objects" class="tocxref"><span class="secno">6.2.2 </span>Applying CSS properties to <span title="WebVTT Node Object" class="formerLink">WebVTT Node Objects</span></a></li><li class="tocline"><a href="#css-extensions" class="tocxref"><span class="secno">6.2.3 </span>CSS extensions</a><ul class="toc"><li class="tocline"><a href="#the-cue-pseudo-element" class="tocxref"><span class="secno">6.2.3.1 </span>The '::cue' pseudo-element</a></li><li class="tocline"><a href="#the-past-and-future-pseudo-classes" class="tocxref"><span class="secno">6.2.3.2 </span>The ':past' and ':future' pseudo-classes</a></li><li class="tocline"><a href="#the-cue-region-pseudo-element" class="tocxref"><span class="secno">6.2.3.3 </span>The '::cue-region' pseudo-element</a></li></ul></li></ul></li></ul></li><li class="tocline"><a href="#api" class="tocxref"><span class="secno">7. </span>API</a><ul class="toc"><li class="tocline"><a href="#the-vttcue-interface" class="tocxref"><span class="secno">7.1 </span>The <span class="formerLink"><code>VTTCue</code></span> interface</a></li><li class="tocline"><a href="#the-vttregion-interface" class="tocxref"><span class="secno">7.2 </span>The <span class="formerLink"><code>VTTRegion</code></span> interface</a></li></ul></li><li class="tocline"><a href="#iana-considerations" class="tocxref"><span class="secno">8. </span>IANA considerations</a><ul class="toc"><li class="tocline"><a href="#text-vtt" class="tocxref"><span class="secno">8.1 </span><span><code>text/vtt</code></span></a></li></ul></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">9. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">A. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">A.1 </span>Normative references</a></li></ul></li></ul></section>
 
   
 
@@ -609,14 +709,14 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
    <section id="conformance-for-authors">
     <h3 role="heading" id="h3_conformance-for-authors"><span class="secno">2.1 </span>Conformance for authors</h3>
 
-    <p>The <a href="#h2_syntax">Syntax</a> section of this specification defines what consists a
-    valid WebVTT document. Authors need to follow the <a href="#h2_syntax">Syntax</a> specification
-    and are encouraged to use a validator.</p>
+    <p>The <a href="#syntax">Syntax</a> section of this specification defines what consists a valid
+    WebVTT document. Authors need to follow the <a href="#syntax">Syntax</a> specification and are
+    encouraged to use a validator.</p>
 
-    <p>The <a href="#h2_parser">Parser</a> section of this specification defines in some detail the
+    <p>The <a href="#parsing">Parsing</a> section of this specification defines in some detail the
     required processing for valid and also for invalid documents. It is a little more tolerant to
     author errors than the syntax allows, so as to reject less documents and provide for
-    extensibility. However, authors must not take advantage of it. Only documents that follow the <a href="#h2_syntax">Syntax</a> specification are valid.</p>
+    extensibility. However, authors must not take advantage of it. Only documents that follow the <a href="#syntax">Syntax</a> specification are valid.</p>
    </section>
 
    <section id="document-conformance">
@@ -630,7 +730,7 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
     normative parts of this document are to be interpreted as described in RFC2119. The key word
     "OPTIONALLY" in the normative parts of this document is to be interpreted with the same
     normative meaning as "<em class="rfc2119" title="MAY">MAY</em>" and "<em class="rfc2119" title="OPTIONAL">OPTIONAL</em>". For readability, these words do not appear in all
-    uppercase letters in this specification. <a href="#refsRFC2119">[RFC2119]</a></p>
+    uppercase letters in this specification. [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>]</p>
 
     <p>Requirements phrased in the imperative as part of algorithms (such as "strip any leading
     space characters" or "return false and abort these steps") are to be interpreted with the
@@ -646,117 +746,111 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
 
     <p>This specification relies on several other underlying specifications.</p>
 
-    <p>The following term is defined in the Encoding standard: <a href="#refsENCODING">[ENCODING]</a></p>
+    <p>The following term is defined in the Encoding standard: [<cite><a class="bibref" href="#bib-ENCODING">ENCODING</a></cite>]</p>
 
     <ul class="brief">
-     <li><a href="http://encoding.spec.whatwg.org/#utf-8-decode"><dfn id="dfn-utf-8-decode">UTF-8 decode</dfn></a></li>
+     <li><a href="https://encoding.spec.whatwg.org/#utf-8-decode"><dfn id="dfn-utf-8-decode">UTF-8 decode</dfn></a></li>
     </ul>
 
-    <p>The following terms are defined in the DOM specification: <a href="#refsDOM">[DOM]</a></p>
+    <p>The following terms are defined in the DOM standard: [<cite><a class="bibref" href="#bib-DOM">DOM</a></cite>]</p>
 
     <ul class="brief">
-     <li><a href="http://dom.spec.whatwg.org/#document"><dfn id="dfn-document"><code>Document</code></dfn></a>
+     <li><a href="https://dom.spec.whatwg.org/#document"><dfn id="dfn-document"><code>Document</code></dfn></a>
      interface</li>
-     <li><a href="http://dom.spec.whatwg.org/#interface-documentfragment"><dfn id="dfn-documentfragment"><code>DocumentFragment</code></dfn></a>
+     <li><a href="https://dom.spec.whatwg.org/#interface-documentfragment"><dfn id="dfn-documentfragment"><code>DocumentFragment</code></dfn></a>
      interface</li>
-     <li><a href="http://dom.spec.whatwg.org/#processinginstruction"><dfn id="dfn-processinginstruction"><code>ProcessingInstruction</code></dfn></a>
+     <li><a href="https://dom.spec.whatwg.org/#processinginstruction"><dfn id="dfn-processinginstruction"><code>ProcessingInstruction</code></dfn></a>
      interface</li>
-     <li><a href="http://dom.spec.whatwg.org/#text"><dfn id="dfn-text"><code>Text</code></dfn></a> interface</li>
-     <li><a href="http://dom.spec.whatwg.org/#dom-characterdata-data"><dfn id="dfn-data"><code>data</code></dfn></a>
+     <li><a href="https://dom.spec.whatwg.org/#text"><dfn id="dfn-text"><code>Text</code></dfn></a> interface</li>
+     <li><a href="https://dom.spec.whatwg.org/#dom-characterdata-data"><dfn id="dfn-data"><code>data</code></dfn></a>
      attribute</li>
-     <li><a href="http://dom.spec.whatwg.org/#dom-element-localname"><dfn id="dfn-localname"><code>localName</code></dfn></a>
+     <li><a href="https://dom.spec.whatwg.org/#dom-element-localname"><dfn id="dfn-localname"><code>localName</code></dfn></a>
      attribute</li>
-     <li><a href="http://dom.spec.whatwg.org/#dom-element-namespaceuri"><dfn id="dfn-namespaceuri"><code>namespaceURI</code></dfn></a>
+     <li><a href="https://dom.spec.whatwg.org/#dom-element-namespaceuri"><dfn id="dfn-namespaceuri"><code>namespaceURI</code></dfn></a>
      attribute</li>
-     <li><a href="http://dom.spec.whatwg.org/#dom-node-ownerdocument"><dfn id="dfn-ownerdocument"><code>ownerDocument</code></dfn></a>
+     <li><a href="https://dom.spec.whatwg.org/#dom-node-ownerdocument"><dfn id="dfn-ownerdocument"><code>ownerDocument</code></dfn></a>
      attribute</li>
-     <li><a href="http://dom.spec.whatwg.org/#dom-processinginstruction-target"><dfn id="dfn-target"><code>target</code></dfn></a>
+     <li><a href="https://dom.spec.whatwg.org/#dom-processinginstruction-target"><dfn id="dfn-target"><code>target</code></dfn></a>
      attribute</li>
-     <li><a href="http://dom.spec.whatwg.org/#indexsizeerror"><dfn id="dfn-indexsizeerror"><code>IndexSizeError</code></dfn></a></li>
     </ul>
 
-    <p>The following terms are defined in the HTML standard: <a href="#refsHTML5">[HTML5]</a></p>
+    <p>The following terms are defined in the HTML standard: [<cite><a class="bibref" href="#bib-HTML">HTML</a></cite>]</p>
 
     <ul class="brief">
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#html-elements"><dfn id="dfn-html-elements">HTML
-     elements</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#htmlelement"><dfn id="dfn-htmlelement"><code>HTMLElement</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#html-elements"><dfn id="dfn-html-elements">HTML elements</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#htmlelement"><dfn id="dfn-htmlelement"><code>HTMLElement</code></dfn></a>
      interface</li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#attr-class"><dfn id="dfn-class"><code>class</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#classes"><dfn id="dfn-class"><code>class</code></dfn></a>
      attribute</li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#attr-lang"><dfn id="dfn-lang"><code>lang</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#attr-lang"><dfn id="dfn-lang"><code>lang</code></dfn></a>
      attribute</li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#attr-title"><dfn id="dfn-title"><code>title</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#attr-title"><dfn id="dfn-title"><code>title</code></dfn></a>
      attribute</li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#script's-document"><dfn id="dfn-script-s-document">Script's
+     <li><a href="https://html.spec.whatwg.org/#responsible-document"><dfn id="dfn-responsible-document">Responsible
      document</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#entry-script"><dfn id="dfn-entry-script">Entry
-     script</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#mime-type"><dfn id="dfn-mime-type">MIME
-     type</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#case-sensitive"><dfn id="dfn-case-sensitive">Case-sensitive</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#collect-a-sequence-of-characters"><dfn id="dfn-collect-a-sequence-of-characters">Collect
-     a sequence of characters</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#ascii-digits"><dfn id="dfn-ascii-digits">ASCII
-     digits</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#alphanumeric-ascii-characters"><dfn id="dfn-alphanumeric-ascii-characters">Alphanumeric
+     <li><a href="https://html.spec.whatwg.org/#entry-settings-object"><dfn id="dfn-entry-settings-object">Entry settings
+     object</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#mime-type"><dfn id="dfn-mime-type">MIME type</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#case-sensitive"><dfn id="dfn-case-sensitive">Case-sensitive</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#collect-a-sequence-of-characters"><dfn id="dfn-collect-a-sequence-of-characters">Collect a
+     sequence of characters</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#ascii-digits"><dfn id="dfn-ascii-digits">ASCII digits</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#alphanumeric-ascii-characters"><dfn id="dfn-alphanumeric-ascii-characters">Alphanumeric
      ASCII characters</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#space-character"><dfn id="dfn-space-character">Space
-     character</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#skip-whitespace"><dfn id="dfn-skip-whitespace">Skip
-     whitespace</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#split-a-string-on-spaces"><dfn id="dfn-split-a-string-on-spaces">Split
-     a string on spaces</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#html-namespace"><dfn id="dfn-html-namespace">HTML
-     namespace</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#media-element"><dfn id="dfn-media-element">Media
-     element</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#audio"><dfn id="dfn-audio"><code>audio</code></dfn>
+     <li><a href="https://html.spec.whatwg.org/#space-character"><dfn id="dfn-space-character">Space character</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#skip-whitespace"><dfn id="dfn-skip-whitespace">Skip whitespace</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#split-a-string-on-spaces"><dfn id="dfn-split-a-string-on-spaces">Split a string on
+     spaces</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#html-namespace"><dfn id="dfn-html-namespace">HTML namespace</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#media-element"><dfn id="dfn-media-element">Media element</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#audio"><dfn id="dfn-audio"><code>audio</code></dfn>
      element</a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#video"><dfn id="dfn-video"><code>video</code></dfn>
+     <li><a href="https://html.spec.whatwg.org/#video"><dfn id="dfn-video"><code>video</code></dfn>
      element</a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#current-playback-position"><dfn id="dfn-current-playback-position">Current
-     playback position</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#expose-a-user-interface-to-the-user"><dfn id="dfn-expose-a-user-interface-to-the-user">Expose
-     a user interface to the user</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#list-of-text-tracks"><dfn id="dfn-list-of-text-tracks">List of
-     text tracks</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track"><dfn id="dfn-text-track">Text
-     track</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-kind"><dfn id="dfn-text-track-kind">Text track
-     kind</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-mode"><dfn id="dfn-text-track-mode">Text track
-     mode</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-showing"><dfn id="dfn-text-track-showing">Text track
+     <li><a href="https://html.spec.whatwg.org/#current-playback-position"><dfn id="dfn-current-playback-position">Current playback
+     position</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#expose-a-user-interface-to-the-user"><dfn id="dfn-expose-a-user-interface-to-the-user">Expose a
+     user interface to the user</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#list-of-text-tracks"><dfn id="dfn-list-of-text-tracks">List of text
+     tracks</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track"><dfn id="dfn-text-track">Text track</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-kind"><dfn id="dfn-text-track-kind">Text track kind</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-mode"><dfn id="dfn-text-track-mode">Text track mode</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-showing"><dfn id="dfn-text-track-showing">Text track
      showing</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue"><dfn id="dfn-text-track-cue">Text track
-     cue</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-list-of-cues"><dfn id="dfn-text-track-list-of-cues">Text
-     track list of cues</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-order"><dfn id="dfn-text-track-cue-order">Text
-     track cue order</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-identifier"><dfn id="dfn-text-track-cue-identifier">Text
-     track cue identifier</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-start-time"><dfn id="dfn-text-track-cue-start-time">Text
-     track cue start time</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-end-time"><dfn id="dfn-text-track-cue-end-time">Text
-     track cue end time</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-pause-on-exit-flag"><dfn id="dfn-text-track-cue-pause-on-exit-flag">Text
-     track cue pause-on-exit flag</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-text"><dfn id="dfn-text-track-cue-text">Text track
-     cue text</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-active-flag"><dfn id="dfn-text-track-cue-active-flag">Text track
-     cue active flag</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#text-track-cue-display-state"><dfn id="dfn-text-track-cue-display-state">Text
-     track cue display state</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#rules-for-updating-the-text-track-rendering"><dfn id="dfn-rules-for-updating-the-text-track-rendering">Rules
-     for updating the text track rendering</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#rules-for-rendering-the-cue-in-isolation"><dfn id="dfn-rules-for-rendering-the-cue-in-isolation">Rules
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue"><dfn id="dfn-text-track-cue">Text track cue</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-list-of-cues"><dfn id="dfn-text-track-list-of-cues">Text track list of
+     cues</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-order"><dfn id="dfn-text-track-cue-order">Text track cue
+     order</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-identifier"><dfn id="dfn-text-track-cue-identifier">Text track cue
+     identifier</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-start-time"><dfn id="dfn-text-track-cue-start-time">Text track cue start
+     time</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-end-time"><dfn id="dfn-text-track-cue-end-time">Text track cue end
+     time</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-pause-on-exit-flag"><dfn id="dfn-text-track-cue-pause-on-exit-flag">Text track
+     cue pause-on-exit flag</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-text"><dfn id="dfn-text-track-cue-text">Text track cue
+     text</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-active-flag"><dfn id="dfn-text-track-cue-active-flag">Text track cue
+     active flag</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#text-track-cue-display-state"><dfn id="dfn-text-track-cue-display-state">Text track cue
+     display state</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#rules-for-updating-the-text-track-rendering"><dfn id="dfn-rules-for-updating-the-text-track-rendering">Rules for
+     updating the text track rendering</dfn></a></li>
+     <li><a href="https://html.spec.whatwg.org/#rules-for-rendering-the-cue-in-isolation"><dfn id="dfn-rules-for-rendering-the-cue-in-isolation">Rules
      for rendering the cue in isolation</dfn></a></li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#texttrackcue"><dfn id="dfn-texttrackcue"><code>TextTrackCue</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#texttrackcue"><dfn id="dfn-texttrackcue"><code>TextTrackCue</code></dfn></a>
      interface</li>
-     <li><a href="http://www.w3.org/html/wg/drafts/html/master/#dom-texttrack-addcue"><dfn id="dfn-addcue"><code>addCue()</code></dfn></a>
+     <li><a href="https://html.spec.whatwg.org/#dom-texttrack-addcue"><dfn id="dfn-addcue"><code>addCue()</code></dfn></a>
      method</li>
+    </ul>
+
+    <p>The following term is defined in the Web IDL specification: [<cite><a class="bibref" href="#bib-WEBIDL">WEBIDL</a></cite>]</p>
+
+    <ul>
+     <li><a href="http://heycam.github.io/webidl/#indexsizeerror"><dfn id="dfn-indexsizeerror"><code>IndexSizeError</code></dfn></a></li>
     </ul>
    </section>
   </section>
@@ -770,7 +864,7 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
     <h3 role="heading" id="h3_text-track-cues"><span class="secno">3.1 </span>Text track cues</h3>
 
     <p>WebVTT cues are HTML <a title="text track cue" href="#dfn-text-track-cue" class="internalDFN">text track cues</a> that additionally consist
-    of the following: <a href="#refsHTML5">[HTML5]</a></p>
+    of the following: [<cite><a class="bibref" href="#bib-HTML">HTML</a></cite>]</p>
 
     <dl>
 
@@ -930,7 +1024,7 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
       </dl>
 
       <p>Which sides are the start and end sides depends on the Unicode bidirectional algorithm and
-      the <a title="text track cue writing direction" href="#dfn-text-track-cue-writing-direction" class="internalDFN">writing direction</a>. <a href="#refsBIDI">[BIDI]</a></p>
+      the <a title="text track cue writing direction" href="#dfn-text-track-cue-writing-direction" class="internalDFN">writing direction</a>. [<cite><a class="bibref" href="#bib-BIDI">BIDI</a></cite>]</p>
 
      </dd>
 
@@ -1039,7 +1133,7 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
     <h3 role="heading" id="h3_webvtt-file-structure"><span class="secno">4.1 </span>WebVTT file structure</h3>
 
     <p>A <dfn id="dfn-webvtt-file">WebVTT file</dfn> must consist of a <a href="#dfn-webvtt-file-body" class="internalDFN">WebVTT file body</a> encoded as UTF-8 and
-    labeled with the <a href="#dfn-mime-type" class="internalDFN">MIME type</a> <code>text/vtt</code>. <a href="#refsRFC3629">[RFC3629]</a></p>
+    labeled with the <a href="#dfn-mime-type" class="internalDFN">MIME type</a> <code>text/vtt</code>. [<cite><a class="bibref" href="#bib-RFC3629">RFC3629</a></cite>]</p>
 
     <p>A <dfn id="dfn-webvtt-file-body">WebVTT file body</dfn> consists of the following components, in the following
     order:</p>
@@ -1401,7 +1495,7 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
      <ol>
       <li>A <a href="#dfn-webvtt-cue-span-start-tag" class="internalDFN">WebVTT cue span start tag</a> "<code>lang</code>" that requires an annotation; the
       annotation represents the language of the following component, and must be a valid BCP 47
-      language tag. <a href="#refsBCP47">[BCP47]</a></li>
+      language tag. [<cite><a class="bibref" href="#bib-BCP47">BCP47</a></cite>]</li>
       <li><a href="#dfn-webvtt-cue-internal-text" class="internalDFN">WebVTT cue internal text</a>.</li>
       <li>A <a href="#dfn-webvtt-cue-span-end-tag" class="internalDFN">WebVTT cue span end tag</a> "<code>lang</code>".</li>
      </ol>
@@ -1506,279 +1600,274 @@ Region: id=bill width=40% lines=3 regionanchor=100%,100% viewportanchor=90%,90% 
 
    </section><!-- end cue payload types -->
 
+   <section id="webvtt-region-definition">
+    <h3 role="heading" id="h3_webvtt-region-definition"><span class="secno">4.4 </span>WebVTT region definition</h3>
+
+    <p>A <a href="#dfn-webvtt-cue-settings-list" class="internalDFN">WebVTT cue settings list</a> may contain a reference to a <a title="text track
+    region" href="#dfn-text-track-region" class="internalDFN">text track region</a>. To define a region, a <a href="#dfn-webvtt-region-metadata-header" class="internalDFN">WebVTT region metadata header</a> is
+    specified.</p>
+
+    <p>A <dfn id="dfn-webvtt-region-metadata-header">WebVTT region metadata header</dfn> is a special kind of <a href="#dfn-webvtt-metadata-header" class="internalDFN">WebVTT metadata header</a>
+    where both of the following apply:</p>
+
+    <ul>
+     <li>The <a href="#dfn-webvtt-metadata-header-name" class="internalDFN">WebVTT metadata header name</a> is the string "<code>Region</code>".</li>
+     <li>The <a href="#dfn-webvtt-metadata-header-value" class="internalDFN">WebVTT metadata header value</a> is a <a href="#dfn-webvtt-region-setting-list" class="internalDFN">WebVTT region setting list</a>.</li>
+    </ul>
+
+    <p>A <dfn id="dfn-webvtt-region">WebVTT region</dfn> represents its <a title="WebVTT region setting list" href="#dfn-webvtt-region-setting-list" class="internalDFN">WebVTT region
+    settings</a>.</p>
+
+    <p>The <dfn id="dfn-webvtt-region-setting-list">WebVTT region setting list</dfn> of a <a href="#dfn-webvtt-region-metadata-header" class="internalDFN">WebVTT region metadata header</a> consists
+    of zero or more of the following components, in any order, separated from each other by one or
+    more U+0020 SPACE characters or U+0009 CHARACTER TABULATION (tab) characters. Each component
+    must not be included more than once per <a href="#dfn-webvtt-region-setting-list" class="internalDFN">WebVTT region setting list</a> string.</p>
+
+    <ul>
+     <li>A <a href="#dfn-webvtt-region-identifier-setting" class="internalDFN">WebVTT region identifier setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-region-width-setting" class="internalDFN">WebVTT region width setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-region-lines-setting" class="internalDFN">WebVTT region lines setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-region-anchor-setting" class="internalDFN">WebVTT region anchor setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-region-viewport-anchor-setting" class="internalDFN">WebVTT region viewport anchor setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-region-scroll-setting" class="internalDFN">WebVTT region scroll setting</a>.</li>
+    </ul>
+
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_6"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-setting-list" class="internalDFN">WebVTT region setting list</a> gives configuration options regarding the
+    dimensions, positioning and anchoring of the region. For example, it allows a group of cues
+    within a region to be anchored in the center of the region and the center of the video viewport.
+    In this example, when the font size grows, the region grows uniformly in all directions from the
+    center.</p></div>
+
+    <p>A <dfn id="dfn-webvtt-region-identifier-setting">WebVTT region identifier setting</dfn> consists of the following components, in the
+    order given:</p>
+    <ol>
+     <li><p>The string "<code>id</code>".</p></li>
+     <li><p>A U+003D EQUALS SIGN character (=).</p></li>
+     <li><p>An arbitrary string of one or more characters other than U+0020 SPACE or U+0009
+     CHARACTER TABULATION character. The string must not contain the substring "<code>--&gt;</code>"
+     (U+002D HYPHEN-MINUS, U+002D HYPHEN-MINUS, U+003E GREATER-THAN SIGN). The string is called the
+     <dfn id="dfn-webvtt-region-identifier">WebVTT region identifier</dfn>.</p></li>
+    </ol>
+
+    <p>A <a href="#dfn-webvtt-region-identifier" class="internalDFN">WebVTT region identifier</a> must be unique amongst all the <a title="WebVTT region
+    identifier" href="#dfn-webvtt-region-identifier" class="internalDFN">WebVTT region identifiers</a> of all <a title="WebVTT region" href="#dfn-webvtt-region" class="internalDFN">WebVTT regions</a> of
+    a <a href="#dfn-webvtt-file" class="internalDFN">WebVTT file</a>.</p>
+
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_7"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-identifier" class="internalDFN">WebVTT region identifier</a> gives a name to the region so it can be
+    referenced by the cues that belong to the region.</p></div>
+
+    <p>A <dfn id="dfn-webvtt-region-width-setting">WebVTT region width setting</dfn> consists of the following components, in the order
+    given:</p>
+    <ol>
+     <li><p>The string "<code>width</code>".</p></li>
+     <li><p>A U+003D EQUALS SIGN character (=).</p></li>
+     <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
+    </ol>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_8"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-width-setting" class="internalDFN">WebVTT region width setting</a> provides a fixed width as a percentage
+    of the video width for the region into which cues are rendered and based on which alignment is
+    calculated.</p></div>
+
+    <p>A <dfn id="dfn-webvtt-region-lines-setting">WebVTT region lines setting</dfn> consists of the following components, in the order
+    given:</p>
+    <ol>
+     <li><p>The string "<code>lines</code>".</p></li>
+     <li><p>A U+003D EQUALS SIGN character (=).</p></li>
+     <li><p>One or more <a href="#dfn-ascii-digits" class="internalDFN">ASCII digits</a>.</p></li>
+    </ol>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_9"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-lines-setting" class="internalDFN">WebVTT region lines setting</a> provides a fixed height as a number of
+    lines for the region into which cues are rendered. As such, it defines the height of the roll-up
+    region if it is a scroll region.</p></div>
+
+    <p>A <dfn id="dfn-webvtt-region-anchor-setting">WebVTT region anchor setting</dfn> consists of the following components, in the order
+    given:</p>
+    <ol>
+     <li><p>The string "<code>regionanchor</code>".</p></li>
+     <li><p>A U+003D EQUALS SIGN character (=).</p></li>
+     <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
+     <li><p>A U+002C COMMA character (,).</p></li>
+     <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
+    </ol>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_10"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-anchor-setting" class="internalDFN">WebVTT region anchor setting</a> provides a tuple of two percentages
+    that specify the point within the region box that is fixed in location. The first percentage
+    measures the x-dimension and the second percentage y-dimension from the top left corner of the
+    region box. If no <a href="#dfn-webvtt-region-anchor-setting" class="internalDFN">WebVTT region anchor setting</a> is given, the anchor defaults to 0%, 100%
+    (i.e. the bottom left corner).</p></div>
+
+    <p>A <dfn id="dfn-webvtt-region-viewport-anchor-setting">WebVTT region viewport anchor setting</dfn> consists of the following components, in
+    the order given:</p>
+    <ol>
+     <li><p>The string "<code>viewportanchor</code>".</p></li>
+     <li><p>A U+003D EQUALS SIGN character (=).</p></li>
+     <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
+     <li><p>A U+002C COMMA character (,).</p></li>
+     <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
+    </ol>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_11"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-viewport-anchor-setting" class="internalDFN">WebVTT region viewport anchor setting</a> provides a tuple of two
+    percentages that specify the point within the video viewport that the region anchor point is
+    anchored to. The first percentage measures the x-dimension and the second percentage measures
+    the y-dimension from the top left corner of the video viewport box. If no viewport anchor is
+    given, it defaults to 0%, 100% (i.e. the bottom left corner).</p></div>
+
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_12"><span>Note</span></div><p class="">For browsers, the region maps to an absolute positioned CSS box relative to the
+    video viewport, i.e. there is a relative positioned box that represents the video viewport
+    relative to which the regions are absolutely positioned. Overflow is hidden.</p></div>
+
+    <p>A <dfn id="dfn-webvtt-region-scroll-setting">WebVTT region scroll setting</dfn> consists of the following components, in the order
+    given:</p>
+    <ol>
+     <li><p>The string "<code>scroll</code>".</p></li>
+     <li><p>A U+003D EQUALS SIGN character (=).</p></li>
+     <li><p>The string "<code>up</code>".</p></li>
+    </ol>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_13"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-scroll-setting" class="internalDFN">WebVTT region scroll setting</a> specifies whether cues rendered into
+    the region are allowed to move out of their initial rendering place and roll up, i.e. move
+    towards the top of the video viewport. If the scroll setting is omitted, cues do not move from
+    their rendered position.</p></div>
+
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_14"><span>Note</span></div><p class="">Cues are added to a region one line at a time below existing cue lines. When an
+    existing rendered cue line is removed, and it was above another already rendered cue line, that
+    cue line moves into its space, thus scrolling in the given direction. If there is not enough
+    space for a new cue line to be added to a region, the top-most cue line is pushed off the
+    visible region (thus slowly becoming invisible as it moves into overflow:hidden). This
+    eventually makes space for the new cue line and allows it to be added.</p></div>
+
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_15"><span>Note</span></div><p class="">When there is no scroll direction, cue lines are added in the empty line closest
+    to the line in the bottom of the region. If no empty line is available, the oldest line is
+    replaced.</p></div>
+
+   </section><!-- end region definition -->
+
    <section id="webvtt-cue-settings">
-    <h3 role="heading" id="h3_webvtt-cue-settings"><span class="secno">4.4 </span>WebVTT cue settings</h3>
+    <h3 role="heading" id="h3_webvtt-cue-settings"><span class="secno">4.5 </span>WebVTT cue settings</h3>
 
-    <section id="webvtt-region-definition">
-     <h4 role="heading" id="h4_webvtt-region-definition"><span class="secno">4.4.1 </span>WebVTT region definition</h4>
+    <p>A <a href="#dfn-webvtt-cue-settings-list" class="internalDFN">WebVTT cue settings list</a> consists of zero or more of the following settings. Each
+    setting must not be included more than once per <a href="#dfn-webvtt-cue-settings-list" class="internalDFN">WebVTT cue settings list</a>.</p>
 
-     <p>A <a href="#dfn-webvtt-cue-settings-list" class="internalDFN">WebVTT cue settings list</a> may contain a reference to a <a title="text track
-     region" href="#dfn-text-track-region" class="internalDFN">text track region</a>. To define a region, a <a href="#dfn-webvtt-region-metadata-header" class="internalDFN">WebVTT region metadata header</a> is
-     specified.</p>
+    <ul class="brief">
+     <li>A <a href="#dfn-webvtt-vertical-text-cue-setting" class="internalDFN">WebVTT vertical text cue setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-line-position-cue-setting" class="internalDFN">WebVTT line position cue setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-text-position-cue-setting" class="internalDFN">WebVTT text position cue setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-size-cue-setting" class="internalDFN">WebVTT size cue setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-alignment-cue-setting" class="internalDFN">WebVTT alignment cue setting</a>.</li>
+     <li>A <a href="#dfn-webvtt-region-cue-setting" class="internalDFN">WebVTT region cue setting</a>.</li>
+    </ul>
 
-     <p>A <dfn id="dfn-webvtt-region-metadata-header">WebVTT region metadata header</dfn> is a special kind of <a href="#dfn-webvtt-metadata-header" class="internalDFN">WebVTT metadata
-     header</a> where both of the following apply:</p>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_16"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-cue-settings-list" class="internalDFN">WebVTT cue settings list</a> gives configuration options regarding the
+    position and alignment of the cue. For example, it allows a cue to be aligned to the left or
+    positioned at the top right.</p></div>
 
-     <ul>
-      <li>The <a href="#dfn-webvtt-metadata-header-name" class="internalDFN">WebVTT metadata header name</a> is the string "<code>Region</code>".</li>
-      <li>The <a href="#dfn-webvtt-metadata-header-value" class="internalDFN">WebVTT metadata header value</a> is a <a href="#dfn-webvtt-region-setting-list" class="internalDFN">WebVTT region setting list</a>.</li>
-     </ul>
+    <p>A <dfn id="dfn-webvtt-vertical-text-cue-setting">WebVTT vertical text cue setting</dfn> is a <a href="#dfn-webvtt-cue-setting" class="internalDFN">WebVTT cue setting</a> that consists of
+    the following components, in the order given:</p>
 
-     <p>A <dfn id="dfn-webvtt-region">WebVTT region</dfn> represents its <a title="WebVTT region setting list" href="#dfn-webvtt-region-setting-list" class="internalDFN">WebVTT
-     region settings</a>.</p>
+    <ol>
+     <li>The string "<code>vertical</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</li>
+     <li><p>A U+003A COLON character (:).</p></li>
+     <li>One of the following strings as the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: "<code>rl</code>",
+     "<code>lr</code>".</li>
+    </ol>
 
-     <p>The <dfn id="dfn-webvtt-region-setting-list">WebVTT region setting list</dfn> of a <a href="#dfn-webvtt-region-metadata-header" class="internalDFN">WebVTT region metadata header</a> consists
-     of zero or more of the following components, in any order, separated from each other by one or
-     more U+0020 SPACE characters or U+0009 CHARACTER TABULATION (tab) characters. Each component
-     must not be included more than once per <a href="#dfn-webvtt-region-setting-list" class="internalDFN">WebVTT region setting list</a> string.</p>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_17"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-vertical-text-cue-setting" class="internalDFN">WebVTT vertical text cue setting</a> configures the cue to use vertical
+    text layout rather than horizontal text layout. Vertical text layout is sometimes used in
+    Japanese, for example. The default is horizontal layout.</p></div>
 
-     <ul>
-      <li>A <a href="#dfn-webvtt-region-identifier-setting" class="internalDFN">WebVTT region identifier setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-region-width-setting" class="internalDFN">WebVTT region width setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-region-lines-setting" class="internalDFN">WebVTT region lines setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-region-anchor-setting" class="internalDFN">WebVTT region anchor setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-region-viewport-anchor-setting" class="internalDFN">WebVTT region viewport anchor setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-region-scroll-setting" class="internalDFN">WebVTT region scroll setting</a>.</li>
-     </ul>
+    <p>A <dfn id="dfn-webvtt-line-position-cue-setting">WebVTT line position cue setting</dfn> consists of the following components, in the
+    order given:</p>
 
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_6"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-setting-list" class="internalDFN">WebVTT region setting list</a> gives configuration options regarding the
-     dimensions, positioning and anchoring of the region. For example, it allows a group of cues
-     within a region to be anchored in the center of the region and the center of the video
-     viewport. In this example, when the font size grows, the region grows uniformly in all
-     directions from the center.</p></div>
+    <ol>
+     <li><p>The string "<code>line</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
+     <li><p>A U+003A COLON character (:).</p></li>
+     <li>
+      As the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a> either:
+      <dl>
+       <dt>To represent a specific position relative to the video frame</dt>
+       <dd>
+        <p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p>
+       </dd>
+       <dt>To represent a line number</dt>
+       <dd>
+        <ol>
+         <li>Optionally a U+002D HYPHEN-MINUS character (-).</li>
+         <li>One or more <a href="#dfn-ascii-digits" class="internalDFN">ASCII digits</a>.</li>
+        </ol>
+       </dd>
+      </dl>
+     </li>
+    </ol>
 
-     <p>A <dfn id="dfn-webvtt-region-identifier-setting">WebVTT region identifier setting</dfn> consists of the following components, in the
-     order given:</p>
-     <ol>
-      <li><p>The string "<code>id</code>".</p></li>
-      <li><p>A U+003D EQUALS SIGN character (=).</p></li>
-      <li><p>An arbitrary string of one or more characters other than U+0020 SPACE or U+0009
-      CHARACTER TABULATION character. The string must not contain the substring "<code>--&gt;</code>"
-      (U+002D HYPHEN-MINUS, U+002D HYPHEN-MINUS, U+003E GREATER-THAN SIGN). The string is called the
-      <dfn id="dfn-webvtt-region-identifier">WebVTT region identifier</dfn>.</p></li>
-     </ol>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_18"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-line-position-cue-setting" class="internalDFN">WebVTT line position cue setting</a> configures the position of the cue.
+    For horizontal cues, this is the vertical position. The position can be given either as a
+    percentage, which gives the distance from the top of the frame, or as a line number. Line
+    numbers are based on the size of the first line of the cue. Positive line numbers count from the
+    top of the frame (the top line is numbered 0), negative line numbers from the bottom of the
+    frame (the bottom line is numbered −1).</p></div>
 
-     <p>A <a href="#dfn-webvtt-region-identifier" class="internalDFN">WebVTT region identifier</a> must be unique amongst all the <a title="WebVTT region
-     identifier" href="#dfn-webvtt-region-identifier" class="internalDFN">WebVTT region identifiers</a> of all <a title="WebVTT region" href="#dfn-webvtt-region" class="internalDFN">WebVTT regions</a> of
-     a <a href="#dfn-webvtt-file" class="internalDFN">WebVTT file</a>.</p>
+    <p>A <dfn id="dfn-webvtt-text-position-cue-setting">WebVTT text position cue setting</dfn> consists of the following components, in the
+    order given:</p>
 
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_7"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-identifier" class="internalDFN">WebVTT region identifier</a> gives a name to the region so it can be
-     referenced by the cues that belong to the region.</p></div>
+    <ol>
+     <li><p>The string "<code>position</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
+     <li><p>A U+003A COLON character (:).</p></li>
+     <li><p>As the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: a <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
+    </ol>
 
-     <p>A <dfn id="dfn-webvtt-region-width-setting">WebVTT region width setting</dfn> consists of the following components, in the order
-     given:</p>
-     <ol>
-      <li><p>The string "<code>width</code>".</p></li>
-      <li><p>A U+003D EQUALS SIGN character (=).</p></li>
-      <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
-     </ol>
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_8"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-width-setting" class="internalDFN">WebVTT region width setting</a> provides a fixed width as a percentage
-     of the video width for the region into which cues are rendered and based on which alignment is
-     calculated.</p></div>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_19"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-text-position-cue-setting" class="internalDFN">WebVTT text position cue setting</a> configures the position of the text in
+    the direction orthogonal to the <a href="#dfn-webvtt-line-position-cue-setting" class="internalDFN">WebVTT line position cue setting</a>. For horizontal cues,
+    this is the horizontal position measured from the left edge, given as a percentage of the width
+    of the frame.</p></div>
 
-     <p>A <dfn id="dfn-webvtt-region-lines-setting">WebVTT region lines setting</dfn> consists of the following components, in the order
-     given:</p>
-     <ol>
-      <li><p>The string "<code>lines</code>".</p></li>
-      <li><p>A U+003D EQUALS SIGN character (=).</p></li>
-      <li><p>One or more <a href="#dfn-ascii-digits" class="internalDFN">ASCII digits</a>.</p></li>
-     </ol>
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_9"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-lines-setting" class="internalDFN">WebVTT region lines setting</a> provides a fixed height as a number of
-     lines for the region into which cues are rendered. As such, it defines the height of the
-     roll-up region if it is a scroll region.</p></div>
+    <p>A <dfn id="dfn-webvtt-size-cue-setting">WebVTT size cue setting</dfn> consists of the following components, in the order
+    given:</p>
 
-     <p>A <dfn id="dfn-webvtt-region-anchor-setting">WebVTT region anchor setting</dfn> consists of the following components, in the order
-     given:</p>
-     <ol>
-      <li><p>The string "<code>regionanchor</code>".</p></li>
-      <li><p>A U+003D EQUALS SIGN character (=).</p></li>
-      <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
-      <li><p>A U+002C COMMA character (,).</p></li>
-      <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
-     </ol>
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_10"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-anchor-setting" class="internalDFN">WebVTT region anchor setting</a> provides a tuple of two percentages
-     that specify the point within the region box that is fixed in location. The first percentage
-     measures the x-dimension and the second percentage y-dimension from the top left corner of the
-     region box. If no <a href="#dfn-webvtt-region-anchor-setting" class="internalDFN">WebVTT region anchor setting</a> is given, the anchor defaults to 0%, 100%
-     (i.e. the bottom left corner).</p></div>
+    <ol>
+     <li><p>The string "<code>size</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
+     <li><p>A U+003A COLON character (:).</p></li>
+     <li><p>As the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: a <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
+    </ol>
 
-     <p>A <dfn id="dfn-webvtt-region-viewport-anchor-setting">WebVTT region viewport anchor setting</dfn> consists of the following components, in
-     the order given:</p>
-     <ol>
-      <li><p>The string "<code>viewportanchor</code>".</p></li>
-      <li><p>A U+003D EQUALS SIGN character (=).</p></li>
-      <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
-      <li><p>A U+002C COMMA character (,).</p></li>
-      <li><p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
-     </ol>
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_11"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-viewport-anchor-setting" class="internalDFN">WebVTT region viewport anchor setting</a> provides a tuple of two
-     percentages that specify the point within the video viewport that the region anchor point is
-     anchored to. The first percentage measures the x-dimension and the second percentage measures
-     the y-dimension from the top left corner of the video viewport box. If no viewport anchor is
-     given, it defaults to 0%, 100% (i.e. the bottom left corner).</p></div>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_20"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-size-cue-setting" class="internalDFN">WebVTT size cue setting</a> configures the size of the cue in the same
+    direction as the <a href="#dfn-webvtt-text-position-cue-setting" class="internalDFN">WebVTT text position cue setting</a>. For horizontal cues, this is the width
+    of the cue, given as a percentage of the width of the frame.</p></div>
 
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_12"><span>Note</span></div><p class="">For browsers, the region maps to an absolute positioned CSS box relative to
-     the video viewport, i.e. there is a relative positioned box that represents the video viewport
-     relative to which the regions are absolutely positioned. Overflow is hidden.</p></div>
+    <p>A <dfn id="dfn-webvtt-alignment-cue-setting">WebVTT alignment cue setting</dfn> consists of the following components, in the order
+    given:</p>
 
-     <p>A <dfn id="dfn-webvtt-region-scroll-setting">WebVTT region scroll setting</dfn> consists of the following components, in the order
-     given:</p>
-     <ol>
-      <li><p>The string "<code>scroll</code>".</p></li>
-      <li><p>A U+003D EQUALS SIGN character (=).</p></li>
-      <li><p>The string "<code>up</code>".</p></li>
-     </ol>
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_13"><span>Note</span></div><p class="">The <a href="#dfn-webvtt-region-scroll-setting" class="internalDFN">WebVTT region scroll setting</a> specifies whether cues rendered into
-     the region are allowed to move out of their initial rendering place and roll up, i.e. move
-     towards the top of the video viewport. If the scroll setting is omitted, cues do not move from
-     their rendered position.</p></div>
+    <ol>
+     <li><p>The string "<code>align</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
+     <li><p>A U+003A COLON character (:).</p></li>
+     <li>One of the following strings as the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: "<code>start</code>",
+     "<code>middle</code>", "<code>end</code>", "<code>left</code>", "<code>right</code>"</li>
+    </ol>
 
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_14"><span>Note</span></div><p class="">Cues are added to a region one line at a time below existing cue lines. When an
-     existing rendered cue line is removed, and it was above another already rendered cue line, that
-     cue line moves into its space, thus scrolling in the given direction. If there is not enough
-     space for a new cue line to be added to a region, the top-most cue line is pushed off the
-     visible region (thus slowly becoming invisible as it moves into overflow:hidden). This
-     eventually makes space for the new cue line and allows it to be added.</p></div>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_21"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-alignment-cue-setting" class="internalDFN">WebVTT alignment cue setting</a> configures the alignment of the text
+    within the cue. The keywords are relative to the text direction; for left-to-right English text,
+    "<code>start</code>" means left-aligned.</p></div>
 
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_15"><span>Note</span></div><p class="">When there is no scroll direction, cue lines are added in the empty line
-     closest to the line in the bottom of the region. If no empty line is available, the oldest line
-     is replaced.</p></div>
+    <p>A <dfn id="dfn-webvtt-region-cue-setting">WebVTT region cue setting</dfn> consists of the following components, in the order
+    given:</p>
 
-    </section>
+    <ol>
+     <li><p>The string "<code>region</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
+     <li><p>A U+003A COLON character (:).</p></li>
+     <li><p>As the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: an arbitrary string of one or more characters
+     other than U+0020 SPACE or U+0009 CHARACTER TABULATION character. The string must not contain
+     the substring "<code>--&gt;</code>" (U+002D HYPHEN-MINUS, U+002D HYPHEN-MINUS, U+003E GREATER-THAN
+     SIGN).</p></li>
+    </ol>
 
-    <section id="webvtt-cue-settings-1">
-     <h4 role="heading" id="h4_webvtt-cue-settings-1"><span class="secno">4.4.2 </span>WebVTT cue settings</h4>
-
-     <p>A <a href="#dfn-webvtt-cue-settings-list" class="internalDFN">WebVTT cue settings list</a> consists of zero or more of the following settings. Each
-     setting must not be included more than once per <a href="#dfn-webvtt-cue-settings-list" class="internalDFN">WebVTT cue settings list</a>.</p>
-
-     <ul class="brief">
-      <li>A <a href="#dfn-webvtt-vertical-text-cue-setting" class="internalDFN">WebVTT vertical text cue setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-line-position-cue-setting" class="internalDFN">WebVTT line position cue setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-text-position-cue-setting" class="internalDFN">WebVTT text position cue setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-size-cue-setting" class="internalDFN">WebVTT size cue setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-alignment-cue-setting" class="internalDFN">WebVTT alignment cue setting</a>.</li>
-      <li>A <a href="#dfn-webvtt-region-cue-setting" class="internalDFN">WebVTT region cue setting</a>.</li>
-     </ul>
-
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_16"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-cue-settings-list" class="internalDFN">WebVTT cue settings list</a> gives configuration options regarding the
-     position and alignment of the cue. For example, it allows a cue to be aligned to the left or
-     positioned at the top right.</p></div>
-
-     <p>A <dfn id="dfn-webvtt-vertical-text-cue-setting">WebVTT vertical text cue setting</dfn> is a <a href="#dfn-webvtt-cue-setting" class="internalDFN">WebVTT cue setting</a> that consists
-     of the following components, in the order given:</p>
-
-     <ol>
-      <li>The string "<code>vertical</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</li>
-      <li><p>A U+003A COLON character (:).</p></li>
-      <li>One of the following strings as the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: "<code>rl</code>",
-      "<code>lr</code>".</li>
-     </ol>
-
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_17"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-vertical-text-cue-setting" class="internalDFN">WebVTT vertical text cue setting</a> configures the cue to use vertical
-     text layout rather than horizontal text layout. Vertical text layout is sometimes used in
-     Japanese, for example. The default is horizontal layout.</p></div>
-
-     <p>A <dfn id="dfn-webvtt-line-position-cue-setting">WebVTT line position cue setting</dfn> consists of the following components, in the
-     order given:</p>
-
-     <ol>
-      <li><p>The string "<code>line</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
-      <li><p>A U+003A COLON character (:).</p></li>
-      <li>
-       As the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a> either:
-       <dl>
-        <dt>To represent a specific position relative to the video frame</dt>
-        <dd>
-         <p>A <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p>
-        </dd>
-        <dt>To represent a line number</dt>
-        <dd>
-         <ol>
-          <li>Optionally a U+002D HYPHEN-MINUS character (-).</li>
-          <li>One or more <a href="#dfn-ascii-digits" class="internalDFN">ASCII digits</a>.</li>
-         </ol>
-        </dd>
-       </dl>
-      </li>
-     </ol>
-
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_18"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-line-position-cue-setting" class="internalDFN">WebVTT line position cue setting</a> configures the position of the cue.
-     For horizontal cues, this is the vertical position. The position can be given either as a
-     percentage, which gives the distance from the top of the frame, or as a line number. Line
-     numbers are based on the size of the first line of the cue. Positive line numbers count from
-     the top of the frame (the top line is numbered 0), negative line numbers from the bottom of the
-     frame (the bottom line is numbered −1).</p></div>
-
-     <p>A <dfn id="dfn-webvtt-text-position-cue-setting">WebVTT text position cue setting</dfn> consists of the following components, in the
-     order given:</p>
-
-     <ol>
-      <li><p>The string "<code>position</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
-      <li><p>A U+003A COLON character (:).</p></li>
-      <li><p>As the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: a <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
-     </ol>
-
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_19"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-text-position-cue-setting" class="internalDFN">WebVTT text position cue setting</a> configures the position of the text
-     in the direction orthogonal to the <a href="#dfn-webvtt-line-position-cue-setting" class="internalDFN">WebVTT line position cue setting</a>. For horizontal
-     cues, this is the horizontal position measured from the left edge, given as a percentage of the
-     width of the frame.</p></div>
-
-     <p>A <dfn id="dfn-webvtt-size-cue-setting">WebVTT size cue setting</dfn> consists of the following components, in the order
-     given:</p>
-
-     <ol>
-      <li><p>The string "<code>size</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
-      <li><p>A U+003A COLON character (:).</p></li>
-      <li><p>As the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: a <a href="#dfn-webvtt-percentage" class="internalDFN">WebVTT percentage</a>.</p></li>
-     </ol>
-
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_20"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-size-cue-setting" class="internalDFN">WebVTT size cue setting</a> configures the size of the cue in the same
-     direction as the <a href="#dfn-webvtt-text-position-cue-setting" class="internalDFN">WebVTT text position cue setting</a>. For horizontal cues, this is the
-     width of the cue, given as a percentage of the width of the frame.</p></div>
-
-     <p>A <dfn id="dfn-webvtt-alignment-cue-setting">WebVTT alignment cue setting</dfn> consists of the following components, in the order
-     given:</p>
-
-     <ol>
-      <li><p>The string "<code>align</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
-      <li><p>A U+003A COLON character (:).</p></li>
-      <li>One of the following strings as the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: "<code>start</code>",
-      "<code>middle</code>", "<code>end</code>", "<code>left</code>", "<code>right</code>"</li>
-     </ol>
-
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_21"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-alignment-cue-setting" class="internalDFN">WebVTT alignment cue setting</a> configures the alignment of the text
-     within the cue. The keywords are relative to the text direction; for left-to-right English
-     text, "<code>start</code>" means left-aligned.</p></div>
-
-     <p>A <dfn id="dfn-webvtt-region-cue-setting">WebVTT region cue setting</dfn> consists of the following components, in the order
-     given:</p>
-
-     <ol>
-      <li><p>The string "<code>region</code>" as the <a href="#dfn-webvtt-cue-setting-name" class="internalDFN">WebVTT cue setting name</a>.</p></li>
-      <li><p>A U+003A COLON character (:).</p></li>
-      <li><p>As the <a href="#dfn-webvtt-cue-setting-value" class="internalDFN">WebVTT cue setting value</a>: an arbitrary string of one or more characters
-      other than U+0020 SPACE or U+0009 CHARACTER TABULATION character. The string must not contain
-      the substring "<code>--&gt;</code>" (U+002D HYPHEN-MINUS, U+002D HYPHEN-MINUS, U+003E
-      GREATER-THAN SIGN).</p></li>
-     </ol>
-
-     <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_22"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-region-cue-setting" class="internalDFN">WebVTT region cue setting</a> configures a cue to become part of a region
-     by referencing the region's identifier unless the cue has a <a title="WebVTT vertical text cue
-     setting" href="#dfn-webvtt-vertical-text-cue-setting" class="internalDFN">"vertical"</a>, <a title="WebVTT line position cue setting" href="#dfn-webvtt-line-position-cue-setting" class="internalDFN">"line"</a> or <a title="WebVTT size cue setting" href="#dfn-webvtt-size-cue-setting" class="internalDFN">"size"</a> cue setting. If a cue is part of a region, its cue
-     settings for <a title="WebVTT text position cue setting" href="#dfn-webvtt-text-position-cue-setting" class="internalDFN">"position"</a> and <a title="WebVTT
-     alignment cue setting" href="#dfn-webvtt-alignment-cue-setting" class="internalDFN">"align"</a> are applied to the line boxes in the cue relative to the
-     region box.</p></div>
-
-    </section>
+    <div class="note"><div class="note-title" aria-level="2" role="heading" id="h_note_22"><span>Note</span></div><p class="">A <a href="#dfn-webvtt-region-cue-setting" class="internalDFN">WebVTT region cue setting</a> configures a cue to become part of a region
+    by referencing the region's identifier unless the cue has a <a title="WebVTT vertical text cue
+    setting" href="#dfn-webvtt-vertical-text-cue-setting" class="internalDFN">"vertical"</a>, <a title="WebVTT line position cue setting" href="#dfn-webvtt-line-position-cue-setting" class="internalDFN">"line"</a> or <a title="WebVTT size cue setting" href="#dfn-webvtt-size-cue-setting" class="internalDFN">"size"</a> cue setting. If a cue is part of a region, its cue
+    settings for <a title="WebVTT text position cue setting" href="#dfn-webvtt-text-position-cue-setting" class="internalDFN">"position"</a> and <a title="WebVTT
+    alignment cue setting" href="#dfn-webvtt-alignment-cue-setting" class="internalDFN">"align"</a> are applied to the line boxes in the cue relative to the
+    region box.</p></div>
 
    </section><!-- end cue settings -->
 
    <section id="properties-of-cue-sequences">
-    <h3 role="heading" id="h3_properties-of-cue-sequences"><span class="secno">4.5 </span>Properties of cue sequences</h3>
+    <h3 role="heading" id="h3_properties-of-cue-sequences"><span class="secno">4.6 </span>Properties of cue sequences</h3>
 
     <section id="webvtt-file-using-only-nested-cues">
-     <h4 role="heading" id="h4_webvtt-file-using-only-nested-cues"><span class="secno">4.5.1 </span>WebVTT file using only nested cues</h4>
+     <h4 role="heading" id="h4_webvtt-file-using-only-nested-cues"><span class="secno">4.6.1 </span>WebVTT file using only nested cues</h4>
 
      <p>A <a href="#dfn-webvtt-file" class="internalDFN">WebVTT file</a> whose cues all follow the following rules is said to be a <dfn id="dfn-webvtt-file-using-only-nested-cues">WebVTT
      file using only nested cues</dfn>:</p>
@@ -1863,7 +1952,7 @@ The Final Minute</pre>
    </section><!-- end cue sequence properties -->
 
    <section id="types-of-webvtt-files">
-    <h3 role="heading" id="h3_types-of-webvtt-files"><span class="secno">4.6 </span>Types of WebVTT files</h3>
+    <h3 role="heading" id="h3_types-of-webvtt-files"><span class="secno">4.7 </span>Types of WebVTT files</h3>
 
     <p>The syntax definition of WebVTT files allows authoring of a wide variety of WebVTT files with
     a mix of cues. However, only a small subset of WebVTT file types are typically authored.</p>
@@ -1872,7 +1961,7 @@ The Final Minute</pre>
     checking for validating these types.</p>
 
     <section id="webvtt-file-using-metadata-content">
-     <h4 role="heading" id="h4_webvtt-file-using-metadata-content"><span class="secno">4.6.1 </span>WebVTT file using metadata content</h4>
+     <h4 role="heading" id="h4_webvtt-file-using-metadata-content"><span class="secno">4.7.1 </span>WebVTT file using metadata content</h4>
 
      <p>A <a href="#dfn-webvtt-file" class="internalDFN">WebVTT file</a> whose cues all have a <a href="#dfn-cue-payload" class="internalDFN">cue payload</a> that is <a href="#dfn-webvtt-metadata-text" class="internalDFN">WebVTT metadata
      text</a> is said to be a <dfn id="dfn-webvtt-file-using-metadata-content">WebVTT file using metadata content</dfn>.</p>
@@ -1880,7 +1969,7 @@ The Final Minute</pre>
     </section>
 
     <section id="webvtt-file-using-chapter-title-text">
-     <h4 role="heading" id="h4_webvtt-file-using-chapter-title-text"><span class="secno">4.6.2 </span>WebVTT file using chapter title text</h4>
+     <h4 role="heading" id="h4_webvtt-file-using-chapter-title-text"><span class="secno">4.7.2 </span>WebVTT file using chapter title text</h4>
 
      <p><dfn id="dfn-webvtt-chapter-title-text">WebVTT chapter title text</dfn> is <a href="#dfn-webvtt-cue-text" class="internalDFN">WebVTT cue text</a> that makes use only of zero
      or more of the following components, each optionally separated from the next by a <a href="#dfn-webvtt-line-terminator" class="internalDFN">WebVTT
@@ -1902,7 +1991,7 @@ The Final Minute</pre>
     </section>
 
     <section id="webvtt-file-using-cue-text">
-     <h4 role="heading" id="h4_webvtt-file-using-cue-text"><span class="secno">4.6.3 </span>WebVTT file using cue text</h4>
+     <h4 role="heading" id="h4_webvtt-file-using-cue-text"><span class="secno">4.7.3 </span>WebVTT file using cue text</h4>
 
      <p>A <a href="#dfn-webvtt-file" class="internalDFN">WebVTT file</a> whose cues all have a <a href="#dfn-cue-payload" class="internalDFN">cue payload</a> that is <a href="#dfn-webvtt-cue-text" class="internalDFN">WebVTT cue text</a>
      is said to be a <dfn id="dfn-webvtt-file-using-cue-text">WebVTT file using cue text</dfn>.</p>
@@ -1923,7 +2012,7 @@ The Final Minute</pre>
     <var>output</var>, must decode the byte stream using the <a title="UTF-8 decode" href="#dfn-utf-8-decode" class="internalDFN">UTF-8
     decode</a> algorithm, and then must parse the resulting string according to the <a href="#dfn-webvtt-parser-algorithm" class="internalDFN">WebVTT parser
     algorithm</a> below. This results in <a title="text track cue" href="#dfn-text-track-cue" class="internalDFN">text track cues</a> being added
-    to <var>output</var>. <a href="#refsRFC3629">[RFC3629]</a></p>
+    to <var>output</var>. [<cite><a class="bibref" href="#bib-RFC3629">RFC3629</a></cite>]</p>
 
     <p>A <a href="#dfn-webvtt-parser" class="internalDFN">WebVTT parser</a>, specifically its conversion and parsing steps, is typically run
     asynchronously, with the input byte stream being updated incrementally as the resource is
@@ -2699,7 +2788,7 @@ The Final Minute</pre>
     ordered list of class names, known as their <dfn title="WebVTT Node Object's applicable
     classes" id="dfn-webvtt-node-object-s-applicable-classes">applicable classes</dfn>, and a language, known as their <dfn title="WebVTT Node
     Object's applicable language" id="dfn-webvtt-node-object-s-applicable-language">applicable language</dfn>, which is to be interpreted as a BCP 47
-    language code. <a href="#refsBCP47">[BCP47]</a></p>
+    language code. [<cite><a class="bibref" href="#bib-BCP47">BCP47</a></cite>]</p>
 
     <p>There are several concrete classes of <a title="WebVTT Internal Node Object" href="#dfn-webvtt-internal-node-object" class="internalDFN">WebVTT Internal
     Node Objects</a>:</p>
@@ -3593,11 +3682,12 @@ The Final Minute</pre>
 
          <ul>
           <li><p>Let <var>regionWidth</var> be the <a href="#dfn-text-track-region-width" class="internalDFN">text track region width</a>. Let
-          <var>width</var> be '<var>regionWidth</var> vw' ('vw' is a CSS unit).<a href="#refsCSSVALUES">[CSSVALUES]</a></p></li>
+          <var>width</var> be '<var>regionWidth</var> vw' ('vw' is a CSS unit).
+          [<cite><a class="bibref" href="#bib-CSSVALUES">CSSVALUES</a></cite>]</p></li>
 
-          <li><p>Let <var>lineHeight</var> be '5.33vh' ('vh' is a CSS unit) <a href="#refsCSSVALUES">[CSSVALUES]</a> and <var>regionHeight</var> be the <a href="#dfn-text-track-region-lines" class="internalDFN">text track
-          region lines</a>. Let <var>lines</var> be '<var>lineHeight</var> multiplied by
-          <var>regionHeight</var>.</p></li>
+          <li><p>Let <var>lineHeight</var> be '5.33vh' ('vh' is a CSS unit) [<cite><a class="bibref" href="#bib-CSSVALUES">CSSVALUES</a></cite>] and
+          <var>regionHeight</var> be the <a href="#dfn-text-track-region-lines" class="internalDFN">text track region lines</a>. Let <var>lines</var> be
+          '<var>lineHeight</var> multiplied by <var>regionHeight</var>.</p></li>
 
           <li><p>Let <var>viewportAnchorX</var> be the x dimension of the <a href="#dfn-text-track-region-viewport-anchor" class="internalDFN">text track region
           viewport anchor</a> and <var>regionAnchorX</var> be the x dimension of the <a href="#dfn-text-track-region-anchor" class="internalDFN">text track
@@ -3691,7 +3781,7 @@ The Final Minute</pre>
            of the values of each <a href="#dfn-webvtt-text-object" class="internalDFN">WebVTT Text Object</a> in <var>nodes</var>, in a pre-order,
            depth-first traversal, excluding <a title="WebVTT Ruby Text Object" href="#dfn-webvtt-ruby-text-object" class="internalDFN">WebVTT Ruby Text
            Objects</a> and their descendants, to determine the <i>paragraph embedding level</i> of
-           the first Unicode paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
+           the first Unicode paragraph of the cue. [<cite><a class="bibref" href="#bib-BIDI">BIDI</a></cite>]</p>
            <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_24"><span>Note</span></div><p class="">Within a cue, paragraph boundaries are only denoted by Type B characters,
            such as U+000A LINE FEED (LF), U+0085 NEXT LINE (NEL), and U+2029 PARAGRAPH SEPARATOR.
            (This means each line of the cue is reordered as if it was a separate paragraph.)</p></div>
@@ -3720,7 +3810,8 @@ The Final Minute</pre>
            </dl>
           </li>
 
-          <li><p>Let <var>left</var> be '<var>offset</var> %'. ('%' is a CSS unit.) <a href="#refsCSSVALUES">[CSSVALUES]</a></p></li>
+          <li><p>Let <var>left</var> be '<var>offset</var> %'. ('%' is a CSS unit.)
+          [<cite><a class="bibref" href="#bib-CSSVALUES">CSSVALUES</a></cite>]</p></li>
 
           <li>
            <p>Apply the terms of the CSS specifications to <var>nodes</var> with the same
@@ -3769,7 +3860,7 @@ The Final Minute</pre>
        the values of each <a href="#dfn-webvtt-text-object" class="internalDFN">WebVTT Text Object</a> in <var>nodes</var>, in a pre-order, depth-first
        traversal, excluding <a title="WebVTT Ruby Text Object" href="#dfn-webvtt-ruby-text-object" class="internalDFN">WebVTT Ruby Text Objects</a> and
        their descendants, to determine the <i>paragraph embedding level</i> of the first Unicode
-       paragraph of the cue. <a href="#refsBIDI">[BIDI]</a></p>
+       paragraph of the cue. [<cite><a class="bibref" href="#bib-BIDI">BIDI</a></cite>]</p>
 
        <div class="note"><div class="note-title" aria-level="3" role="heading" id="h_note_25"><span>Note</span></div><p class="">Within a cue, paragraph boundaries are only denoted by Type B characters,
        such as U+000A LINE FEED (LF), U+0085 NEXT LINE (NEL), and U+2029 PARAGRAPH SEPARATOR. (This
@@ -3841,7 +3932,8 @@ The Final Minute</pre>
       writing direction" href="#dfn-text-track-cue-horizontal-writing-direction" class="internalDFN">horizontal</a>, then let <var>width</var> be '<var>size</var> vw'
       and <var>height</var> be 'auto'. Otherwise, let <var>width</var> be 'auto' and
       <var>height</var> be '<var>size</var> vh'. (These are CSS values used by the next
-      section to set CSS properties for the rendering; 'vw' and 'vh' are CSS units.) <a href="#refsCSSVALUES">[CSSVALUES]</a></p></li>
+      section to set CSS properties for the rendering; 'vw' and 'vh' are CSS units.)
+      [<cite><a class="bibref" href="#bib-CSSVALUES">CSSVALUES</a></cite>]</p></li>
 
       <li>
 
@@ -4017,13 +4109,13 @@ The Final Minute</pre>
 
       <li><p>Let <var>left</var> be '<var>x-position</var> vw' and <var>top</var> be
       '<var>y-position</var> vh'. (These are CSS values used by the next section to set CSS
-      properties for the rendering; 'vw' and 'vh' are CSS units.) <a href="#refsCSSVALUES">[CSSVALUES]</a></p></li>
+      properties for the rendering; 'vw' and 'vh' are CSS units.) [<cite><a class="bibref" href="#bib-CSSVALUES">CSSVALUES</a></cite>]</p></li>
 
       <li>
 
        <p>Apply the terms of the CSS specifications to <var>nodes</var> within the following
        constraints, thus obtaining a set of CSS boxes positioned relative to an initial containing
-       block: <a href="#refsCSS">[CSS]</a></p>
+       block: [<cite><a class="bibref" href="#bib-CSS">CSS</a></cite>]</p>
 
        <ul>
 
@@ -4045,7 +4137,7 @@ The Final Minute</pre>
 
         <li>Runs of children of <a title="WebVTT Ruby Object" href="#dfn-webvtt-ruby-object" class="internalDFN">WebVTT Ruby Objects</a> that are not
         <a title="WebVTT Ruby Text Object" href="#dfn-webvtt-ruby-text-object" class="internalDFN">WebVTT Ruby Text Objects</a> must be wrapped in anonymous
-        boxes whose 'display' property has the value 'ruby-base'. <a href="#refsCSSRUBY">[CSSRUBY]</a></li>
+        boxes whose 'display' property has the value 'ruby-base'. [<cite><a class="bibref" href="#bib-CSSRUBY">CSSRUBY</a></cite>]</li>
 
         <li>Properties on <a title="WebVTT Node Object" href="#dfn-webvtt-node-object" class="internalDFN">WebVTT Node Objects</a> have their values
         set as defined in the next section. (That section uses some of the variables whose values
@@ -4336,7 +4428,7 @@ The Final Minute</pre>
 
      <p>When following the <a href="#dfn-rules-for-updating-the-display-of-webvtt-text-tracks" class="internalDFN">rules for updating the display of WebVTT text tracks</a>, user agents
      must set properties of <a title="WebVTT Node Object" href="#dfn-webvtt-node-object" class="internalDFN">WebVTT Node Objects</a> at the CSS user
-     agent cascade layer as defined in this section. <a href="#refsCSS">[CSS]</a></p>
+     agent cascade layer as defined in this section. [<cite><a class="bibref" href="#bib-CSS">CSS</a></cite>]</p>
 
      <p>Initialize the (root) <a href="#dfn-list-of-webvtt-node-objects" class="internalDFN">list of WebVTT Node Objects</a> with the following CSS
      settings:</p>
@@ -4393,16 +4485,16 @@ The Final Minute</pre>
      </table>
 
      <p>The 'font' shorthand property on the (root) <a href="#dfn-list-of-webvtt-node-objects" class="internalDFN">list of WebVTT Node Objects</a> must be set
-     to '5vh sans-serif'. <a href="#refsCSSRUBY">[CSSRUBY]</a> <a href="#refsCSSVALUES">[CSSVALUES]</a></p>
+     to '5vh sans-serif'. [<cite><a class="bibref" href="#bib-CSSRUBY">CSSRUBY</a></cite>] [<cite><a class="bibref" href="#bib-CSSVALUES">CSSVALUES</a></cite>]</p>
 
      <p>The 'color' property on the (root) <a href="#dfn-list-of-webvtt-node-objects" class="internalDFN">list of WebVTT Node Objects</a> must be set to
-     'rgba(255,255,255,1)'. <a href="#refsCSSCOLOR">[CSSCOLOR]</a></p>
+     'rgba(255,255,255,1)'. [<cite><a class="bibref" href="#bib-CSSCOLOR">CSSCOLOR</a></cite>]</p>
 
      <p>The 'background' shorthand property on the <a href="#dfn-webvtt-cue-background-box" class="internalDFN">WebVTT cue background box</a> must be set to
-     'rgba(0,0,0,0.8)'. <a href="#refsCSSCOLOR">[CSSCOLOR]</a></p>
+     'rgba(0,0,0,0.8)'. [<cite><a class="bibref" href="#bib-CSSCOLOR">CSSCOLOR</a></cite>]</p>
 
      <p>The 'white-space' property on the (root) <a href="#dfn-list-of-webvtt-node-objects" class="internalDFN">list of WebVTT Node Objects</a> must be set to
-     'pre-line'. <a href="#refsCSS">[CSS]</a></p>
+     'pre-line'. [<cite><a class="bibref" href="#bib-CSS">CSS</a></cite>]</p>
 
      <p>The 'font-style' property on <a title="WebVTT Italic Object" href="#dfn-webvtt-italic-object" class="internalDFN">WebVTT Italic Objects</a> must
      be set to 'italic'.</p>
@@ -4414,10 +4506,10 @@ The Final Minute</pre>
      Objects</a> must be set to 'underline'.</p>
 
      <p>The 'display' property on <a title="WebVTT Ruby Object" href="#dfn-webvtt-ruby-object" class="internalDFN">WebVTT Ruby Objects</a> must be set
-     to 'ruby'. <a href="#refsCSSRUBY">[CSSRUBY]</a></p>
+     to 'ruby'. [<cite><a class="bibref" href="#bib-CSSRUBY">CSSRUBY</a></cite>]</p>
 
      <p>The 'display' property on <a title="WebVTT Ruby Text Object" href="#dfn-webvtt-ruby-text-object" class="internalDFN">WebVTT Ruby Text Objects</a>
-     must be set to 'ruby-text'. <a href="#refsCSSRUBY">[CSSRUBY]</a></p>
+     must be set to 'ruby-text'. [<cite><a class="bibref" href="#bib-CSSRUBY">CSSRUBY</a></cite>]</p>
 
      <p>Every <a href="#dfn-webvtt-region-object" class="internalDFN">WebVTT region object</a> is initialized with the following CSS settings:</p>
      <ul>
@@ -4669,7 +4761,7 @@ The Final Minute</pre>
       <h5 role="heading" id="h5_the-past-and-future-pseudo-classes"><span class="secno">6.2.3.2 </span>The ':past' and ':future' pseudo-classes</h5>
 
       <p>The <a title="past-pseudo-class" href="#dfn-past-pseudo-class" class="internalDFN">':past'</a> and <a title="future-pseudo-class" href="#dfn-future-pseudo-class" class="internalDFN">':future'</a> pseudo-classes sometimes match <a title="WebVTT Node
-      Object" href="#dfn-webvtt-node-object" class="internalDFN">WebVTT Node Objects</a>. <a href="#refsSELECTORS">[SELECTORS]</a></p>
+      Object" href="#dfn-webvtt-node-object" class="internalDFN">WebVTT Node Objects</a>. [<cite><a class="bibref" href="#bib-SELECTORS">SELECTORS</a></cite>]</p>
 
       <p>The <dfn title="past-pseudo-class" id="dfn-past-pseudo-class">':past'</dfn> pseudo-class only matches <a title="WebVTT
       Node Object" href="#dfn-webvtt-node-object" class="internalDFN">WebVTT Node Objects</a> that are <i>in the past</i>.</p>
@@ -5003,10 +5095,10 @@ interface <dfn id="dfn-vttcue">VTTCue</dfn> : <a href="#dfn-texttrackcue" class=
     object represents. On setting, the <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a> must be set to the new value.</p>
 
     <p>The <dfn title="VTTCue-getCueAsHTML" id="dfn-vttcue-getcueashtml"><code>getCueAsHTML()</code></dfn> method must convert
-    the <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a> to a <a href="#dfn-documentfragment" class="internalDFN"><code>DocumentFragment</code></a> for the <a href="#dfn-script-s-document" class="internalDFN">script's
-    document</a> of the <a href="#dfn-entry-script" class="internalDFN">entry script</a> by applying the <a href="#dfn-webvtt-cue-text-dom-construction-rules" class="internalDFN">WebVTT cue text DOM construction
-    rules</a> to the result of applying the <a href="#dfn-webvtt-cue-text-parsing-rules" class="internalDFN">WebVTT cue text parsing rules</a> to the <a href="#dfn-text-track-cue-text" class="internalDFN">text
-    track cue text</a>.</p>
+    the <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a> to a <a href="#dfn-documentfragment" class="internalDFN"><code>DocumentFragment</code></a> for the <a href="#dfn-responsible-document" class="internalDFN">responsible
+    document</a> specified by the <a href="#dfn-entry-settings-object" class="internalDFN">entry settings object</a> by applying the <a href="#dfn-webvtt-cue-text-dom-construction-rules" class="internalDFN">WebVTT cue text
+    DOM construction rules</a> to the result of applying the <a href="#dfn-webvtt-cue-text-parsing-rules" class="internalDFN">WebVTT cue text parsing rules</a> to
+    the <a href="#dfn-text-track-cue-text" class="internalDFN">text track cue text</a>.</p>
 
    </section>
 
@@ -5274,81 +5366,15 @@ interface <dfn id="dfn-vttregion">VTTRegion</dfn> {
 
   </section>
 
-  <section id="references-1">
-   <!--OddPage--><h2 class="no-num" id="references" role="heading"><span class="secno">9. </span>References</h2>
-
-   <p>All references are normative unless marked "Non-normative".</p>
-
-   <dl>
-
-    <dt id="refsBCP47">[BCP47]</dt>
-    <dd><cite><a href="http://www.ietf.org/rfc/bcp/bcp47.txt">Tags for Identifying Languages;
-    Matching of Language Tags</a></cite>, A. Phillips, M. Davis. IETF.</dd>
-
-    <dt id="refsBIDI">[BIDI]</dt>
-    <dd><cite><a href="http://www.unicode.org/reports/tr9/">UAX #9: Unicode Bidirectional
-    Algorithm</a></cite>, M. Davis. Unicode Consortium.</dd>
-
-    <dt id="refsCSS">[CSS]</dt>
-    <dd><cite><a href="http://www.w3.org/TR/CSS2/">Cascading Style Sheets Level 2 Revision
-    1</a></cite>, B. Bos, T. Çelik, I. Hickson, H. Lie. W3C.</dd>
-
-    <dt id="refsCSSCOLOR">[CSSCOLOR]</dt>
-    <dd><cite><a href="http://dev.w3.org/csswg/css3-color/">CSS Color Module Level 3</a></cite>, T.
-    Çelik, C. Lilley, L. Baron. W3C.</dd>
-
-    <dt id="refsCSSRUBY">[CSSRUBY]</dt>
-    <dd><cite><a href="http://dev.w3.org/csswg/css3-ruby/">CSS3 Ruby Module</a></cite>, R. Ishida.
-    W3C.</dd>
-
-    <dt id="refsCSSVALUES">[CSSVALUES]</dt>
-    <dd><cite><a href="http://dev.w3.org/csswg/css3-values/">CSS3 Values and Units</a></cite>, H.
-    Lie, T. Atkins, E. Etemad. W3C.</dd>
-
-    <dt id="refsDOM">[DOM]</dt>
-    <dd><cite><a href="http://dom.spec.whatwg.org/">W3C DOM 4</a></cite>, A. van Kesteren, A.
-    Gregor, Ms2ger. WHATWG.</dd>
-
-    <dt id="refsENCODING">[ENCODING]</dt>
-    <dd><cite><a href="http://encoding.spec.whatwg.org/">Encoding</a></cite>, A. van Kesteren, J.
-    Bell. WHATWG.</dd>
-
-    <dt id="refsHTML">[HTML]</dt>
-    <dd><cite><a href="https://html.spec.whatwg.org/">HTML</a></cite>, I. Hickson. WHATWG.</dd>
-
-    <dt id="refsHTML5">[HTML5]</dt>
-    <dd><cite><a href="http://www.w3.org/html/wg/drafts/html/master/">HTML 5.1</a></cite>, R.
-    Berjon, T. Leithead, E. Doyle Navara, E. O'Connor, S. Pfeiffer. W3C.</dd>
-
-    <dt id="refsMAUR">[MAUR]</dt>
-    <dd><cite><a href="http://www.w3.org/TR/media-accessibility-reqs/">Media Accessibility User
-    Requirements</a></cite>, S. McCarron, M. Cooper, M. Sadecki (eds). W3C.</dd>
-
-    <dt id="refsRFC2119">[RFC2119]</dt>
-    <dd><cite><a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate
-    Requirement Levels</a></cite>, S. Bradner. IETF.</dd>
-
-    <dt id="refsRFC3629">[RFC3629]</dt>
-    <dd><cite><a href="http://tools.ietf.org/html/rfc3629">UTF-8, a transformation format of ISO
-    10646</a></cite>, F. Yergeau. IETF.</dd>
-
-    <dt id="refsSELECTORS">[SELECTORS]</dt>
-    <dd><cite><a href="http://www.w3.org/TR/selectors4/">Selectors</a></cite>, E. Etemad, T. Atkins
-    Jr. W3C.</dd>
-
-   </dl>
-
-  </section>
-
   <section id="acknowledgements">
-   <!--OddPage--><h2 class="no-num" role="heading" id="h2_acknowledgements"><span class="secno">10. </span>Acknowledgements</h2>
+   <!--OddPage--><h2 class="no-num" role="heading" id="h2_acknowledgements"><span class="secno">9. </span>Acknowledgements</h2>
 
    <p>Thanks to the SubRip community, including in particular Zuggy and ai4spam, for their work on
    the SubRip software program whose SRT file format was used as the basis for the WebVTT text track
    file format.</p>
 
-   <p>Thanks to the many contributors to the HTML standard at the WHATWG and W3C HTML Working Group,
-   where WebVTT was originally specified. <a href="#refsHTML">[HTML]</a>, <a href="#refsHTML5">[HTML5]</a></p>
+   <p>Thanks to the many contributors to the HTML standard, where WebVTT was originally specified.
+   [<cite><a class="bibref" href="#bib-HTML">HTML</a></cite>]</p>
 
    <p>
     Thanks to the following active contributors to this spec:
@@ -5377,6 +5403,23 @@ interface <dfn id="dfn-vttregion">VTTRegion</dfn> {
 
   </section>
 
+  <div id="bug-ui" hidden="">
+   <p>See a problem?<br>Select text and <a target="_blank" href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=TextTracks%20CG&amp;amp;component=WebVTT&amp;amp;bug_file_loc=http%3A%2F%2Fdev.w3.org%2Fhtml5%2Fwebvtt%2F">file a bug</a>!</p>
+  </div>
+
  
 
-</body></html>
+<section id="references" class="appendix"><!--OddPage--><h2 role="heading" id="h2_references"><span class="secno">A. </span>References</h2><section id="normative-references"><h3 role="heading" id="h3_normative-references"><span class="secno">A.1 </span>Normative references</h3><dl class="bibliography"><dt id="bib-BCP47">[BCP47]</dt><dd rel="dcterms:requires">A. Phillips; M. Davis. <a href="http://tools.ietf.org/html/bcp47"><cite>Tags for Identifying Languages</cite></a>. September 2009. IETF Best Current Practice. URL: <a href="http://tools.ietf.org/html/bcp47">http://tools.ietf.org/html/bcp47</a>
+</dd><dt id="bib-BIDI">[BIDI]</dt><dd rel="dcterms:requires">Mark Davis; Aharon Lanin; Andrew Glass. <a href="http://www.unicode.org/reports/tr9/"><cite>Unicode Bidirectional Algorithm</cite></a>. 5 June 2014. Unicode Standard Annex #9. URL: <a href="http://www.unicode.org/reports/tr9/">http://www.unicode.org/reports/tr9/</a>
+</dd><dt id="bib-CSS">[CSS]</dt><dd rel="dcterms:requires">Bert Bos; Tantek Çelik; Ian Hickson; Håkon Wium Lie et al. <a href="http://www.w3.org/TR/CSS2"><cite>Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification</cite></a>. 7 June 2011. W3C Recommendation. URL: <a href="http://www.w3.org/TR/CSS2">http://www.w3.org/TR/CSS2</a>
+</dd><dt id="bib-CSSCOLOR">[CSSCOLOR]</dt><dd rel="dcterms:requires">Tab Atkins Jr.; Chris Lilley. <a href="http://dev.w3.org/csswg/css-color/"><cite>CSS Color Module Level 4</cite></a>. W3C Editor's Draft. URL: <a href="http://dev.w3.org/csswg/css-color/">http://dev.w3.org/csswg/css-color/</a>
+</dd><dt id="bib-CSSRUBY">[CSSRUBY]</dt><dd rel="dcterms:requires">Elika J. Etemad; Koji Ishii. <a href="http://dev.w3.org/csswg/css-ruby/"><cite>CSS Ruby Layout Module Level 1</cite></a>. W3C Editor's Draft. URL: <a href="http://dev.w3.org/csswg/css-ruby/">http://dev.w3.org/csswg/css-ruby/</a>
+</dd><dt id="bib-CSSVALUES">[CSSVALUES]</dt><dd rel="dcterms:requires">Tab Atkins Jr.; fantasai. <a href="http://dev.w3.org/csswg/css-values/"><cite>CSS Values and Units Module Level 3</cite></a>. W3C Editor's Draft. URL: <a href="http://dev.w3.org/csswg/css-values/">http://dev.w3.org/csswg/css-values/</a>
+</dd><dt id="bib-DOM">[DOM]</dt><dd rel="dcterms:requires">Anne van Kesteren; Aryeh Gregor; Ms2ger. <a href="https://dom.spec.whatwg.org/"><cite>DOM</cite></a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
+</dd><dt id="bib-ENCODING">[ENCODING]</dt><dd rel="dcterms:requires">Anne van Kesteren; Joshua Bell. <a href="https://encoding.spec.whatwg.org/"><cite>Encoding</cite></a>. Living Standard. URL: <a href="https://encoding.spec.whatwg.org/">https://encoding.spec.whatwg.org/</a>
+</dd><dt id="bib-HTML">[HTML]</dt><dd rel="dcterms:requires">Ian Hickson. <a href="https://html.spec.whatwg.org/"><cite>HTML</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/">https://html.spec.whatwg.org/</a>
+</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="https://tools.ietf.org/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+</dd><dt id="bib-RFC3629">[RFC3629]</dt><dd rel="dcterms:requires">F. Yergeau. <a href="https://tools.ietf.org/html/rfc3629"><cite>UTF-8, a transformation format of ISO 10646</cite></a>. November 2003. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3629">https://tools.ietf.org/html/rfc3629</a>
+</dd><dt id="bib-SELECTORS">[SELECTORS]</dt><dd rel="dcterms:requires">Elika J. Etemad; Tab Atkins Jr.. <a href="http://dev.w3.org/csswg/selectors/"><cite>Selectors Level 4</cite></a>. W3C Editor's Draft. URL: <a href="http://dev.w3.org/csswg/selectors/">http://dev.w3.org/csswg/selectors/</a>
+</dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd rel="dcterms:requires">Cameron McCormack; Boris Zbarsky. <a href="http://heycam.github.io/webidl/"><cite>Web IDL</cite></a>. W3C Editor's Draft. URL: <a href="http://heycam.github.io/webidl/">http://heycam.github.io/webidl/</a>
+</dd></dl></section></section></body></html>
